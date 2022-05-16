@@ -12,13 +12,14 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require vendor/libs/perfect-scrollbar/perfect-scrollbar
-//= require vendor/libs/popper/popper
-//= require js/config
-//= require js/dashboards-analytics
-//= require js/main
 //= require vendor/js/helpers
+//= require js/config
+//= require vendor/libs/perfect-scrollbar/perfect-scrollbar
 //= require vendor/js/menu
+//= require vendor/libs/apex-charts/apexcharts
+//= require js/main
+//= require js/dashboards-analytics
+//= require popper.min
 //= require bootstrap.min
 //= require activestorage
 //= require turbolinks
