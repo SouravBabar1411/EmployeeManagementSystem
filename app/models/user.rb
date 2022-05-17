@@ -33,16 +33,8 @@ class User < ApplicationRecord
   
   #validations
   # validates :first_name, :last_name, :date_of_birth, presence: true
-  # validate :password_complexity
+  validates :email, uniqueness: true
   validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
-  
-  # def password_complexity
-  #   if password.present?
-  #     if !password.match(/^(?=.*[a-z])(?=.*[A-Z])/) 
-  #       errors.add :password, "Password complexity requirement not met"
-  #     end
-  #   end
-  # end
 
   #omniauth google social login
   def self.from_omniauth(auth)
