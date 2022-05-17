@@ -272,7 +272,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :google_oauth2, "131489793248-c703d8eilccoof3trg4bgqbblv6vu8p5.apps.googleusercontent.com", "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",
+  callback_url: "http://localhost:3000/users/auth/google_oauth2/callback", :auth_type => 'reauthenticate', :image_size => 'large'
 
+  OmniAuth.config.allowed_request_methods = %i[get]
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
