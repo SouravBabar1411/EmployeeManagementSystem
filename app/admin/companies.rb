@@ -5,7 +5,7 @@ ActiveAdmin.register Company do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :email, :website, :is_approved, :boolean, :add_approved_user_id_to_companies, :approved_user_id, :admin_user_id
+  permit_params :name, :email, :website, :is_approved, :boolean
   #
   # or
   #
@@ -14,5 +14,14 @@ ActiveAdmin.register Company do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :email
+    column :website
+    column :is_approved
+    actions 
+  end
   
 end
