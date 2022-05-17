@@ -27,3 +27,6 @@ Version: 9.1 and up are supported.
 3) rename database.yml.bkp to database.yml
 3) create database
     rails db:create
+4) resolving dependencies: bundle install 
+5) for database schema: rake db:migrate  
+6) for admin email and password: rake db:seed 

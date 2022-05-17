@@ -63,3 +63,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+## for super admin panel
+gem "activeadmin", "~> 2.9"
+
+## for authentication
+gem "devise", "~> 4.8"
+
+## database scheme representation
+gem 'annotate'
