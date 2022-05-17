@@ -1,0 +1,10 @@
+it:
+  devise:
+    password_expired:
+      show:
+        password_expired: Password scaduta
+        renew_your_passord: Rinnova la tua password
+        current_password: Password corrente
+        new_password: Nuova password
+        confirm_new_password: Conferma nuova password
+        change_my_password: Cambia la mia password

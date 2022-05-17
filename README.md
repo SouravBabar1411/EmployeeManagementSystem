@@ -32,3 +32,4 @@ Version: 9.1 and up are supported.
 7. for admin email and password: rake db:seed
 8. social login with google
 9. implemented email confirmable while user sign up
+10. password renew using gem 'devise-security'
