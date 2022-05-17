@@ -11,17 +11,14 @@ git push -uf origin main
 
 Ruby version : 2.7.5
 
-
 Rails version : 5.2.7.1
-
 
 System dependencies : NA
 
-
 Configuration : Create seed file for initial login in Admin menu
 
-
-Database creation : Postgre sql
+Database creation : Postgre sql 
+Version: 9.1 and up are supported.
 
 ## Steps to create initial setup
 
