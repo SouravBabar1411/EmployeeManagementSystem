@@ -70,6 +70,9 @@ gem "activeadmin", "~> 2.9"
 ## for authentication
 gem "devise", "~> 4.8"
 
+## for password expiration
+gem 'devise-security', '~> 0.11.1'
+
 ## database scheme representation
 gem 'annotate'
 
