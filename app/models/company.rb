@@ -17,4 +17,7 @@
 class Company < ApplicationRecord
   ## Associations
   belongs_to :admin_user
+
+  ## validations 
+  validates :name,:email,:website presence: true
 end
