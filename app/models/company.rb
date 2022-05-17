@@ -19,5 +19,5 @@ class Company < ApplicationRecord
   belongs_to :admin_user
 
   ## validations 
-  validates :name,:email presence: true
+  validates :name,:email, presence: true
 end
