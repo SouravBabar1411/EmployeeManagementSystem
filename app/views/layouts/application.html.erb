@@ -29,18 +29,26 @@
   <body>
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+       <%if user_signed_in?%>
         <%= render 'shared/sidebar' %>
+       <%end%>
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
+         <%if user_signed_in?%>
           <%= render 'navigation/nav' %>
+         <%end%>
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
             <%= yield %>
             <!-- Content -->
             <!-- Footer -->
+          <%if user_signed_in?%>
             <%= render 'shared/footer' %>
+          <%end%>
             <!-- Footer -->
             <div class="content-backdrop fade"></div>
             </div>
@@ -49,7 +57,8 @@
           <!-- / Layout page -->
         </div>
       </div>
-      <!-- / Layout wrapper -->
+    </div>
+    <!-- / Layout wrapper -->
   </body>
   
 </html>
