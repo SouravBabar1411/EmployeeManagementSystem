@@ -62,14 +62,17 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+              <span class="app-brand-text demo text-body fw-bolder">EMS</span>
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Welcome to Sneat! 👋</h4>
+          <h4 class="mb-2">Welcome to EMS! 👋</h4>
           <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <p class="alert"><%= alert %>
+               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            </p>
             <div class="mb-3">
               <%= f.label :email,class:'form-lable' %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control'%>
