@@ -30,7 +30,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  #Associations
+  ## Associations
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
   has_many :notifications, as: :notificable 

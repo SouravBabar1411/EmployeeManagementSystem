@@ -12,9 +12,12 @@
 #  updated_at :datetime         not null
 #
 class Project < ApplicationRecord
-  #Associations
+  ## Associations
   belongs_to :company
   has_and_belongs_to_many :users
   has_many :jobs
   has_many :timesheets
+
+  ## Validations
+  validates :name, :start_date, :is_active, presence: true 
 end

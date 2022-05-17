@@ -10,5 +10,6 @@
 #  updated_at       :datetime         not null
 #
 class Notification < ApplicationRecord
+  ## Associations
   belongs_to :notificable, polymorphic: true
 end

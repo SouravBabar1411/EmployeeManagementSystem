@@ -12,5 +12,9 @@
 #  updated_at  :datetime         not null
 #
 class LeaveTracker < ApplicationRecord
+  ## Associations
   belongs_to :user
+
+  ## Validations
+  validates :from_date, :to_date, :reason, :is_approved, presence: true 
 end

@@ -10,6 +10,6 @@
 #  updated_at       :datetime         not null
 #
 class ContactInfo < ApplicationRecord
-  #Associations
+  ## Associations
   belongs_to :contactable, polymorphic: true
 end

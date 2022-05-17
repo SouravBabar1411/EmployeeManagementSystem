@@ -14,7 +14,11 @@
 #  updated_at   :datetime         not null
 #
 class Timesheet < ApplicationRecord
+  ## Associations
   belongs_to :user
   belongs_to :project
   belongs_to :job
+
+  ## Validations
+  validates :current_date, :time, :description, :is_approved, presence: true 
 end

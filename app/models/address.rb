@@ -15,5 +15,6 @@
 #  updated_at       :datetime         not null
 #
 class Address < ApplicationRecord
+  ## Associations
   belongs_to :addressable, polymorphic: true
 end
