@@ -11,16 +11,16 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
-//= require vendor/js/helpers
-//= require js/config
-//= require vendor/libs/perfect-scrollbar/perfect-scrollbar
-//= require vendor/js/menu
-//= require vendor/libs/apex-charts/apexcharts
-//= require js/main
-//= require js/dashboards-analytics
+//= require config
+//= require activestorage
+//= require helpers
+//= require menu
 //= require popper.min
 //= require bootstrap.min
-//= require activestorage
+//= require perfect-scrollbar
+//= require apexcharts
+//= require main
+//= require dashboards-analytics
+//= require buttons
+//= require sidebar
 //= require turbolinks
-//= require_tree .

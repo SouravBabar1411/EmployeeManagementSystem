@@ -11,6 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap.min
- *= require_tree .
- *= require_self
+ *= require boxicons
+ *= require core
+ *= require theme-default
+ *= require demo
+ *= require perfect-scrollbar
+ *= require apex-charts
+ *= require custom
  */
+
+ 
