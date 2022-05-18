@@ -72,3 +72,6 @@ gem "devise", "~> 4.8"
 
 ## database scheme representation
 gem 'annotate'
+
+## Preview email in the default browser instead of sending it. 
+gem "letter_opener", group: :development
