@@ -24,3 +24,6 @@
 //= require buttons
 //= require sidebar
 //= require turbolinks
+//= require datatables
+//= require jquery.dataTables.min
+//= require users
