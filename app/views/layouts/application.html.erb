@@ -2,6 +2,23 @@
 <html>
   <head>
     <title>EMS</title>
+
+
+   <!-- Favicon -->
+   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+
+   <!-- Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/app/assets/stylesheets/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/app/assets/stylesheets/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/metismenu/dist/metisMenu.min.css">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,15 +29,34 @@
   <body>
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
+       <%if user_signed_in?%>
         <%= render 'shared/sidebar' %>
+       <%end%>
+        <!-- Layout container -->
         <div class="layout-page">
+          <!-- Navbar -->
+         <%if user_signed_in?%>
           <%= render 'navigation/nav' %>
+         <%end%>
+          <!-- Content wrapper -->
           <div class="content-wrapper">
+            <!-- Content -->
             <%= yield %>
+            <!-- Content -->
+            <!-- Footer -->
+          <%if user_signed_in?%>
             <%= render 'shared/footer' %>
+          <%end%>
+            <!-- Footer -->
+            <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
           </div>  
+          <!-- / Layout page -->
         </div>
       </div>
     </div>
+    <!-- / Layout wrapper -->
   </body>
+  
 </html>

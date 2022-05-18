@@ -28,8 +28,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,:password_expirable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
   
+  #validations
+  validates :first_name, :last_name, :date_of_birth, presence: true
+
   ## Associations
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
@@ -38,4 +42,14 @@ class User < ApplicationRecord
   has_and_belongs_to_many :jobs
   has_many :timesheets
   has_many :leave_trackers
+
+  #omniauth google social login
+  def self.from_omniauth(auth)
+	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+		user.provider = auth.provider
+		user.uid = auth.uid
+		user.email = auth.info.email
+		user.password = Devise.friendly_token[0,20]
+	  end
+  end
 end

@@ -70,8 +70,19 @@ gem "activeadmin", "~> 2.9"
 ## for authentication
 gem "devise", "~> 4.8"
 
+## for password expiration
+gem 'devise-security', '~> 0.11.1'
+
 ## database scheme representation
 gem 'annotate'
 
 ## for debugging
 gem 'pry', '~> 0.13.1'
+
+# social login
+gem 'omniauth-google-oauth2'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+# For renderinf server side tables 
+gem 'jquery-datatables'

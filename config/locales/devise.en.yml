@@ -2,6 +2,14 @@
 
 en:
   devise:
+    password_expired:
+      show:
+        password_expired: Password expired
+        renew_your_passord: Renew your password
+        current_password: Current password
+        new_password: New password
+        confirm_new_password: Confirm new password
+        change_my_password: Change my password
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
