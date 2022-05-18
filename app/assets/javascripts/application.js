@@ -26,3 +26,5 @@
 //= require jquery.validate
 //= require validation
 //= require turbolinks
+//= require datatables
+//= require jquery.dataTables.min

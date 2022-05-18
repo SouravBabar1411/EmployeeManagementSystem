@@ -86,3 +86,6 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 #for debugging
 gem 'pry'
+
+# For renderinf server side tables 
+gem 'jquery-datatables'

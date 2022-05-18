@@ -19,4 +19,8 @@
  *= require apex-charts
  *= require page-auth
  *= require custom
+*= require datatables
  */
+
+@import "bootstrap";
+@import "jquery.dataTables";
