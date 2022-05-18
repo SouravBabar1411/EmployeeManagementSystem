@@ -33,7 +33,6 @@ class User < ApplicationRecord
   
   #validations
   # validates :first_name, :last_name, :date_of_birth, presence: true
-  validates :email, uniqueness: true
   validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
 
   #omniauth google social login
