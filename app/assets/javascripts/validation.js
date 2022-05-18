@@ -24,3 +24,23 @@ $(document).on('turbolinks:load', function() {
         }
     });
 });
+$(document).on('turbolinks:load', function() {
+    $("#login").validate({
+        rules: {
+            'user[email]': {
+                required: true
+            },
+            'user[password]': {
+                required: true,
+            }
+        },
+        messages: {
+            'user[email]': {
+                required: "Please enter email address",
+            },
+            'user[password]': {
+                required: "Please enter password"
+            }
+        }
+    });
+});
