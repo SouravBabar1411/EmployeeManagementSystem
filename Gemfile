@@ -81,4 +81,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
+# For debugging purpose
 gem 'pry'
+
+# For renderinf server side tables 
+gem 'jquery-datatables'
