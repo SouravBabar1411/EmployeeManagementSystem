@@ -53,4 +53,3 @@ class User < ApplicationRecord
   #Mount uploader
   mount_uploader :image, ImageUploader
 end
-

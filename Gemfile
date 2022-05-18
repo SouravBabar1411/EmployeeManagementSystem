@@ -93,4 +93,6 @@ gem 'aws-sdk-rails'
 #for debugging
 gem 'pry'
 ## Preview email in the default browser instead of sending it. 
-# gem "letter_opener", group: :development
+
+# For renderinf server side tables 
+gem 'jquery-datatables'
