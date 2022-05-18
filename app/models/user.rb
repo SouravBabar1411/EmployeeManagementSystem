@@ -34,6 +34,15 @@ class User < ApplicationRecord
   #validations
   validates :first_name, :last_name, :date_of_birth, presence: true
 
+  ## Associations
+  has_many :addresses, as: :addressable
+  has_many :contact_infos, as: :contactable   
+  has_many :notifications, as: :notificable 
+  has_and_belongs_to_many :projects   
+  has_and_belongs_to_many :jobs
+  has_many :timesheets
+  has_many :leave_trackers
+
   #omniauth google social login
   def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
