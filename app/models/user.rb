@@ -32,8 +32,7 @@ class User < ApplicationRecord
          :password_expirable, :omniauthable, omniauth_providers: [:google_oauth2]
   
   #validations
-  # validates :first_name, :last_name, :date_of_birth, presence: true
-  validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
+    validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
 
   #omniauth google social login
   def self.from_omniauth(auth)
@@ -44,4 +43,7 @@ class User < ApplicationRecord
 		user.password = Devise.friendly_token[0,20]
 	  end
   end
+
+  #Mount uploader
+  mount_uploader :image, ImageUploader
 end
