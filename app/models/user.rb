@@ -40,9 +40,6 @@ class User < ApplicationRecord
   has_many :timesheets
   has_many :leave_trackers
   
-  #validations
-    validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
-
   #omniauth google social login
   def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

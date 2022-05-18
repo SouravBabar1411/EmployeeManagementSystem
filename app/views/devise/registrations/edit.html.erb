@@ -9,7 +9,7 @@
         <div class="card-header d-flex align-items-center justify-content-between">
         </div>
         <div class="card-body">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= form_for(resource, as: resource_name,html: {id: 'edit' }, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
             <div class="row mb-3">
               <%= f.label :first_name,class:"col-sm-2 col-form-label" %>
@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="row mb-3">
-              <%= f.label :profile,class:"col-sm-2 col-form-label" %>
+              <%= f.label :profile_image,class:"col-sm-2 col-form-label" %>
               <div class="col-sm-10">
                 <%= f.file_field :image, autofocus: true,class:"form-control" %>
               </div>
@@ -63,7 +63,7 @@
             <div class="row mb-3">
               <%= f.label :current_password,class:"col-sm-2 col-form-label" %>
               <div class="col-sm-10">
-                <%= f.password_field :current_password , placeholder:"current password",autofocus: true,class:"form-control" %>
+                <%= f.password_field :current_password , placeholder:"current password",class:"form-control" %>
               </div>
             </div>
             <div class="row justify-content-end">

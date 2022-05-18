@@ -25,7 +25,6 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
-
     $.validator.addMethod("pwcheck",
         function(value, element) {
             return /^[a-zA-Z0-9!@#$%^&*()_=\[\]{};':"\\|,.<>\/?+-]+$/.test(value) &&
@@ -52,6 +51,15 @@ $(document).on('turbolinks:load', function() {
             },
             'user[password]': {
                 required: "Please enter password"
+            }
+        }
+    });
+});
+$(document).on('turbolinks:load', function() {
+    $("#edit").validate({
+        rules: {
+            'user[current_password]': {
+                required: true
             }
         }
     });
