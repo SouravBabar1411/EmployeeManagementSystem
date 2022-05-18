@@ -8,10 +8,13 @@ $(document).on('turbolinks:load', function() {
                 required: true,
             },
             'user[password_confirmation]': {
-                required: true
+                required: true,
             }
         },
         messages: {
+            'user[email]': {
+                required: "Please enter email address",
+            },
             'user[password]': {
                 required: "Please enter password"
             },
