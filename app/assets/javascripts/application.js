@@ -23,4 +23,6 @@
 //= require dashboards-analytics
 //= require buttons
 //= require sidebar
+//= require jquery.validate
+//= require validation
 //= require turbolinks

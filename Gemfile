@@ -64,6 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+#for fontend validation
+gem 'jquery-validation-rails'
+
 ## for super admin panel
 gem "activeadmin", "~> 2.9"
 
@@ -81,4 +84,5 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
+#for debugging
 gem 'pry'
