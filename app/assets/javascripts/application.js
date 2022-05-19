@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require select2.min
 //= require config
 //= require activestorage
 //= require helpers
@@ -29,3 +30,4 @@
 //= require datatables
 //= require jquery.dataTables.min
 //= require timesheet
+//= require projects

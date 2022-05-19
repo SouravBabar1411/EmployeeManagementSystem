@@ -19,7 +19,8 @@
  *= require apex-charts
  *= require page-auth
  *= require custom
-*= require datatables
+ *= require datatables
+ *= select2.min
  */
 
 @import "bootstrap";
