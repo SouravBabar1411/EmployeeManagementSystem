@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require select2.min
 //= require config
 //= require activestorage
 //= require helpers
@@ -25,6 +24,7 @@
 //= require buttons
 //= require sidebar
 //= require jquery.validate
+//= require select2.min
 //= require validation
 //= require turbolinks
 //= require datatables

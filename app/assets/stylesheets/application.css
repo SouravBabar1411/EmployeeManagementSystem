@@ -20,7 +20,7 @@
  *= require page-auth
  *= require custom
  *= require datatables
- *= select2.min
+ *= require select2.min
  */
 
 @import "bootstrap";
