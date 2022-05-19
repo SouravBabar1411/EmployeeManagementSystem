@@ -26,7 +26,6 @@ class TimesheetsController < ApplicationController
         draw: params['draw'].to_i,
         recordsTotal: timesheets.count,
     }
-    binding.pry
   end
 
   # GET /timesheets/1 or /timesheets/1.json
