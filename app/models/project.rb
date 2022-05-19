@@ -19,5 +19,5 @@ class Project < ApplicationRecord
   has_many :timesheets
 
   ## Validations
-  validates :name, :start_date, :is_active, presence: true 
+  validates :name, :start_date, presence: true 
 end

@@ -1,107 +1,66 @@
-<div class="row">
+<div class="row mt-5">
   <div class="col-xxl">
     <div class="card mb-4">
         <div class="card-header d-flex align-items-center justify-content-between">
-          <h5 class="mb-0">Basic with Icons</h5>
-          <small class="text-muted float-end">Merged input group</small>
+          <h5 class="mb-0">Add Project</h5>
         </div>
         <div class="card-body">
-          <form>
+          <%= form_with(class: 'project-form', model: (@project), local: true) do |f| %>
             <div class="row mb-3">
-              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Name</label>
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-name">Name</label>
                 <div class="col-sm-10">
                   <div class="input-group input-group-merge">
-                    <span id="basic-icon-default-fullname2" class="input-group-text">
-                    <i class="bx bx-user"></i></span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="basic-icon-default-fullname"
-                        placeholder="John Doe"
-                        aria-label="John Doe"
-                        aria-describedby="basic-icon-default-fullname2"
-                      />
+                    <span id="basic-icon-default-name2" class="input-group-text">
+                    <i class="bx bx-code-block"></i></span>
+                      <%= f.text_field :name, id:"basic-icon-default-name", class:"form-control" %>
                   </div>
                 </div>
             </div>
             <div class="row mb-3">
-              <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Company</label>
+              <label class="col-sm-2 col-form-label" for="html5-start-date-input" >Start Date</label>
                 <div class="col-sm-10">
                   <div class="input-group input-group-merge">
                     <span id="basic-icon-default-company2" class="input-group-text">
-                      <i class="bx bx-buildings"></i>
+                      <i class='bx bxs-calendar'></i>
                     </span>
-                      <input
-                        type="text"
-                        id="basic-icon-default-company"
-                        class="form-control"
-                        placeholder="ACME Inc."
-                        aria-label="ACME Inc."
-                        aria-describedby="basic-icon-default-company2"
-                      />
+                      <%= f.date_field :start_date, id:"html5-start-date-input", class:"form-control" %>
                   </div>
                 </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Email</label>
+                <label class="col-sm-2 col-form-label" for="html5-end-date-input">end_date</label>
                   <div class="col-sm-10">
                     <div class="input-group input-group-merge">
                       <span class="input-group-text">
-                        <i class="bx bx-envelope"></i>
+                        <i class='bx bxs-calendar'></i>
                       </span>
-                        <input
-                          type="text"
-                          id="basic-icon-default-email"
-                          class="form-control"
-                          placeholder="john.doe"
-                          aria-label="john.doe"
-                          aria-describedby="basic-icon-default-email2"
-                        />
-                      <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-                    </div>
-                    <div class="form-text">You can use letters, numbers & periods</div>
-                  </div>
-              </div>
-              <div class="row mb-3">
-                <label class="col-sm-2 form-label" for="basic-icon-default-phone">Phone No</label>
-                  <div class="col-sm-10">
-                    <div class="input-group input-group-merge">
-                      <span id="basic-icon-default-phone2" class="input-group-text">
-                        <i class="bx bx-phone"></i>
-                      </span>
-                        <input
-                          type="text"
-                          id="basic-icon-default-phone"
-                          class="form-control phone-mask"
-                          placeholder="658 799 8941"
-                          aria-label="658 799 8941"
-                          aria-describedby="basic-icon-default-phone2"
-                        />
+                      <%= f.date_field :end_date, id:"html5-end-date-input", class:"form-control" %>
                     </div>
                   </div>
               </div>
               <div class="row mb-3">
-                <label class="col-sm-2 form-label" for="basic-icon-default-message">Message</label>
+                <label class="col-sm-2 form-label">Status</label>
                   <div class="col-sm-10">
-                    <div class="input-group input-group-merge">
-                      <span id="basic-icon-default-message2" class="input-group-text">
-                        <i class="bx bx-comment"></i>
-                      </span>
-                        <textarea
-                          id="basic-icon-default-message"
-                          class="form-control"
-                          placeholder="Hi, Do you have a moment to talk Joe?"
-                          aria-label="Hi, Do you have a moment to talk Joe?"
-                          aria-describedby="basic-icon-default-message2"
-                        ></textarea>
+                    <%= f.check_box :is_active, class:"form-check-input", id:"status" %>
+                  <label class="form-check-label" for="status">Active</label>
+                  </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="html5-end-assign">Assign To</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge" id="html5-end-assign">
+                      <%= f.collection_select(:user_ids, User.all, :id, :first_name, { :prompt => 'Select an Employees' }, { class: 'form-control js-example-basic-multiple'}) %>
                     </div>
                   </div>
+              </div>
+              <div class="col-sm-10">
+                <%= f.hidden_field :company_id, value: @company.id %>
               </div>
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">Send</button>
+                   <%= f.submit button_text, class:'btn btn-primary'%>
               </div>
-          </form>
+          <% end %>
         </div>
     </div>
   </div>
