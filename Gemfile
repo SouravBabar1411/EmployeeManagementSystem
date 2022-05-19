@@ -78,8 +78,7 @@ gem 'annotate'
 
 ## for debugging
 gem 'pry', '~> 0.13.1'
-
-# social login
+#social login
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
