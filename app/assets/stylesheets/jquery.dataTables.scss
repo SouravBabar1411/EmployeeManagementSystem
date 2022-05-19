@@ -2,11 +2,13 @@
  * Table styles
  */
 table.dataTable {
-  width: 100%;
+  width: 95%;
   margin: 10 auto;
   clear: both;
   border-collapse: separate;
   border-spacing: 1;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
   /*
    * Header and footer styles
    */
@@ -274,10 +276,12 @@ table.dataTable td {
 }
 .dataTables_wrapper .dataTables_length {
   float: left;
+  padding-left: 1.25em;
 }
 .dataTables_wrapper .dataTables_filter {
   float: right;
   text-align: right;
+  padding-right: 1.00em;
 }
 .dataTables_wrapper .dataTables_filter input {
   margin-left: 0.5em;
@@ -291,6 +295,7 @@ table.dataTable td {
   float: right;
   text-align: right;
   padding-top: 0.25em;
+  padding-right: 1.25em;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   box-sizing: border-box;
