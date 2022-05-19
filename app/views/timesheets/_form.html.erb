@@ -26,28 +26,44 @@
   <div class="row mb-3">
     <%= form.label "Name",class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
-      <%= form.text_field :user_id, class:"form-control"%>
+      <div class="input-group input-group-merge">
+        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i>
+        </span>
+        <%= form.text_field :user_id, class:"form-control"%>
+      </div>
     </div>
   </div>
 
   <div class="row mb-3">
     <%= form.label "Description",class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-edit"></i>
+      </span>
       <%= form.text_field :description, class:"form-control" %>
+      </div>
     </div>
   </div>
 
   <div class="row mb-3">
     <%= form.label "Project",class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
-      <%= form.text_field :project_id, class:"form-control" %>
+      <div class="input-group input-group-merge">
+        <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-code-block"></i>
+        </span>
+        <%= form.text_field :project_id, class:"form-control" %>
+      </div>
     </div>
   </div>
 
   <div class="row mb-3">
     <%= form.label "Job", class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
+      <div class="input-group input-group-merge">
+        <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-laptop"></i>
+        </span>
       <%= form.text_field :job_id, class:"form-control" %>
+    </div>
     <div>
   </div>
   <br/>
