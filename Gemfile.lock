@@ -365,10 +365,7 @@ DEPENDENCIES
   jquery-datatables
   jquery-rails
   jquery-validation-rails
-<<<<<<< HEAD
   kaminari
-=======
->>>>>>> features/authentication
   listen (>= 3.0.5, < 3.2)
   mini_magick
   omniauth
