@@ -20,5 +20,16 @@ class Timesheet < ApplicationRecord
   belongs_to :job
 
   ## Validations
-  validates :current_date, :time, :description, :is_approved, presence: true 
+  validates :current_date, :time, :description,  presence: true 
+
+  ## Modify JSON Response
+  def as_json
+    response = super
+    response.merge!({user_name: self.user.first_name})
+    response.merge!({prject_name: self.project.name})
+    response.merge!({job_name: self.job.name})
+    response.merge!({startdate: self.current_date.strftime("%Y-%m-%d at %I:%M %p")})
+    response.merge!({workingtime: self.time.strftime("%I:%M %p")})
+    response
+  end
 end

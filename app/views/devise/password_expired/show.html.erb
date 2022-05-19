@@ -1,0 +1,41 @@
+<div class="container-xxl">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <!-- Register -->
+      <div class="card">
+        <div class="card-body">
+          <!-- Logo -->
+          <div class="app-brand justify-content-center">
+          </div>
+          <!-- /Logo -->
+          <h4 class="mb-2">Renew your password</h4>
+
+         <%= form_for(resource, :as => resource_name, :url => [resource_name, :password_expired], :html => { :method => :put }) do |f|%>
+            <p class="alert"><%= alert %>
+               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            </p>
+            <div class="mb-3">
+              <%= f.label :current_password,class:'form-lable' %><br />
+              <%= f.password_field :current_password, autofocus: true, autocomplete: "email",class:'form-control'%>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :new_password,class:'form-lable' %><br />
+              <%= f.password_field :password, autocomplete: "current-password",class:'form-control' %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password_confirmation,class:'form-lable' %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "current-password",class:'form-control' %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "change my password",class:'btn btn-primary d-grid w-100'%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- /Register -->
+    </div>
+  </div>
+</div>

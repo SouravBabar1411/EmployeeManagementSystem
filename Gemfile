@@ -64,6 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+#for fontend validation
+gem 'jquery-validation-rails'
+
 ## for super admin panel
 gem "activeadmin", "~> 2.9"
 
@@ -79,9 +82,19 @@ gem 'annotate'
 ## for debugging
 gem 'pry', '~> 0.13.1'
 #social login
+# social login
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
+##for file uploadin
+gem 'carrierwave-aws'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem 'aws-sdk-rails'
+
 # For renderinf server side tables 
 gem 'jquery-datatables'
+
+# For serverside pagination
+gem 'kaminari'
