@@ -79,7 +79,10 @@ gem 'devise-security', '~> 0.11.1'
 ## database scheme representation
 gem 'annotate'
 
-#social login
+## for debugging
+gem 'pry', '~> 0.13.1'
+
+# social login
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
