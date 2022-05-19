@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :timesheets
+  get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
 end

@@ -89,3 +89,6 @@ gem 'pry'
 
 # For renderinf server side tables 
 gem 'jquery-datatables'
+
+# For serverside pagination
+gem 'kaminari'
