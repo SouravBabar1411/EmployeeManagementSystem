@@ -1,6 +1,6 @@
 class TimesheetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_timesheet, only: %i[ show edit update destroy ]
+  before_action :set_timesheet, only: %i[ edit update destroy ]
   # timesheet listing
   def index
     @timesheets = Timesheet.all
@@ -9,7 +9,7 @@ class TimesheetsController < ApplicationController
   def fetch_timesheets
     timesheets = Timesheet.all
     search_string = []
-
+    # binding.pry
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
       search_columns.each do |term|
@@ -28,10 +28,7 @@ class TimesheetsController < ApplicationController
     }
   end
 
-  # Display Timesheet
-  def show
-  end
-
+  
   # GET /timesheets/new
   def new
     @timesheet = Timesheet.new
@@ -47,11 +44,9 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.new(timesheet_params)
     respond_to do |format|
       if @timesheet.save
-        format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully created." }
-        format.json { render :show, status: :created, location: @timesheet }
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,10 +56,8 @@ class TimesheetsController < ApplicationController
     respond_to do |format|
       if @timesheet.update(timesheet_params)
         format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully updated." }
-        format.json { render :show, status: :ok, location: @timesheet }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
       end
     end
   end

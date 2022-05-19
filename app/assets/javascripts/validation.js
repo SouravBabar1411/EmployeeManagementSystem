@@ -1,6 +1,9 @@
 $(document).on('turbolinks:load', function() {
     $("#signupform").validate({
         rules: {
+            'user[first_name]': {
+                required: true
+            },
             'user[email]': {
                 required: true
             },
