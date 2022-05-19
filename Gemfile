@@ -84,8 +84,15 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
+##for file uploadin
+gem 'carrierwave-aws'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem 'aws-sdk-rails'
+
 #for debugging
 gem 'pry'
+## Preview email in the default browser instead of sending it. 
 
 # For renderinf server side tables 
 gem 'jquery-datatables'

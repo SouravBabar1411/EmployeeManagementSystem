@@ -81,7 +81,7 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "new-password",placeholder:"Enter password",class:'form-control' %>
+                <%= f.password_field :password, autocomplete: "new-password",placeholder:"Enter password",class:'form-control',id:'pass' %>
               </div>
 
               <div class="mb-3">
@@ -93,7 +93,6 @@
                 <%= f.submit "Sign up", class:"btn btn-primary d-grid w-100" %>
               </div>
             <% end %>
-
           <p class="text-center">
             <span>Already have an account?</span>
             <a href="/users/sign_in">

@@ -27,5 +27,5 @@
 /config/master.key
 /config/database.yml
 /db/schema.rb
-.rvmrc
 /test*
+.rvmrc
