@@ -15,6 +15,9 @@ $(document).on('turbolinks:load', function() {
             }
         },
         messages: {
+            'user[email]': {
+                required: "Please enter your email address"
+            },
             'user[password]': {
                 required: "Please enter your password ",
                 pwcheck: "Must include at least one lowercase letter, one uppercase letter, one digit and special character"
