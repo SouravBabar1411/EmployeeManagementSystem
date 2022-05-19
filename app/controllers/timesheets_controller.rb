@@ -1,7 +1,7 @@
 class TimesheetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_timesheet, only: %i[ show edit update destroy ]
-  # GET /timesheets or /timesheets.json
+  # timesheet listing
   def index
     @timesheets = Timesheet.all
   end
@@ -28,7 +28,7 @@ class TimesheetsController < ApplicationController
     }
   end
 
-  # GET /timesheets/1 or /timesheets/1.json
+  # Display Timesheet
   def show
   end
 
