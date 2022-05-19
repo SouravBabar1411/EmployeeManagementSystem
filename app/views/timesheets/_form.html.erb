@@ -1,0 +1,60 @@
+<%= form_with(model: timesheet,html: {id: ''}, local: true) do |form| %>
+  <% if timesheet.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% timesheet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row mb-3">
+    <%= form.label "Date",class:"col-sm-2 col-form-label"%>
+    <div class="col-sm-10">
+      <%= form.date_field :current_date, class:"form-control"%>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <%= form.label "Time",class:"col-sm-2 col-form-label"%>
+    <div class="col-sm-10">
+      <%= form.time_field :time, class:"form-control"%>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <%= form.label "Name",class:"col-sm-2 col-form-label"%>
+    <div class="col-sm-10">
+      <%= form.text_field :user_id, class:"form-control"%>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <%= form.label "Description",class:"col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :description, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <%= form.label "Project",class:"col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :project_id, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <%= form.label "Job", class:"col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :job_id, class:"form-control" %>
+    <div>
+  </div>
+  <br/>
+
+  <div class="col-sm-10">
+    <div class="actions mb-2">
+      <%= form.submit class:'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

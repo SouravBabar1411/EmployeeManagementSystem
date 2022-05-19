@@ -28,11 +28,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,:password_expirable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :password_expirable, :omniauthable, omniauth_providers: [:google_oauth2]
   
   #validations
-  validates :first_name, :last_name, :date_of_birth, presence: true
+  # validates :first_name, :last_name, :date_of_birth, presence: true
+  validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
 
   ## Associations
   has_many :addresses, as: :addressable

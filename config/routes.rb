@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :new, :edit, :destroy]
   get 'fetch_employees', to: 'users#fetch_employees'
 
+  # Routes for timesheets module
+  resources :timesheets
+  get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
+
 end

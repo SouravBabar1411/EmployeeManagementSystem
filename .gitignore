@@ -28,3 +28,4 @@
 /config/database.yml
 /db/schema.rb
 .rvmrc
+/test*
