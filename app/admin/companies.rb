@@ -1,19 +1,7 @@
 ActiveAdmin.register Company do
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
   permit_params :name, :email, :website, :is_approved, :boolean
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :email, :website, :is_approved, :boolean, :add_approved_user_id_to_companies, :approved_user_id, :admin_user_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  
   index do
     selectable_column
     id_column
@@ -23,5 +11,20 @@ ActiveAdmin.register Company do
     column :is_approved
     actions 
   end
+
+  controller do 
+    ## for update approve column
+    def update 
+      @company = Company.find(params[:id])
+      if @company.is_approved = 'false'
+        @company.is_approved = 'true'
+      else  
+        @company.is_approved = 'false'
+      end
+      @company.save
+        CompanyApproveMailer.send_approve_email(@company).deliver
+        redirect_to(admin_companies_path, :notice => 'Company Approved.')
+    end 
+  end 
   
 end
