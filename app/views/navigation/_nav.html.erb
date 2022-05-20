@@ -63,10 +63,12 @@
           <div class="dropdown-divider"></div>
       </li>
       <li>
-          <a class="dropdown-item" href="#">
+        <%# @users.each do |user|%>
+          <a class="dropdown-item" href="<%# edit_user_path(@user)%>">
           <i class="bx bx-user me-2"></i>
           <span class="align-middle">My Profile</span>
           </a>
+        <% #end %>
       </li>
       <li>
           <a class="dropdown-item" href="#">

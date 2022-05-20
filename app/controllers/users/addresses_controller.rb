@@ -1,4 +1,4 @@
-class Users::AddressesController < AddressesController
+class Users::AddressesController <AddressesController
   before_action :set_addressable
     def create
       super 

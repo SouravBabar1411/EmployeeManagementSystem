@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[ edit update destroy ]
 
   def index
-    
+    @users = User.all
   end
 
   def fetch_employees
@@ -41,6 +42,16 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update 
+    respond_to do |format|
+      if @user.update(user_params) && @user.update(address_params)
+        format.html { redirect_to root_path, notice: "user was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
   end
 
@@ -69,4 +80,11 @@ class UsersController < ApplicationController
     %w(first_name last_name email)
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:email,:first_name,:last_name,:date_of_birth,:gender,:image)
+  end
 end

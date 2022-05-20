@@ -8,16 +8,16 @@ Rails.application.routes.draw do
   root to: "home#index"
   
   #in routes
-  devise_for :users,:controllers => { 
+  devise_for :users,:controllers =>  {  
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  resources :addresses
   
-  # Routes for Employee module
-  resources :users do
-    resources :addresses, module: :users
-  end
+  resources :users 
 
   get 'fetch_employees', to: 'users#fetch_employees'
+
   # Routes for timesheets module
   resources :timesheets
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'

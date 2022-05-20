@@ -15,9 +15,15 @@ $(document).on('turbolinks:load', function() {
             'user[password_confirmation]': {
                 required: true,
                 equalTo: "#pass"
+            },
+            'user[current_password]': {
+                required: true
             }
         },
         messages: {
+            'user[first_name]': {
+                required: "Please enter your name"
+            },
             'user[email]': {
                 required: "Please enter your email address"
             },
@@ -61,12 +67,14 @@ $(document).on('turbolinks:load', function() {
         }
     });
 });
-$(document).on('turbolinks:load', function() {
-    $("#edit").validate({
-        rules: {
-            'user[current_password]': {
-                required: true
-            }
-        }
-    });
-});
+// $(document).on('turbolinks:load', function() {
+//     console.log("hiii");
+
+//     $("#signupform").validate({
+//         rules: {
+//             'user[first_name]': {
+//                 required: true
+//             }
+//         },
+//     });
+// });

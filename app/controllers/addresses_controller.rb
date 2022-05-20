@@ -1,13 +1,17 @@
 class AddressesController < ApplicationController
   def new 
-    @address = @addressable.addresses.new
+    binding.pry
+    @address = @addressable.address.new
   end
 
   def create
-    @address = @addressable.addresss.new(address_params)
-    binding.pry
+    @address = @addressable.address.new(address_params)
     @address.save
-    redirect_to @addressable, notice: "Your address was created successfully"
+    if @address.save
+      redirect_to @addressable, notice: "Your address was created successfully"
+    else
+      redirect_to root_path
+    end
   end
 
   private 
