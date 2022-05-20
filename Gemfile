@@ -83,12 +83,15 @@ gem 'annotate'
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
-
 #for debugging
 gem 'pry'
-
 # For renderinf server side tables 
 gem 'jquery-datatables'
-
 # For serverside pagination
 gem 'kaminari'
+# For dropdown
+gem "select2-rails"
+# For Date
+gem 'bootstrap-datepicker-rails'
+# For Time
+gem 'jquery-timepicker-rails'

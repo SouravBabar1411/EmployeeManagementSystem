@@ -1,6 +1,6 @@
 class TimesheetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_timesheet, only: %i[ show edit update destroy ]
+  before_action :set_timesheet, only: %i[ edit update destroy ]
   # timesheet listing
   def index
     @timesheets = Timesheet.all
@@ -28,10 +28,6 @@ class TimesheetsController < ApplicationController
     }
   end
 
-  # Display Timesheet
-  def show
-  end
-
   # GET /timesheets/new
   def new
     @timesheet = Timesheet.new
@@ -47,7 +43,7 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.new(timesheet_params)
     respond_to do |format|
       if @timesheet.save
-        format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully created." }
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully created." }
         format.json { render :show, status: :created, location: @timesheet }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -60,7 +56,7 @@ class TimesheetsController < ApplicationController
   def update
     respond_to do |format|
       if @timesheet.update(timesheet_params)
-        format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully updated." }
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully updated." }
         format.json { render :show, status: :ok, location: @timesheet }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,7 +70,7 @@ class TimesheetsController < ApplicationController
     @timesheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to timesheets_url, notice: "Timesheet was successfully destroyed." }
+      format.html { redirect_to timesheets_path, notice: "Timesheet was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -19,7 +19,10 @@
  *= require apex-charts
  *= require page-auth
  *= require custom
-*= require datatables
+ *= require datatables
+ *= require select2
+ *= require bootstrap-datepicker
+ *= require jquery.timepicker
  */
 
 @import "bootstrap";
