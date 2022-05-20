@@ -9,7 +9,7 @@ class TimesheetsController < ApplicationController
   def fetch_timesheets
     timesheets = Timesheet.all
     search_string = []
-
+    # binding.pry
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
       search_columns.each do |term|
@@ -47,7 +47,6 @@ class TimesheetsController < ApplicationController
         format.json { render :show, status: :created, location: @timesheet }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +59,6 @@ class TimesheetsController < ApplicationController
         format.json { render :show, status: :ok, location: @timesheet }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
       end
     end
   end

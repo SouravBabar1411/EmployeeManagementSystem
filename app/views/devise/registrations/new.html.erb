@@ -72,7 +72,13 @@
               <%= render "devise/shared/error_messages", resource: resource %>
 
               <div class="mb-3">
-                <%= f.label :email,class:"form-label" %><br />
+                <%= f.label :first_name,class:"form-label" %>
+                <%= f.email_field :first_name, autofocus: true, placeholder:"Enter your name",autocomplete: "first
+                ",class:'form-control' %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :email,class:"form-label" %>
                 <%= f.email_field :email, autofocus: true, placeholder:"Enter your email",autocomplete: "email",class:'form-control' %>
               </div>
 
@@ -81,7 +87,7 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "new-password",placeholder:"Enter password",class:'form-control' %>
+                <%= f.password_field :password, autocomplete: "new-password",placeholder:"Enter password",class:'form-control',id:'pass' %>
               </div>
 
               <div class="mb-3">
@@ -93,7 +99,6 @@
                 <%= f.submit "Sign up", class:"btn btn-primary d-grid w-100" %>
               </div>
             <% end %>
-
           <p class="text-center">
             <span>Already have an account?</span>
             <a href="/users/sign_in">
