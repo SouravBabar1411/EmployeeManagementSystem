@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   ## projects routes 
-  resources :projects
+  resources :projects do 
+    collection do
+      get 'fetch_projects', to: 'projects#fetch_projects'
+    end
+  end 
   
   #in routes
   devise_for :users,:controllers => { 

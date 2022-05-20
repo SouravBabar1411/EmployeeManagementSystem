@@ -6,6 +6,26 @@ class ProjectsController < ApplicationController
   def index
   end 
 
+  def fetch_projects 
+    projects = Project.all.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      projects = projects.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    projects = projects.page(datatable_page).per(datatable_per_page)
+    render json: {
+      projects: projects.as_json,
+      recordsTotal: projects.count,
+      recordsFiltered: projects.total_count
+    }
+  end 
+
   def new 
     @project = Project.new
   end 
@@ -31,6 +51,15 @@ class ProjectsController < ApplicationController
   def destroy 
   end 
   private 
+
+  def search_columns
+    %w(name)
+  end
+
+  def sort_column
+    columns = %w(name)
+    columns[params[:order]['0'][:column].to_i - 1]
+  end
 
   def set_company 
     @company = Company.find_by(params[:id])
