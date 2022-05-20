@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   }
   
   # Routes for Employee module
-  resources :users, only: [:index, :new, :edit, :destroy]
-  get 'fetch_employees', to: 'users#fetch_employees'
+  resources :users do
+    resources :addresses, module: :users
+  end
 
+  get 'fetch_employees', to: 'users#fetch_employees'
   # Routes for timesheets module
   resources :timesheets
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
