@@ -5,6 +5,26 @@ $(document).on('turbolinks:load', function() {
     allowClear: true
   });
 
+  // validations for projects
+  $('.project-form').validate({
+    rules: {
+      'project[name]': {
+        required: true
+      },
+      'project[start_date]': {
+        required: true
+      }
+    },
+    messages: {
+      'project[name]': {
+        required: 'Please enter project name.'
+      },
+      'project[start_date]':{
+        required: 'Please enter project start date.'
+      }
+    }
+  });
+
   // server side listing 
   $("#projects-list").DataTable({
     processing: true,
@@ -46,6 +66,14 @@ $(document).on('turbolinks:load', function() {
           }
         },
         {
+          title: 'Active',
+          data: null,
+          searchable: true,
+          render: function (data, type, row) {
+            return data.is_active
+          }
+        },
+        {
           title: 'Assign To',
           data: null,
           searchable: true,
@@ -58,7 +86,7 @@ $(document).on('turbolinks:load', function() {
           title: 'Actions', data: null, searchable: false, orderable: false,
           render: function (data, type, row) {
             let action_html = "<div class='input-group' data-user-id ='" + data.id + "'>" +
-                  "<button type='button' class='btn p-0 dropdown-toggle' data-bs-toggle='dropdown'>"+
+                  "<button type='button' class='btn p-0' data-bs-toggle='dropdown'>"+
                     "<i class='bx bx-dots-vertical-rounded'></i></button>"+
                     "<div class='dropdown-menu'>"
                 // Edit Project Button  
@@ -68,7 +96,7 @@ $(document).on('turbolinks:load', function() {
                 // Delete Project Button  
                 action_html = action_html + "<a class='dropdown-item' href = '/projects/"  + data.id +
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Delete'>" +
-                "<i class='bx bx-edit-alt me-1'></i> Delete</a>"
+                "<i class='bx bx-trash me-1'></i>Delete</a>"
   
               action_html = action_html + "</div></div>"
               

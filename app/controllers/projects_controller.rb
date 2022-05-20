@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_company
+  # before_action :set_company
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
+    @project = Project.find_by(params[:id])
   end 
 
   def fetch_projects 
@@ -46,9 +47,24 @@ class ProjectsController < ApplicationController
   end 
 
   def update 
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to projects_url, success: "Project was successfully updated." }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
   end 
 
   def destroy 
+    @project.destroy
+   
+   respond_to do |format|
+      format.html { redirect_to projects_url }
+   end
+  end 
+
+  def show 
   end 
   private 
 
@@ -61,9 +77,9 @@ class ProjectsController < ApplicationController
     columns[params[:order]['0'][:column].to_i - 1]
   end
 
-  def set_company 
-    @company = Company.find_by(params[:id])
-  end 
+  # def set_company 
+  #   @company = Company.find_by(params[:id])
+  # end 
 
   def set_project 
     @project = Project.find(params[:id])
