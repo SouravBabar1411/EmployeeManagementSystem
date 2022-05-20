@@ -14,4 +14,9 @@ class Job < ApplicationRecord
   belongs_to :project
   has_and_belongs_to_many :users
   has_many :timesheets
+
+  def as_json 
+    response = super 
+    response.merge!(project_name: self.project.name,user_name: self.users.select(:first_name).pluck(:first_name))
+  end 
 end

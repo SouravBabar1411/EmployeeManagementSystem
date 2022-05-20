@@ -31,3 +31,4 @@
 //= require jquery.dataTables.min
 //= require timesheet
 //= require projects
+//= require jobs
