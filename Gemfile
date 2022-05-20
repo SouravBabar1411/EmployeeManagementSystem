@@ -98,3 +98,6 @@ gem 'jquery-datatables'
 
 # For serverside pagination
 gem 'kaminari'
+
+## for forms 
+gem 'simple_form'
