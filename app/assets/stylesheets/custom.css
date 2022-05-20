@@ -70,3 +70,15 @@
 .project-btn {
   margin-left: 800px;
 }
+.project-back-btn {
+  flex: 0 0 auto;
+  width: 15%;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  margin-left: 140px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+margin-left: 0px;
+}
