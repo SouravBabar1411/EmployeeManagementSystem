@@ -31,6 +31,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable,
          :password_expirable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  ## enum role for user
+  enum role: [:employee, :emp_admin]
+
   ## Associations
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
