@@ -14,6 +14,13 @@ Rails.application.routes.draw do
     end
   end 
   
+  ## jobs routes 
+  resources :jobs do 
+    collection do 
+      get 'fetch_jobs', to: 'jobs#fetch_jobs'
+    end 
+  end 
+  
   #in routes
   devise_for :users,:controllers => { 
     omniauth_callbacks: 'users/omniauth_callbacks'
