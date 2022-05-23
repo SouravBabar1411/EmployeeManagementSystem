@@ -1,0 +1,251 @@
+<section id="number-tabs" data-form-type="<%= new_record? ? 'new' : 'edit' %>">
+  <div class="form-group">
+    <% if new_record?
+      path = signup_path
+      method = 'post'
+      else
+      path = updateuser_path(@user, @address)
+      method = 'put'
+    end %>
+    <%= form_with(url: path, method: method, model: @user, class: "shadow p-3 mb-3 user_registration_form", local: true) do |f| %>
+      <div class="row mb-3">  
+        <%= f.label "Profile Image", class: "col-sm-3 col-form-label" %>
+        <div class="col-md-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.file_field :image, class: "form-control" %>
+          </div>
+        </div>
+      </div>    
+      <div class="row mb-3">  
+        <%= f.label :first_name, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.text_field :first_name, class: "form-control", placeholder: "Enter First Name", data: {error: "#errNm1"}  %>
+          </div>
+          <span id="errNm1"></span>
+        </div>
+      </div>  
+      <div class="row mb-3">  
+        <%= f.label :last_name, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.text_field :last_name, class: "form-control", placeholder: "Enter Last Name", data: {error: "#errNm2"}  %>
+          </div>
+          <span id="errNm2"></span>
+        </div>
+      </div> 
+      <div class="row mb-3">  
+        <%= f.label :email, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge ">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter email", data: {error: "#errEmail"} %>
+          </div>
+          <span id="errEmail"></span>
+        </div>
+      </div> 
+      <div class="row mb-3">  
+        <%= f.label :password, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Enter password", onkeyup: 'checkPasswordStrength()', onfocusout: 'setMsgasNull()', data: {error: "#errPassword"} %>
+          </div>
+          <span id="errPassword"></span>
+          <span id="password-strength-status"></span>
+        </div>
+      </div> 
+      <div class="row mb-3">  
+        <%= f.label :password_confirmation, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm password", data: {error: "#errConfPassword"} %>
+          </div>
+          <span id="errConfPassword"></span>
+        </div>
+      </div>
+      <div class="row mb-3">  
+        <%= f.label :gender, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.select(:gender, options_for_select([['Male','M'],['Female','F']]), {}, class: "form-control", data: {error: "#errGender"})  %>
+          </div>
+          <span id="errGender"></span>
+        </div>
+      </div>
+      <div class="row mb-3">  
+        <%= f.label :date_of_birth, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group input-group-merge">
+            <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i></span>
+            <%= f.date_field :date_of_birth, class: "form-control", placeholder: "Enter Date of Birth", data: {error: "#errDOB"} %>
+          </div>
+          <span id="errDOB"></span>
+        </div>
+      </div>
+      <%= f.hidden_field :company_id, value: current_user.company_id %>
+      <% if new_record? %>
+        <h5><u>Address Details123123</u></h5>
+        <div class="row mb-3">  
+          <%= f.label :address_line_1, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i></span>
+              <%= f.text_field :address_line_1, class: "form-control", placeholder: "Enter Address Line 1", data: {error: "#errAddr1"} %>
+            </div>
+            <span id="errAddr1"></span>
+          </div>
+        </div>  
+        <div class="row mb-3">  
+          <%= f.label :address_line_2, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i></span>
+              <%= f.text_field :address_line_2, class: "form-control", placeholder: "Enter Address Line 2", data: {error: "#errAddr2"} %>
+            </div>
+            <span id="errAddr2"></span>
+          </div>
+        </div>
+        <div class="row mb-3">  
+          <%= f.label :city, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i></span>
+              <%= f.text_field :city, class: "form-control", placeholder: "Enter City", data: {error: "#errCity"} %>
+            </div>
+            <span id="errCity"></span>
+          </div>
+        </div>
+        <div class="row mb-3">  
+          <%= f.label :state, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i></span>
+              <%= f.text_field :state, class: "form-control", placeholder: "Enter State", data: {error: "#errState"} %>
+            </div>
+            <span id="errState"></span>
+          </div>
+        </div>
+        <div class="row mb-3">  
+          <%= f.label :country, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i></span>
+              <%= f.text_field :country, class: "form-control", placeholder: "Enter Country", data: {error: "#errCountry"} %>
+            </div>
+            <span id="errCountry"></span>
+          </div>
+        </div>
+        <div class="row mb-3">  
+          <%= f.label :zipcode, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i></span>
+              <%= f.text_field :zipcode, class: "form-control", placeholder: "Enter Zipcode", data: {error: "#errZipcode"} %>
+            </div>
+            <span id="errZipcode"></span>
+          </div>
+        </div>
+        <%= f.hidden_field :addressable_type, value: "User" %>
+        <%= f.hidden_field :addressable_id, value: current_user.id %>
+      <% else %>
+        <%= f.fields_for :addresses do |address| %>
+          <div class="row mb-3">  
+          <%= address.label :address_line_1, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+              <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i></span>
+              <%= address.text_field :address_line_1, class: "form-control", placeholder: "Enter Address Line 1", data: {error: "#errAddr1"} %>
+              </div>
+              <span id="errAddr1"></span>
+          </div>
+          </div>  
+          <div class="row mb-3">  
+          <%= address.label :address_line_2, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+              <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i></span>
+              <%= address.text_field :address_line_2, class: "form-control", placeholder: "Enter Address Line 2", data: {error: "#errAddr2"} %>
+              </div>
+              <span id="errAddr2"></span>
+          </div>
+          </div>
+          <div class="row mb-3">  
+          <%= address.label :city, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+              <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i></span>
+              <%= address.text_field :city, class: "form-control", placeholder: "Enter City", data: {error: "#errCity"} %>
+              </div>
+              <span id="errCity"></span>
+          </div>
+          </div>
+          <div class="row mb-3">  
+          <%= address.label :state, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+              <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i></span>
+              <%= address.text_field :state, class: "form-control", placeholder: "Enter State", data: {error: "#errState"} %>
+              </div>
+              <span id="errState"></span>
+          </div>
+          </div>
+          <div class="row mb-3">  
+          <%= address.label :country, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+              <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i></span>
+              <%= address.text_field :country, class: "form-control", placeholder: "Enter Country", data: {error: "#errCountry"} %>
+              </div>
+              <span id="errCountry"></span>
+          </div>
+          </div>
+          <div class="row mb-3">  
+          <%= address.label :zipcode, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+              <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i></span>
+              <%= address.text_field :zipcode, class: "form-control", placeholder: "Enter Zipcode", data: {error: "#errZipcode"} %>
+              </div>
+              <span id="errZipcode"></span>
+          </div>
+          </div>
+          <%= address.hidden_field :addressable_type, value: "User" %>
+          <%= address.hidden_field :addressable_id, value: @address.addressable_id %>
+        <% end %>  
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Save" ,class:"btn btn-primary" %>
+        <%= link_to('Back', users_path, class: 'btn btn-primary float-end') %>
+      </div>
+    <% end %>
+    <%= render 'shared/errors', obj: @user %> 
+  </div>
+</section>
+  
+

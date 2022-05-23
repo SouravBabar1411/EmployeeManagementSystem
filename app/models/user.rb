@@ -39,6 +39,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :jobs
   has_many :timesheets
   has_many :leave_trackers
+  accepts_nested_attributes_for :addresses
   
   #omniauth google social login
   def self.from_omniauth(auth)

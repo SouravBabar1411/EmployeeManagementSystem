@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   }
   
   # Routes for Employee module
-  resources :users, only: [:index, :new, :edit, :destroy]
+  resources :users, only: [:index, :new, :edit, :destroy, :updaste]
   get 'fetch_employees', to: 'users#fetch_employees'
+  post 'signup', to: 'users#create'
+  put  'updateuser', to: 'users#update'
 
   # Routes for timesheets module
   resources :timesheets

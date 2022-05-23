@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
 
   def index
-    
   end
 
   def fetch_employees
-    users = User.all
+    users = User.where(company_id: current_user.company_id)
     search_string = []
     filter_query = ''
     ## Check if Search Keyword is Present & Write it's Query
@@ -35,14 +34,45 @@ class UsersController < ApplicationController
     }
   end
 
+  # New Employee to be added
   def new
+      @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    @address = Address.new(address_params)
+    if @user.save && @address.save
+      session[:user_id] = @user.id
+      flash[:notice] = "Employee #{@user.first_name} added successfully"
+      redirect_to users_path
+    else
+      render 'new'
+    end
   end
 
   def edit
+    @user = User.where(id: params[:id]).first_or_initialize
+    @address = Address.where(addressable_id: params[:id]).first_or_initialize
+  end
+
+  def update
+    @user = User.where(id: params[:id]).first_or_initialize
+    @address = Address.where(addressable_id: params[:id]).first_or_initialize
+    binding.pry
+    if @user.update(user_params) && @address.udpate(address_params)
+      session[:user_id] = @user.id
+      flash[:notice] = "Employee #{@user.first_name} updated successfully"
+      redirect_to users_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
   end
+
+  private
 
   ## Returns Datatable Sorting Direction
   def datatable_sort_direction
@@ -67,6 +97,14 @@ class UsersController < ApplicationController
   # Search with mentioned column names
   def search_columns
     %w(first_name last_name email)
+  end
+
+  def user_params
+      params.require(:user).permit(:first_name, :last_name, :date_of_birth, :gender, :image, :email, :password, :company_id)
+  end
+
+  def address_params
+    params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :country, :zipcode, :addressable_id, :addressable_type)
   end
 
 end

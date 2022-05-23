@@ -1,0 +1,71 @@
+<h5><u>Address Details</u></h5>
+<%= fields_for :addresses do |address| %>
+  <div class="row mb-3">  
+  <%= address.label :address_line_1, class: "col-sm-3 col-form-label" %>
+  <div class="col-sm-8">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-fullname2" class="input-group-text"
+          ><i class="bx bx-user"></i></span>
+      <%= address.text_field address.address_line_1, class: "form-control", placeholder: "Enter Address Line 1", data: {error: "#errAddr1"} %>
+      </div>
+      <span id="errAddr1"></span>
+  </div>
+  </div>  
+  <div class="row mb-3">  
+  <%= address.label :address_line_2, class: "col-sm-3 col-form-label" %>
+  <div class="col-sm-8">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-fullname2" class="input-group-text"
+          ><i class="bx bx-user"></i></span>
+      <%= address.text_field :address_line_2, class: "form-control", placeholder: "Enter Address Line 2", data: {error: "#errAddr2"} %>
+      </div>
+      <span id="errAddr2"></span>
+  </div>
+  </div>
+  <div class="row mb-3">  
+  <%= address.label :city, class: "col-sm-3 col-form-label" %>
+  <div class="col-sm-8">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-fullname2" class="input-group-text"
+          ><i class="bx bx-user"></i></span>
+      <%= address.text_field :city, class: "form-control", placeholder: "Enter City", data: {error: "#errCity"} %>
+      </div>
+      <span id="errCity"></span>
+  </div>
+  </div>
+  <div class="row mb-3">  
+  <%= address.label :state, class: "col-sm-3 col-form-label" %>
+  <div class="col-sm-8">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-fullname2" class="input-group-text"
+          ><i class="bx bx-user"></i></span>
+      <%= address.text_field :state, class: "form-control", placeholder: "Enter State", data: {error: "#errState"} %>
+      </div>
+      <span id="errState"></span>
+  </div>
+  </div>
+  <div class="row mb-3">  
+  <%= address.label :country, class: "col-sm-3 col-form-label" %>
+  <div class="col-sm-8">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-fullname2" class="input-group-text"
+          ><i class="bx bx-user"></i></span>
+      <%= address.text_field :country, class: "form-control", placeholder: "Enter Country", data: {error: "#errCountry"} %>
+      </div>
+      <span id="errCountry"></span>
+  </div>
+  </div>
+  <div class="row mb-3">  
+  <%= address.label :zipcode, class: "col-sm-3 col-form-label" %>
+  <div class="col-sm-8">
+      <div class="input-group input-group-merge">
+      <span id="basic-icon-default-fullname2" class="input-group-text"
+          ><i class="bx bx-user"></i></span>
+      <%= address.text_field :zipcode, class: "form-control", placeholder: "Enter Zipcode", data: {error: "#errZipcode"} %>
+      </div>
+      <span id="errZipcode"></span>
+  </div>
+  </div>
+  <%= address.hidden_field :addressable_type, value: "User" %>
+  <%= address.hidden_field :addressable_id, value: @address.addressable_id %>
+<% end %>  
