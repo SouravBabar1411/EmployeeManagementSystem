@@ -54,26 +54,16 @@ class TimesheetsController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /timesheets/1 or /timesheets/1.json
-  def update
-    @company = Company.find(params[:id])
-      if @company.is_approved = 'false'
-        @company.is_approved = 'true'
-      else  
-        @company.is_approved = 'false'
-      end
-      @company.save
-        CompanyApproveMailer.send_approve_email(@company).deliver
-        redirect_to(admin_companies_path, :notice => 'Company Approved.')
-    end 
-
+  def update                                                    
     respond_to do |format|
-      if @timesheet.update(timesheet_params)
+      if @timesheet.update(timesheet_params) && params[:timesheet][:is_approved].include?("1")
         format.html { redirect_to timesheets_path, notice: "Timesheet was successfully updated." }
         # format.json { render :show, status: :ok, location: @timesheet }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        # format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: "Timesheet was successfully updated." }
       end
     end
   end

@@ -30,8 +30,15 @@ $(document).on('turbolinks:load', function() {
                 data: "startdate"
             },
             {
-                title: 'Status',
-                data: "is_approved"
+                title: 'Is Approve',
+                data: null,
+                render: function(data, type, row) {
+                    if (data.is_approved == 1)
+                        return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
+                    else
+                        return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
+                }
+
             },
             {
                 title: 'Actions',
