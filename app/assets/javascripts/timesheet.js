@@ -30,6 +30,10 @@ $(document).on('turbolinks:load', function() {
                 data: "startdate"
             },
             {
+                title: 'Status',
+                data: "is_approved"
+            },
+            {
                 title: 'Actions',
                 data: null,
                 searchable: false,
