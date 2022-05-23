@@ -97,7 +97,5 @@ gem 'jquery-datatables'
 gem 'kaminari'
 # For dropdown
 gem "select2-rails"
-# For Date
-gem 'bootstrap-datepicker-rails'
-# For Time
-gem 'jquery-timepicker-rails'
+# for Form components
+gem 'simple_form'

@@ -1,10 +1,4 @@
 $(document).on('turbolinks:load', function() {
-    // Select2
-    $('.js-example-basic-multiple').select2();
-    // DatePicker
-    $('.datepicker').datepicker();
-    // TimePicker
-    $('.timepicker').timepicker();
     // Timesheets Server Side Listing
     $('#timesheet-list-table').DataTable({
         paging: true,
@@ -28,12 +22,12 @@ $(document).on('turbolinks:load', function() {
                 data: "description"
             },
             {
-                title: 'Date',
-                data: "startdate"
+                title: 'Time',
+                data: "time"
             },
             {
-                title: 'Time',
-                data: "workingtime"
+                title: 'Date',
+                data: "startdate"
             },
             {
                 title: 'Actions',
@@ -49,10 +43,6 @@ $(document).on('turbolinks:load', function() {
                     action_html = action_html + "<a class='dropdown-item' href = '/timesheets/" + data.id + "/edit'" +
                         " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                         "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
-                        // Delete Employee Button  
-                    action_html = action_html + "<a class='dropdown-item' href = '/timesheets/" + data.id +
-                        "data-method='delete'" + "'data-confirm='Are you sure?' data-toggle='tooltip' data-placement='top' data-original-title='Delete'>" +
-                        "<i class='bx bx-edit-alt me-1'></i> Delete</a>"
                     action_html = action_html + "</div></div>"
 
                     return action_html;
@@ -66,17 +56,11 @@ $(document).on('turbolinks:load', function() {
     // Validations
     $("#timesheetValidate").validate({
         rules: {
-            "timesheet[current_date]": {
-                required: true
-            },
             "timesheet[time]": {
                 required: true
             }
         },
         messages: {
-            'timesheet[current_date]': {
-                required: 'Select date'
-            },
             'timesheet[time]': {
                 required: 'Select Time'
             },

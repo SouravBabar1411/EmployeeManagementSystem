@@ -3,8 +3,7 @@
 # Table name: timesheets
 #
 #  id           :bigint           not null, primary key
-#  current_date :date             not null
-#  time         :time             not null
+#  string       :time             not null
 #  description  :text             not null
 #  is_approved  :boolean          default(FALSE), not null
 #  user_id      :bigint           not null
@@ -20,7 +19,7 @@ class Timesheet < ApplicationRecord
   belongs_to :job
 
   ## Validations
-  validates :current_date, :time, :description,  presence: true 
+  validates :time, :description,  presence: true 
 
   ## Modify JSON Response
   def as_json
@@ -28,8 +27,8 @@ class Timesheet < ApplicationRecord
     response.merge!({user_name: self.user.first_name})
     response.merge!({project_name: self.project.name})
     response.merge!({job_name: self.job.name})
-    response.merge!({startdate: self.current_date.strftime("%Y-%m-%d")})
-    response.merge!({workingtime: self.time.strftime("%I:%M %p")})
+    response.merge!({startdate: self.created_at.strftime("%Y-%m-%d")})
+    # response.merge!({workingtime: self.time.strftime("%I:%M")})
     response
   end
 end

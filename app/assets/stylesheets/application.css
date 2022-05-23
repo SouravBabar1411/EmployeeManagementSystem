@@ -21,8 +21,6 @@
  *= require custom
  *= require datatables
  *= require select2
- *= require bootstrap-datepicker
- *= require jquery.timepicker
  */
 
 @import "bootstrap";

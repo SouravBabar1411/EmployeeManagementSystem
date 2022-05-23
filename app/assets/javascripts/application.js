@@ -30,5 +30,3 @@
 //= require jquery.dataTables.min
 //= require timesheet
 //= require select2-full
-//= require bootstrap-datepicker
-//= require jquery.timepicker
