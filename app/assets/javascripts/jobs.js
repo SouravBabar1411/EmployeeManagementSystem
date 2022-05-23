@@ -75,9 +75,9 @@ $(document).on('turbolinks:load', function() {
           searchable: true,
           render: function (data, type, row) {
             if(data.is_active == 1)
-              return '<i class="bx bxs-check-circle" style="color:#43a430"  ></i>'
+              return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
             else 
-              return '<i class="bx bxs-check-circle" style="color:#c5c9c4"  ></i>'
+              return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
           }
         },
         {

@@ -103,9 +103,8 @@ $(document).on('turbolinks:load', function() {
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            actionText = data.jobs
-            return '<i class="bx bx-laptop">' + data.jobs + '"> ' +
-            actionText + '</i>'
+            // actionText = data.jobs
+            return '<i class="bx bxs-briefcase" style="color:#696cff">' + '<span class="badge badge-light">'+ data.jobs_count +'</span>'+'</i>'
           }
         },
         {

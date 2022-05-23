@@ -85,3 +85,26 @@ margin-left: 0px;
 #errStatus{
   margin-left: 155px;
 }
+.badge {
+  position: relative;
+  top: -14px;
+  left: -15px;
+  border: 1px solid;
+  border: none;
+  background: none;
+  border-radius: 10%;
+  width: 2px;
+  line-height: 1px;
+}
+.badge {
+  display: inline-block;
+  padding: 0.52em 0.593em;
+  font-size: 0.8125em;
+  font-weight: 500;
+  line-height: 1;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}

@@ -25,6 +25,7 @@ class Project < ApplicationRecord
     response = super
     response.merge!({user_name: self.users.select(:first_name).pluck(:first_name)})
     response.merge!({jobs: self.jobs.select(:name).pluck(:name)})
+    response.merge!({jobs_count: self.jobs.count})
     response
   end 
 end
