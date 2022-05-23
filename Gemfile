@@ -83,19 +83,19 @@ gem 'annotate'
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+#for debugging
+gem 'pry'
 
 ##for file uploadin
 gem 'carrierwave-aws'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'aws-sdk-rails'
-
-#for debugging
-gem 'pry'
-## Preview email in the default browser instead of sending it. 
-
 # For renderinf server side tables 
 gem 'jquery-datatables'
-
 # For serverside pagination
 gem 'kaminari'
+# For dropdown
+gem "select2-rails"
+# for Form components
+gem 'simple_form'

@@ -1,36 +1,29 @@
-<%= form_with(model: timesheet,html: {id: ''}, local: true) do |form| %>
-
- <% if timesheet.errors.any? %>
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <% timesheet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
- <% end %>
+<%= simple_form_for(@timesheet ,html: {id:'timesheetValidate'}, local: true) do |form| %>
   <div class="row mb-3">
-    <%= form.label "Date",class:"col-sm-2 col-form-label"%>
+    <%= form.label "Time", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
-      <%= form.date_field :current_date, class:"form-control"%>
+      <div class="input-group input-group-merge">
+        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-time"></i>
+        </span>
+        <%= form.text_field :time, class:"form-control", data: {error: "#errTime1"} %>
+      </div>
+      <span id="errTime1"></span>
     </div>
   </div>
 
   <div class="row mb-3">
-    <%= form.label "Time",class:"col-sm-2 col-form-label"%>
-    <div class="col-sm-10">
-      <%= form.time_field :time, class:"form-control"%>
-    </div>
-  </div>
-
-  <div class="row mb-3">
-    <%= form.label "Name",autocomplete: "first_name",class:"col-sm-2 col-form-label"%>
+    <%= form.label "Employee", autocomplete: "first_name", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i>
         </span>
-        <%= form.text_field :user_id, value: current_user.first_name, class:"form-control"%>
+        <%= form.text_field :user_name , value: current_user.first_name, disabled: "true", class:"form-control"%>
       </div>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.number_field :user_id,id: :user_id, class:"form-control", value: current_user.id,type: :hidden %>
   </div>
 
   <div class="row mb-3">
@@ -39,8 +32,9 @@
       <div class="input-group input-group-merge">
       <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-edit"></i>
       </span>
-      <%= form.text_field :description, class:"form-control" %>
+      <%= form.text_field :description, class:"form-control",data: {error: "#errTime2"} %>
       </div>
+      <span id="errTime2"></span>
     </div>
   </div>
 
@@ -48,28 +42,27 @@
     <%= form.label "Project",class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
-        <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-code-block"></i>
-        </span>
-        <%= form.text_field :project_id, class:"form-control" %>
+        <%= form.collection_select(:project_id, Project.all, :id, :name, { :prompt => 'All Projects', :selected => @timesheet.project_id }, { class: 'form-control js-example-basic-multiple', data: {error: "#errTime3" }}) %>
       </div>
+      <span id="errTime3"></span>
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-3 mb-2">
     <%= form.label "Job", class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
-        <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-laptop"></i>
-        </span>
-      <%= form.text_field :job_id, class:"form-control" %>
+      <%= form.collection_select(:job_id, Job.all, :id, :name, { :prompt => 'All Jobs', :selected => @timesheet.job_id }, { class: 'form-control js-example-basic-multiple', data: {error: "#errTime4" }}) %>
     </div>
-    <div>
+    <span id="errTime4"></span>
   </div>
-  <br/>
 
-  <div class="col-sm-10">
-    <div class="actions mb-2">
-      <%= form.submit class:'btn btn-primary' %>
+  <div class="row justify-content-end mt-2">
+    <div class="col-sm-10">
+      <%= form.submit button_text, class:'btn btn-primary' %>
+    </div>
+    <div class="col-sm-3 timesheet-back-btn">
+      <%= link_to 'Back', timesheets_path, class:'btn btn-primary' %>
     </div>
   </div>
 <% end %>

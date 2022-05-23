@@ -30,7 +30,7 @@
 
 .alert {
     padding: 1px;
-    margin-left: -8px;
+    margin-left: 4px;
     margin-right: 5px;
     background-color: #ff9600;
     color: white;
@@ -67,4 +67,17 @@
 .more_action_bg .dropdown-item:focus {
     background: transparent !important;
     color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+    margin-left: -13px;
 }

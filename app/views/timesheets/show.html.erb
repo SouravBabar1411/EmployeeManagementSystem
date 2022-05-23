@@ -1,0 +1,29 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="card-title text-uppercase text-center py-3">Timesheet Details</div>
+    <p id="notice"><%= notice %></p>
+    <p>
+      <strong>Project:</strong>
+      <%= @timesheet.project.project_name %>
+    </p>
+
+    <p>
+      <strong>Job:</strong>
+      <%= @timesheet.job.job_name %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= @timesheet.startdate %>
+    </p>
+
+    <p>
+      <strong>Time:</strong>
+      <%= @timesheet.workingtime %>
+    </p>
+
+    <%= link_to 'Edit', edit_timesheet_path(@timesheet), class:"btn btn-primary" %>
+
+    <%= link_to 'Back', timesheets_path, class:"btn btn-dark" %>
+  </div>
+</div>

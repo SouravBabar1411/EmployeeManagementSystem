@@ -29,3 +29,4 @@
 //= require datatables
 //= require jquery.dataTables.min
 //= require timesheet
+//= require select2-full

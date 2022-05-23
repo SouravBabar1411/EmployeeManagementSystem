@@ -28,7 +28,10 @@ class TimesheetsController < ApplicationController
     }
   end
 
-  
+  # Display Timesheet Data
+  def show
+  end
+
   # GET /timesheets/new
   def new
     @timesheet = Timesheet.new
@@ -45,6 +48,7 @@ class TimesheetsController < ApplicationController
     respond_to do |format|
       if @timesheet.save
         format.html { redirect_to timesheets_path, notice: "Timesheet was successfully created." }
+        format.json { render :show, status: :created, location: @timesheet }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -53,9 +57,21 @@ class TimesheetsController < ApplicationController
 
   # PATCH/PUT /timesheets/1 or /timesheets/1.json
   def update
+    @company = Company.find(params[:id])
+      if @company.is_approved = 'false'
+        @company.is_approved = 'true'
+      else  
+        @company.is_approved = 'false'
+      end
+      @company.save
+        CompanyApproveMailer.send_approve_email(@company).deliver
+        redirect_to(admin_companies_path, :notice => 'Company Approved.')
+    end 
+
     respond_to do |format|
       if @timesheet.update(timesheet_params)
-        format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully updated." }
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully updated." }
+        # format.json { render :show, status: :ok, location: @timesheet }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -67,8 +83,7 @@ class TimesheetsController < ApplicationController
     @timesheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to timesheets_url, notice: "Timesheet was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to timesheets_path, notice: "Timesheet was successfully destroyed." }
     end
   end
  
@@ -90,6 +105,6 @@ class TimesheetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def timesheet_params
-    params.require(:timesheet).permit(:current_date, :time, :description, :is_approved, :user_id, :project_id, :job_id)
+    params.require(:timesheet).permit(:time, :description, :is_approved, :user_id, :project_id, :job_id)
   end
 end
