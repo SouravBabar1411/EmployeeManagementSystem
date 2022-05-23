@@ -3,8 +3,12 @@
   <head>
     <title>EMS</title>
 
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-   <!-- Favicon -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Favicon -->
    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
 
    <!-- Fonts -->
@@ -18,12 +22,6 @@
     <link rel="stylesheet" href="/app/assets/stylesheets/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="/app/assets/stylesheets/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/metismenu/dist/metisMenu.min.css">
-
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>

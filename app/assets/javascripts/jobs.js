@@ -11,6 +11,47 @@ $(document).on('turbolinks:load', function() {
     allowClear: true
   });
 
+  // front end validations 
+  $('.job-form').validate({
+    rules: {
+      'job[name]': {
+        required: true
+      },
+      'job[project_id]': {
+        required: true
+      },
+      'job[user_ids][]': {
+        required: true
+      },
+      'job[is_active]': {
+        required: true
+      }
+    },
+    messages: {
+      'job[name]': {
+        required: 'Please enter job name.'
+      },
+      'job[project_id]':{
+        required: 'Please select a project.'
+      },
+      'job[user_ids][]':{
+        required: 'Please select an employees.'
+      },
+      'job[is_active]': {
+        required: 'Please select status of job.'
+      }
+    },
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
+      }
+    }
+  });
+
+
   // server side listing
   $("#jobs-list").DataTable({
     processing: true,
@@ -67,12 +108,12 @@ $(document).on('turbolinks:load', function() {
                     "<i class='bx bx-dots-vertical-rounded'></i></button>"+
                     "<div class='dropdown-menu'>"
                 // Edit Project Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/users/"  + data.id + "/edit'" +
+                action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id + "/edit'" +
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
                 // Delete Project Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/projects/"  + data.id +
-                "'data-toggle='tooltip' data-placement='top' data-original-title='Delete'>" +
+                action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id +
+                "data-confirm='Are you sure?' data-method='delete' data-toggle='tooltip' data-placement='top' data-original-title='Destroy Job'>" +
                 "<i class='bx bx-trash'></i>Delete</a>"
   
               action_html = action_html + "</div></div>"
