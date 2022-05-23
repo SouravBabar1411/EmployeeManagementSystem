@@ -51,7 +51,8 @@ $(document).on('turbolinks:load', function() {
                         "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                         "<div class='dropdown-menu'>"
                         // Edit Employee Button  
-                    action_html = action_html + "<a class='dropdown-item' href = '/timesheets/" + data.id + "/edit'" +
+                    if (data.is_approved == 0)
+                        action_html = action_html + "<a class='dropdown-item' href = '/timesheets/" + data.id + "/edit'" +
                         " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                         "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
                     action_html = action_html + "</div></div>"
