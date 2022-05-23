@@ -63,9 +63,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
    end
   end 
-
-  def show 
-  end 
   private 
 
   def search_columns

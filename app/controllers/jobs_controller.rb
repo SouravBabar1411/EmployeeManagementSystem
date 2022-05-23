@@ -41,6 +41,14 @@ class JobsController < ApplicationController
       end 
     end 
   end 
+
+  def update 
+    if @job.update!(jobs_params)
+      redirect_to jobs_path
+    else  
+      redirect_to root_path 
+    end
+  end 
   private 
   
   # def set_project 

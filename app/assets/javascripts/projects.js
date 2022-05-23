@@ -13,6 +13,9 @@ $(document).on('turbolinks:load', function() {
       },
       'project[start_date]': {
         required: true
+      },
+      'project[user_ids][]': {
+        required: true
       }
     },
     messages: {
@@ -21,6 +24,17 @@ $(document).on('turbolinks:load', function() {
       },
       'project[start_date]':{
         required: 'Please enter project start date.'
+      },
+      'project[user_ids][]':{
+        required: 'Please select an employees.'
+      }
+    },
+    errorPlacement: function(error, element) {
+      var placement = $(element).data('error');
+      if (placement) {
+        $(placement).append(error)
+      } else {
+        error.insertAfter(element);
       }
     }
   });
@@ -79,6 +93,14 @@ $(document).on('turbolinks:load', function() {
           searchable: true,
           render: function (data, type, row) {
             return data.user_name
+          }
+        },
+        {
+          title: 'Jobs',
+          data: null,
+          searchable: true,
+          render: function (data, type, row) {
+            return data.jobs
           }
         },
         {
