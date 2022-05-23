@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   def update 
     respond_to do |format|
-      if @user.update(user_params) && @user.update(address_params)
+      if @user.update(user_params)
         format.html { redirect_to root_path, notice: "user was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }

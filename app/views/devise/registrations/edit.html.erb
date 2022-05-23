@@ -1,14 +1,13 @@
 <div class="content-wrapper">
   <!-- Content -->
   <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4">Edit profile</h4>
+    <h4 class="fw-bold py-3 mb-4">Change Password</h4>
     <div class="row">
       <div class="col-xxl">
         <div class="card mb-4">
           <div class="card-body">
             <%= form_for(resource, as: resource_name, html: {id: 'signupform' }, url: registration_path(resource_name), html: { method: :put }) do |f| %>
               <%#= render "devise/shared/error_messages", resource: resource %>
-              <center><h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Personal Details</h4></center>
               <div class="row mb-3">
                 <%= f.label "password",autocomplete: "password",class:"col-sm-2 col-form-label"%>
                 <div class="col-sm-10">
@@ -43,7 +42,8 @@
               <%= render "devise/shared/error_messages", resource: resource %>
               <div class="row justify-content-end">
                 <div class="col-sm-10">
-                <%= f.submit "Update",class:'btn btn-primary' %>
+                 <%= f.submit "Update",class:'btn btn-primary' %>
+                </div>
               </div>
             <%end%>
           </div>

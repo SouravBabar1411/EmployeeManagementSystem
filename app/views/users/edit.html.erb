@@ -6,6 +6,7 @@
       <div class="col-xxl">
         <div class="card mb-4">
           <div class="card-body">
+            <h4 class="fw-bold py-3 mb-2"><span class="text-muted fw-light"><a href='/addresses/new' class="btn btn-primary mb-2"><i class='bx bx-plus'></i><span>Address Details</span></a></h4>
             <%= form_with(model: @user,html: {id: ''}, local: true) do |f| %>
               <center><h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Personal Details</h4></center>
               <div class="row mb-3">
@@ -57,10 +58,11 @@
                   female<%= f.radio_button :gender, ['female']%>
                 </div>
               </div>
-              <%#= render partial: "addresses/form", locals: {addressable: @user}%>
-               <div class="col-sm-10">
-                <%= f.submit "Update",class:'btn btn-primary' %>
-               </div>
+              <div class="row justify-content-end">
+                <div class="col-sm-10">
+                  <%= f.submit "Update",class:'btn btn-primary' %>
+                </div>
+              </div>
             <%end%>
           </div>
         </div>

@@ -34,7 +34,7 @@ class User < ApplicationRecord
   ##Enum for roles
   enum role: [:employee, :emp_admin]
 
-  ## Associations
+  ##Associations
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
   has_many :notifications, as: :notificable 
@@ -42,6 +42,10 @@ class User < ApplicationRecord
   has_and_belongs_to_many :jobs
   has_many :timesheets
   has_many :leave_trackers
+
+  ##Validations
+  validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
+
   
   #omniauth google social login
   def self.from_omniauth(auth)
