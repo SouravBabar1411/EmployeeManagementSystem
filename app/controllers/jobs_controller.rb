@@ -48,6 +48,10 @@ class JobsController < ApplicationController
       redirect_to root_path 
     end
   end 
+
+  def show 
+    redirect_to users_url
+  end 
   private 
   
   # def set_project 

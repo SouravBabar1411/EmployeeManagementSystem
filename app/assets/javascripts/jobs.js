@@ -89,11 +89,15 @@ $(document).on('turbolinks:load', function() {
           }
         },
         {
-          title: 'Employees',
+          title: 'Users',
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            return data.user_name
+            var action_html = "<a class='dropdown-item' href = '/jobs/"  + data.id +
+            "'data-toggle='tooltip' data-placement='top' data-original-title='show'>" +
+            "<i class='bx bxs-user' style='color:rgba(77,77,80,0.95)'></i>"+
+            "<span class='badge badge-light'>"+ data.users_count +'</span>'+"</i></a>"; 
+            return action_html;
           }
         },
         {
