@@ -63,6 +63,10 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
    end
   end 
+
+  def show 
+    @job = @project.jobs.select(:name).pluck(:name)
+  end 
   private 
 
   def search_columns

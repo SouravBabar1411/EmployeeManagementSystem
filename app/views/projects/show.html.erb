@@ -1,0 +1,16 @@
+<div class="content-wrapper">
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">Jobs for <%= @project.name %></h4>
+    <div class="row">
+      <div class="col-xxl">
+        <div class="card mb-4">
+          <ul>
+          <% @job.each do |project| %>
+            <h3><li><%= project %></li></h3>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div> 
+  </div> 
+</div>
