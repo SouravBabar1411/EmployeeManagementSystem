@@ -112,7 +112,7 @@ $(document).on('turbolinks:load', function() {
         sSearch: ""
       },
       aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
-      order: [[1, "asc"]],
+      order: [[1, "desc"]],
       bInfo: false,
       pageLength: 5,
       aoColumnDefs: [

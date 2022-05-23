@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :destroy]
+  before_action :address_params, only: [:update]
 
   def index
   end
@@ -36,13 +38,15 @@ class UsersController < ApplicationController
 
   # New Employee to be added
   def new
-      @user = User.new
+    @user = User.new
+    @user.addresses.build
   end
 
   def create
     @user = User.new(user_params)
-    @address = Address.new(address_params)
-    if @user.save && @address.save
+    @user.save
+    # @address = Address.new(build_address_params)
+    if @user.save #&& @address.save
       session[:user_id] = @user.id
       flash[:notice] = "Employee #{@user.first_name} added successfully"
       redirect_to users_path
@@ -52,17 +56,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.where(id: params[:id]).first_or_initialize
-    @address = Address.where(addressable_id: params[:id]).first_or_initialize
+    # @user.addresses.build unless @user.addresses.present?
+    @user = User.where(id: params[:id]).first
+    @address = Address.where(addressable_id: params[:id]).first
   end
 
   def update
-    @user = User.where(id: params[:id]).first_or_initialize
-    @address = Address.where(addressable_id: params[:id]).first_or_initialize
-    binding.pry
-    if @user.update(user_params) && @address.udpate(address_params)
-      session[:user_id] = @user.id
-      flash[:notice] = "Employee #{@user.first_name} updated successfully"
+    @user = User.where(id: params[:format])
+    @address = Address.where(id: params[:user][:addresses_attributes]["0"][:id])
+    if @user.update(update_user_params) && @address.update(address_params)
+      session[:user_id] = @user[0].id
+      flash[:notice] = "Employee #{@user[0].first_name} updated successfully"
       redirect_to users_path
     else
       render 'edit'
@@ -73,6 +77,10 @@ class UsersController < ApplicationController
   end
 
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   ## Returns Datatable Sorting Direction
   def datatable_sort_direction
@@ -99,12 +107,37 @@ class UsersController < ApplicationController
     %w(first_name last_name email)
   end
 
-  def user_params
-      params.require(:user).permit(:first_name, :last_name, :date_of_birth, :gender, :image, :email, :password, :company_id)
+  def address_params
+    addr_params = {}
+    if params[:user].has_key?('addresses_attributes')
+      addres_params = params[:user][:addresses_attributes]["0"]
+      addres_params.each do |key, c_param|
+        addr_params[key] = c_param
+      end
+     addr_params["addressable_id"] = params[:format]
+    end
+    addr_params
   end
 
-  def address_params
-    params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :country, :zipcode, :addressable_id, :addressable_type)
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :date_of_birth, :gender, :image, :email, :password, :company_id, addresses_attributes: [:address_line_1, :address_line_2, :city, :state, :country, :zipcode, :addressable_type])
+  end
+
+  def update_user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :date_of_birth, :gender, :image, :email, :password, :company_id)
+  end
+
+  ## Build Parameters for User
+  def build_address_params
+    addr_params = {}
+    if params[:user].has_key?('addresses_attributes')
+      addres_params = params[:user][:addresses_attributes]["0"]
+      addres_params.each do |key, c_param|
+        addr_params[key] = c_param
+      end
+     addr_params["addressable_id"] = @user.id
+    end
+    addr_params
   end
 
 end
