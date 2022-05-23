@@ -74,9 +74,10 @@ $(document).on('turbolinks:load', function() {
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            actionText = data.is_active ? 'Active' : 'Inactive'
-            return '<span class="badge bg-label-primary me-1" data-user-id="' + data.id + '"> ' +
-            actionText + '</span>'
+            if(data.is_active == 1)
+              return '<i class="bx bxs-check-circle" style="color:#43a430"  ></i>'
+            else 
+              return '<i class="bx bxs-check-circle" style="color:#c5c9c4"  ></i>'
           }
         },
         {
