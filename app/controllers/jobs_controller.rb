@@ -33,13 +33,12 @@ class JobsController < ApplicationController
   def create 
     @job = Job.new(jobs_params)
       
-    respond_to do |format|
       if @job.save 
-        format.html{ redirect_to jobs_url , success: "Job was sucessfully added." }
+        JobCreatedMailer.job_assign(@job).deliver
+        redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
       else
         format.html{ render :new , status: :unprocessable_entity }
       end 
-    end 
   end 
 
   def update 
