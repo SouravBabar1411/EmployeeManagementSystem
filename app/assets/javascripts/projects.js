@@ -80,11 +80,13 @@ $(document).on('turbolinks:load', function() {
           }
         },
         {
-          title: 'Active',
+          title: 'Status',
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            return data.is_active
+            actionText = data.is_active ? 'Active' : 'Inactive'
+            return '<span class="badge bg-label-primary me-1" data-user-id="' + data.id + '"> ' +
+            actionText + '</span>'
           }
         },
         {

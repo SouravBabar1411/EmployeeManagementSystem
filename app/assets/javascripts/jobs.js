@@ -22,9 +22,6 @@ $(document).on('turbolinks:load', function() {
       },
       'job[user_ids][]': {
         required: true
-      },
-      'job[is_active]': {
-        required: true
       }
     },
     messages: {
@@ -36,9 +33,6 @@ $(document).on('turbolinks:load', function() {
       },
       'job[user_ids][]':{
         required: 'Please select an employees.'
-      },
-      'job[is_active]': {
-        required: 'Please select status of job.'
       }
     },
     errorPlacement: function(error, element) {
@@ -76,11 +70,13 @@ $(document).on('turbolinks:load', function() {
           }
         },
         {
-          title: 'Active',
+          title: 'Status',
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            return data.is_active
+            actionText = data.is_active ? 'Active' : 'Inactive'
+            return '<span class="badge bg-label-primary me-1" data-user-id="' + data.id + '"> ' +
+            actionText + '</span>'
           }
         },
         {
@@ -107,11 +103,11 @@ $(document).on('turbolinks:load', function() {
                   "<button type='button' class='btn p-0' data-bs-toggle='dropdown'>"+
                     "<i class='bx bx-dots-vertical-rounded'></i></button>"+
                     "<div class='dropdown-menu'>"
-                // Edit Project Button  
+                // Edit Job Button  
                 action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id + "/edit'" +
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
-                // Delete Project Button  
+                // Delete Job Button  
                 action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id +
                 "data-confirm='Are you sure?' data-method='delete' data-toggle='tooltip' data-placement='top' data-original-title='Destroy Job'>" +
                 "<i class='bx bx-trash'></i>Delete</a>"
