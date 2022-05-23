@@ -79,18 +79,20 @@ gem 'devise-security', '~> 0.11.1'
 ## database scheme representation
 gem 'annotate'
 
+## for debugging
+gem 'pry', '~> 0.13.1'
+#social login
 # social login
 gem 'omniauth-google-oauth2'
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
-#for debugging
-gem 'pry'
 
 ##for file uploadin
 gem 'carrierwave-aws'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'aws-sdk-rails'
+
 # For renderinf server side tables 
 gem 'jquery-datatables'
 # For serverside pagination
@@ -98,4 +100,6 @@ gem 'kaminari'
 # For dropdown
 gem "select2-rails"
 # for Form components
+
+## for forms 
 gem 'simple_form'

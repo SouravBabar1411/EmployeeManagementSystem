@@ -21,6 +21,7 @@
  *= require custom
  *= require datatables
  *= require select2
+ *= require select2.min
  */
 
 @import "bootstrap";
