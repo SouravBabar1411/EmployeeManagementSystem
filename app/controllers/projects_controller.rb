@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   # before_action :authenticate_user!
   # before_action :set_company
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :create, :destroy]
 
   def index
     @project = Project.find_by(params[:id])
@@ -44,6 +44,7 @@ class ProjectsController < ApplicationController
 
   def create 
     @project = Project.new(project_params)
+    @project.save
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
@@ -88,10 +89,6 @@ class ProjectsController < ApplicationController
     columns[params[:order]['0'][:column].to_i - 1]
   end
 
-  # def set_company 
-  #   @company = Company.find_by(params[:id])
-  # end 
-
   def set_project 
     @project = Project.find(params[:id])
   rescue ActiveRecord::RecordNotFound => error
@@ -99,6 +96,6 @@ class ProjectsController < ApplicationController
   end 
 
   def project_params 
-    params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id, user_ids: [])
+    params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id, user_ids:[])
   end 
 end

@@ -35,4 +35,4 @@
 //= require projects
 //= require jobs
 //= require project-jobs
-//= require jobs
+

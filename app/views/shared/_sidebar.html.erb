@@ -69,10 +69,10 @@
   <ul class="menu-item">
     <!-- Dashboard -->
     <li>
-      <a href="index.html" class="menu-link">
+      <%= link_to dashboard_path , class:"menu-link" do %>
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Dashboard</div>
-      </a>
+      <% end %>
     </li>
     
     <li class="mm-active">

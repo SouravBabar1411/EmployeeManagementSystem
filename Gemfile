@@ -102,4 +102,4 @@ gem "select2-rails"
 # for Form components
 
 ## for forms 
-gem 'simple_form'
+# gem 'simple_form'

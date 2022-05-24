@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'dashboard/index'
   ## super admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -41,4 +42,20 @@ Rails.application.routes.draw do
   end 
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
   
+
+  resources :users do 
+    collection do
+      get 'fetch_employees', to: 'users#fetch_employees'
+    end
+  end
+
+  # Routes for timesheets module
+  resources :timesheets do
+    collection do
+      get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
+    end
+  end
+
+  #dashboard routes
+  get 'dashboard', to: 'dashboards#index'
 end
