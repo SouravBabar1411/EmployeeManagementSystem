@@ -93,6 +93,9 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'aws-sdk-rails'
 
+#for debugging
+gem 'pry'
+
 # For renderinf server side tables 
 gem 'jquery-datatables'
 # For serverside pagination
