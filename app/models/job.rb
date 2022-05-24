@@ -13,7 +13,7 @@ class Job < ApplicationRecord
   ## Associations
   belongs_to :project
   has_and_belongs_to_many :users
-  has_many :timesheets
+  has_many :timesheets , dependent: :destroy
 
   def as_json 
     response = super 

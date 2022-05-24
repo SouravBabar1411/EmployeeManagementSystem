@@ -14,8 +14,8 @@ class Company < ApplicationRecord
   ## Associations
   has_many :addresses, as: :addressable  
   has_many :contact_infos, as: :contactable 
-  has_many :projects
-  has_many :global_configurations
+  has_many :projects , dependent: :destroy
+  has_many :global_configurations , dependent: :destroy
 
   ## validations 
   validates :name,:email, presence: true

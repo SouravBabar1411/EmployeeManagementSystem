@@ -95,9 +95,11 @@ gem 'aws-sdk-rails'
 
 # For renderinf server side tables 
 gem 'jquery-datatables'
-
 # For serverside pagination
 gem 'kaminari'
+# For dropdown
+gem "select2-rails"
+# for Form components
 
 ## for forms 
 gem 'simple_form'

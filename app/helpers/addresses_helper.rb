@@ -1,11 +1,11 @@
-module TimesheetsHelper
+module AddressesHelper
   def button_text
     if controller.action_name == "new"
-      return "Add Timesheet"
+       return "Add Address"
     elsif controller.action_name == "edit"
-      return "Update Timesheet"
+       return "Update Address"
     else
-      return "Submit"
+       return "Submit"
     end
   end
 end

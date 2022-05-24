@@ -44,7 +44,6 @@ class ProjectsController < ApplicationController
 
   def create 
     @project = Project.new(project_params)
-      
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
@@ -100,6 +99,6 @@ class ProjectsController < ApplicationController
   end 
 
   def project_params 
-    params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id,user_ids: [])
+    params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id, user_ids: [])
   end 
 end

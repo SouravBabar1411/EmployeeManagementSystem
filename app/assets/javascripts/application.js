@@ -31,6 +31,8 @@
 //= require datatables
 //= require jquery.dataTables.min
 //= require timesheet
+//= require select2-full
 //= require projects
 //= require jobs
 //= require project-jobs
+//= require jobs

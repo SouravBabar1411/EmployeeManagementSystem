@@ -23,12 +23,14 @@ Rails.application.routes.draw do
   end 
   
   #in routes
-  devise_for :users,:controllers => { 
+  devise_for :users,:controllers =>  {  
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  resources :addresses
   
-  # Routes for Employee module
-  resources :users, only: [:index, :new, :edit, :destroy]
+  resources :users 
+
   get 'fetch_employees', to: 'users#fetch_employees'
 
   # Routes for timesheets module

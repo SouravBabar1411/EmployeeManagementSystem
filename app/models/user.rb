@@ -31,17 +31,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable,
          :password_expirable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  ## enum role for user
+  ##Enum for roles
   enum role: [:employee, :emp_admin]
 
-  ## Associations
+  ##Associations
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
   has_many :notifications, as: :notificable 
   has_and_belongs_to_many :projects   
   has_and_belongs_to_many :jobs
-  has_many :timesheets
-  has_many :leave_trackers
+  has_many :timesheets , dependent: :destroy
+  has_many :leave_trackers , dependent: :destroy
+
+  ##Validations
+  validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
+
   
   #omniauth google social login
   def self.from_omniauth(auth)
