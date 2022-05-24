@@ -31,4 +31,7 @@ class Timesheet < ApplicationRecord
     # response.merge!({workingtime: self.time.strftime("%I:%M")})
     response
   end
+
+  scope :this_week, -> { where(created_at: Time.now.at_beginning_of_week...Time.now.at_end_of_week - 2.days) }
+  scope :last_month, -> { where(created_at: (Time.now.beginning_of_month - 1.month)..((Time.now.beginning_of_month - 1.month).end_of_month)).uniq }
 end

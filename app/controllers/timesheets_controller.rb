@@ -18,6 +18,12 @@ class TimesheetsController < ApplicationController
       timesheets = timesheets.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
 
+    if params["filters"].present?
+      filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
+      timesheets = timesheets.last_month
+      binding.pry
+    end
+
     timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 

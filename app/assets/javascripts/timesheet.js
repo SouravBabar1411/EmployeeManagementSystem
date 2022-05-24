@@ -105,4 +105,35 @@ $(document).on('turbolinks:load', function() {
         }
 
     });
+
+    function generateFilterParams() {
+        var filters = {
+            business_id: [$("#timesheets :selected").val()],
+        }
+        $("select[name='businesses']:selected").each(function() {
+            filters['business_id'].push($(this).data('val'));
+        });
+
+        return filters;
+    }
+
+    function applyFilters(filters) {
+        console.log("hello", filters);
+        if (filters != '') {
+            $('#timesheet-list-table').DataTable().ajax.url(
+                    "/fetch_timesheets" + "?filters=" + JSON.stringify(filters)
+                )
+                .load() //checked
+        } else {
+            $('#timesheet-list-table').DataTable().ajax.reload();
+        }
+    }
+
+    // timesheet filter
+    $('.timesheet-filter').change(function() {
+        console.log("timesheet  1")
+        var b = [$("#timesheets :selected").val()];
+        console.log(b);
+        applyFilters(generateFilterParams());
+    });
 });

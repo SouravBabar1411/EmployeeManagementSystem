@@ -17,6 +17,10 @@
     }
     /* Style the collapsible content. Note: hidden by default */
     
+    .timesheet-btn {
+        margin-left: 800px;
+    }
+    
     .content {
         padding: 0 18px;
         display: none;
@@ -127,4 +131,7 @@
             white-space: nowrap;
             vertical-align: baseline;
             border-radius: 0.25rem;
+        }
+        .select-timesheet {
+            width: 21%;
         }
