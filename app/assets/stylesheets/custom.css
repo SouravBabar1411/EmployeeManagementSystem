@@ -80,7 +80,8 @@
     button:not(:disabled) {
         cursor: pointer;
         margin-left: -13px;
-        .more_action_bg .dropdown-item:hover,
+    }
+        .more_action_bg .dropdown-item:hover
         .more_action_bg .dropdown-item:focus {
             background: transparent !important;
             color: #C2C6DC !important;
@@ -121,6 +122,18 @@
             line-height: 1px;
         }
         .badge {
+            display: inline-block;
+            padding: 0.52em 0.593em;
+            font-size: 0.8125em;
+            font-weight: 500;
+            line-height: 1;
+            color: black;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.25rem;
+        }
+        .job-badge{
             display: inline-block;
             padding: 0.52em 0.593em;
             font-size: 0.8125em;
