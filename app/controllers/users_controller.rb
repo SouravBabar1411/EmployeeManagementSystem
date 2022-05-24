@@ -27,8 +27,9 @@ class UsersController < ApplicationController
     end
     users = users.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     users = users.page(datatable_page).per(datatable_per_page)
+    binding.pry
     render json: {
-    users: users.as_json,
+      users: users.as_json,
       draw: params['draw'].to_i,
       recordsTotal: users.count,
       recordsFiltered: users.total_count,

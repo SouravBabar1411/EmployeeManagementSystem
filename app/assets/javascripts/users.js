@@ -8,6 +8,7 @@ $(document).on('turbolinks:load', function() {
         url: "/fetch_employees",
         dataSrc: "users",
         dataFilter: function (data) {
+          console.log('data is: '+data);
           var json = jQuery.parseJSON(data);
           return JSON.stringify(json);
         },
@@ -20,16 +21,6 @@ $(document).on('turbolinks:load', function() {
           sortable: false,
           render: function (data, type, row) {
             return '<img src="' + data['image']['url'] + '" style="margin-left:10px;" class="user_table_image_thumb_size" />'
-          }
-        },
-        {
-          class: 'user-id',
-          title: 'User id', 
-          data: null,
-          searchable: true,
-          render: function (data, type, row) {
-            return '<span data-user-id="' + data.id + '"> <strong>' +
-              data.id + '</strong></span>'
           }
         },
         {
@@ -80,6 +71,28 @@ $(document).on('turbolinks:load', function() {
           render: function (data, type, row) {
             return '<span data-user-id="' + data.id + '">' +
               data.date_of_birth + '</span>'
+          }
+        },
+        {
+          class: 'user-name',
+          title: 'Projects',
+          data: null,
+          searchable: false,
+          render: function (data, type, row) {
+            actionText = data.is_active ? 'Active' : 'Inactive'
+            return '<span data-user-id="' + data.id + '"> '  + '</span>'
+          }
+        },
+        {
+          title: 'Jobs',
+          data: null,
+          searchable: false,
+          render: function (data, type, row) {
+            var action_html = "<a class='dropdown-item' href = '/users/"  + data.id +
+            "'data-toggle='tooltip' data-placement='top' data-original-title='Jobs'>" +
+            "<i class='bx bxs-briefcase' style='color:#696cff'>"+
+            "<span class='badge badge-light job-badge'>"+ data.jobs_count +'</span>'+"</i></a>"; 
+            return action_html;
           }
         },
         {
