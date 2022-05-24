@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     end
     users = users.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     users = users.page(datatable_page).per(datatable_per_page)
-    
     render json: {
     users: users.as_json,
       draw: params['draw'].to_i,
@@ -74,6 +73,31 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if @user.is_active
+      response = toggle_user(false)
+    else
+      response = toggle_user(true)
+    end
+    render json: response
+  end
+
+  ## Enable / Disable User
+  def toggle_user(approve_status)
+    @user.is_active = approve_status
+    if @user.save
+      response = {
+        success: true,
+        title: "#{@user.is_active ? 'Enable' : 'Disable'} a User",
+        message: "User #{@user.is_active ? 'enabled' : 'disabled'} successfully!"
+      }
+    else
+      response = {
+        success: false,
+        title: "#{@user.is_active ? 'Enable' : 'Disable'} a User",
+        message: "#{@user.is_active ? 'Approving' : 'Disabling'} user failed, Try again later!"
+      }
+    end
+    response
   end
 
   private

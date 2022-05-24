@@ -20,6 +20,7 @@
  *= require page-auth
  *= require custom
 *= require datatables
+*= require sweetalert2.min
  */
 
 @import "bootstrap";

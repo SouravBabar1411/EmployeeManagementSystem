@@ -23,6 +23,16 @@ $(document).on('turbolinks:load', function() {
           }
         },
         {
+          class: 'user-id',
+          title: 'User id', 
+          data: null,
+          searchable: true,
+          render: function (data, type, row) {
+            return '<span data-user-id="' + data.id + '"> <strong>' +
+              data.id + '</strong></span>'
+          }
+        },
+        {
           class: 'user-name',
           title: 'First name', 
           data: null,
@@ -87,6 +97,7 @@ $(document).on('turbolinks:load', function() {
           class: 'user-name',
           title: 'Actions', data: null, searchable: false, orderable: false,
           render: function (data, type, row) {
+            actionText = data.is_active ? 'Disable' : 'Enable'
             let action_html = "<div class='input-group' data-user-id ='" + data.id + "'>" +
                   "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>"+
                     "<i class='bx bx-dots-vertical-rounded'></i></button>"+
@@ -96,9 +107,8 @@ $(document).on('turbolinks:load', function() {
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
                 // Delete Employee Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/users/"  + data.id +
-                "'data-toggle='tooltip' data-placement='top' data-original-title='Delete'>" +
-                "<i class='bx bxs-exit me-1'></i> Delete</a>"
+                action_html = action_html + "<a class='dropdown-item delete-user' href = 'javascript:void(0);' data-toggle='tooltip' data-placement='top' data-original-title='Delete' data-user-id = '"
+                + data.id + "'>" + "<i class='bx bxs-exit me-1'></i>"+actionText+"</a>"
   
               action_html = action_html + "</div></div>"
               
@@ -229,4 +239,55 @@ $(document).on('turbolinks:load', function() {
         }
       }
     });
+  $('#employee-table').on('click', '.delete-user', function () {
+
+    // var challengeId = $(this).parent().parent().data('challenge-id');
+    var userId = $(this).data('user-id');
+
+    if ($(this).html().includes('Disable')) {
+      swalTitle = 'Disable'
+      swalText = 'Do you want to disable the User?'
+    } else {
+      swalTitle = 'Enable'
+      swalText = 'Do you want to enable the User?'
+    }
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: swalText,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, ' + swalTitle + ' it!',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn btn-danger ml-1',
+      buttonsStyling: false,
+    }).then(function (result) {
+      if (result.value) {
+        $('.loader').fadeIn();
+        $.ajax({
+          type: 'DELETE',
+          url: "/users/" + userId,
+          success: function (data) {
+            $('.loader').fadeOut();
+            swalNotify(data.title, data.message);
+            if (data.success) {
+              $('#employee-table').DataTable().ajax.reload(null, false);
+            }
+          }
+        });
+      }
+    });
+  });
+  // Trigger SWAL Notification
+  function swalNotify(title, message) {
+    Swal.fire({
+      title: title,
+      text: message,
+      confirmButtonClass: 'btn btn-primary',
+      buttonsStyling: false,
+    });
+  }
 } );
+

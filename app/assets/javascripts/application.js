@@ -30,3 +30,4 @@
 //= require jquery.dataTables.min
 //= require timesheet
 //= require users
+//= require sweetalert2.all.min
