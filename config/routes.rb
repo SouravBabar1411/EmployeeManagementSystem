@@ -6,14 +6,31 @@ Rails.application.routes.draw do
 
   # Root route of the application
   root to: "home#index"
+
+  ## projects routes 
+  resources :projects do 
+    collection do
+      get 'fetch_projects', to: 'projects#fetch_projects'
+    end
+  end 
+
+  get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
+  ## jobs routes 
+  resources :jobs do 
+    collection do 
+      get 'fetch_jobs', to: 'jobs#fetch_jobs'
+    end 
+  end 
   
   #in routes
-  devise_for :users,:controllers => { 
+  devise_for :users,:controllers =>  {  
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  resources :addresses
   
   # Routes for Employee module
-  resources :users, only: [:index, :new, :edit, :destroy, :updaste]
+  resources :users, only: [:index, :new, :edit, :destroy, :update]
   get 'fetch_employees', to: 'users#fetch_employees'
   post 'signup', to: 'users#create'
   put  'updateuser', to: 'users#update'

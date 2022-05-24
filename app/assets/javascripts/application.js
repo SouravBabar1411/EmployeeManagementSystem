@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
+//= require turbolinks
 //= require config
 //= require activestorage
 //= require helpers
@@ -24,10 +26,14 @@
 //= require buttons
 //= require sidebar
 //= require jquery.validate
+//= require select2.min
 //= require validation
-//= require turbolinks
 //= require datatables
 //= require jquery.dataTables.min
 //= require timesheet
 //= require users
 //= require sweetalert2.all.min
+//= require select2-full
+//= require projects
+//= require project-jobs
+//= require jobs

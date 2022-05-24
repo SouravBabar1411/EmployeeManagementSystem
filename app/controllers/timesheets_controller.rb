@@ -1,7 +1,7 @@
 class TimesheetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_timesheet, only: %i[ show edit update destroy ]
-  # GET /timesheets or /timesheets.json
+  before_action :set_timesheet, only: %i[ edit update destroy ]
+  # timesheet listing
   def index
     @timesheets = Timesheet.all
   end
@@ -9,7 +9,7 @@ class TimesheetsController < ApplicationController
   def fetch_timesheets
     timesheets = Timesheet.all
     search_string = []
-
+    # binding.pry
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
       search_columns.each do |term|
@@ -18,8 +18,26 @@ class TimesheetsController < ApplicationController
       timesheets = timesheets.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
 
-    timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-    timesheets = timesheets.page(datatable_page).per(datatable_per_page)
+    if params["filters"].present?
+      # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
+      timesheets = timesheets.this_week
+      
+      case params["filters"]
+        when "{\"timesheet\":[\"This Month\"]}" 
+          timesheets = timesheets.this_month
+        when "{\"timesheet\":[\"Last Month\"]}" 
+          timesheets = timesheets.last_month
+        when "{\"timesheet\":[\"This Year\"]}"
+          timesheets = timesheets.this_year
+        else
+        Timesheet.all
+        end
+    end
+
+    
+
+    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
         timesheets: timesheets.as_json,
@@ -28,7 +46,7 @@ class TimesheetsController < ApplicationController
     }
   end
 
-  # GET /timesheets/1 or /timesheets/1.json
+  # Display Timesheet Data
   def show
   end
 
@@ -47,24 +65,25 @@ class TimesheetsController < ApplicationController
     @timesheet = Timesheet.new(timesheet_params)
     respond_to do |format|
       if @timesheet.save
-        format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully created." }
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully created." }
         format.json { render :show, status: :created, location: @timesheet }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
       end
     end
   end
-
+  
   # PATCH/PUT /timesheets/1 or /timesheets/1.json
-  def update
+  def update                                                    
     respond_to do |format|
-      if @timesheet.update(timesheet_params)
-        format.html { redirect_to timesheet_url(@timesheet), notice: "Timesheet was successfully updated." }
-        format.json { render :show, status: :ok, location: @timesheet }
-      else
+      if @timesheet.update(timesheet_params) && params[:timesheet][:is_approved].include?("1")
+        TimesheetMailer.send_timesheet_approve_email(@timesheet).deliver
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully updated." }
+        # format.json { render :show, status: :ok, location: @timesheet }
+      elsif  @timesheet.update(timesheet_params)
+        format.html { redirect_to timesheets_path, notice: "Timesheet was successfully updated." }
+      elsif
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @timesheet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -74,8 +93,7 @@ class TimesheetsController < ApplicationController
     @timesheet.destroy
 
     respond_to do |format|
-      format.html { redirect_to timesheets_url, notice: "Timesheet was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to timesheets_path, notice: "Timesheet was successfully destroyed." }
     end
   end
  
@@ -97,6 +115,6 @@ class TimesheetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def timesheet_params
-    params.require(:timesheet).permit(:current_date, :time, :description, :is_approved, :user_id, :project_id, :job_id)
+    params.require(:timesheet).permit(:time, :description, :is_approved, :user_id, :project_id, :job_id)
   end
 end

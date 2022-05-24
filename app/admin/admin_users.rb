@@ -9,9 +9,9 @@ ActiveAdmin.register AdminUser do
   end
 
   ## disabling the comments
-  ActiveAdmin.setup do |config|
-    config.comments = false
-  end
+  # ActiveAdmin.setup do |config|
+  #   config.comments = false
+  # end
 
   filter :email
 

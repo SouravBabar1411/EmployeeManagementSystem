@@ -1,9 +1,8 @@
 class Addprojectanduser < ActiveRecord::Migration[5.2]
   def change
-    create_table :project_users do |t|
-      t.references :project, foreign_key: true , null: false
-      t.references :user, foreign_key: true, null: false
-      t.timestamps
+    create_join_table :projects, :users do |t|
+      t.index [:project_id, :user_id]
+      t.index [:user_id, :project_id]
     end
   end
 end
