@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function() {
           searchable: true,
           render: function (data, type, row) {
             var action_html = "<a class='dropdown-item' href = '/projects/"  + data.id +
-            "'data-toggle='tooltip' data-placement='top' data-original-title='Show'>" +
+            "'data-toggle='tooltip' data-placement='top' data-original-title='fetch_projects_jobs'>" +
             "<i class='bx bxs-briefcase' style='color:#696cff'>"+
             "<span class='badge badge-light'>"+ data.jobs_count +'</span>'+"</i></a>"; 
             return action_html;

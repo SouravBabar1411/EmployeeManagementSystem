@@ -33,3 +33,4 @@
 //= require timesheet
 //= require projects
 //= require jobs
+//= require project-jobs

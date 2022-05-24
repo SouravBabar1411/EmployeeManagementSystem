@@ -13,8 +13,8 @@ Rails.application.routes.draw do
       get 'fetch_projects', to: 'projects#fetch_projects'
     end
   end 
-  get 'list_users', to: 'jobs#list_users'
 
+  get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
   ## jobs routes 
   resources :jobs do 
     collection do 
