@@ -74,9 +74,9 @@ class ProjectsController < ApplicationController
    end
   end 
 
-  def show 
-    @job = @project.jobs.select(:name).pluck(:name)
-  end 
+  # def show 
+  #   @job = @project.jobs.select(:name).pluck(:name)
+  # end 
   private 
 
   def search_columns

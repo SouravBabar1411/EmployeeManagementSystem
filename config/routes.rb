@@ -32,9 +32,13 @@ Rails.application.routes.draw do
   resources :users 
 
   get 'fetch_employees', to: 'users#fetch_employees'
-
+  
   # Routes for timesheets module
-  resources :timesheets
+  resources :timesheets do 
+    member do
+      patch :toggle_approve_status
+    end 
+  end 
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
-
+  
 end

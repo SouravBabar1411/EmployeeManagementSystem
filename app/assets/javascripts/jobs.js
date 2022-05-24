@@ -113,9 +113,9 @@ $(document).on('turbolinks:load', function() {
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
                 // Delete Job Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id +
-                "data-confirm='Are you sure?' data-method='delete' data-toggle='tooltip' data-placement='top' data-original-title='Destroy Job'>" +
-                "<i class='bx bx-trash'></i>Delete</a>"
+                action_html = action_html + "<a class='dropdown-item' href = '/jobs/" + data.id +
+                        "data-confirm='Are you sure?' data-method='delete' >" +
+                        '<i class="bx bx-trash me-1"></i>Delete' + '</a>'
   
               action_html = action_html + "</div></div>"
               

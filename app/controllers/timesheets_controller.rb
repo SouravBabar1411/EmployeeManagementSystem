@@ -50,6 +50,10 @@ class TimesheetsController < ApplicationController
   def show
   end
 
+  def toggle_approve_status
+    @timesheet.toggle!(:is_approved).save
+  end 
+
   # GET /timesheets/new
   def new
     @timesheet = Timesheet.new

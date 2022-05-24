@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   // select 2 for dropdown
-  $('.js-example-basic-multiple').select2({
+  $('.select-employee').select2({
     placeholder: "Select an employee",
     allowClear: true
   });
@@ -123,9 +123,9 @@ $(document).on('turbolinks:load', function() {
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
                 // Delete Project Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/projects/"  + data.id +
-                "'data-toggle='tooltip' data-placement='top' data-original-title='Delete'>" +
-                "<i class='bx bx-trash me-1'></i>Delete</a>"
+                action_html = action_html + "<a class='dropdown-item' href = '/projects/" + data.id +
+                        "data-confirm='Are you sure?' data-method='delete' >" +
+                        '<i class="bx bx-trash me-1"></i>Delete' + '</a>'
   
               action_html = action_html + "</div></div>"
               
