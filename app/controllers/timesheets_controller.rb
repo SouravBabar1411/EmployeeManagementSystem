@@ -31,8 +31,6 @@ class TimesheetsController < ApplicationController
         end
     end
 
-    
-
     # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 

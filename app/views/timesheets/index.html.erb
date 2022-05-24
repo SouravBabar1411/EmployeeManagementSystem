@@ -3,23 +3,17 @@
     <div class="card">
       <div class="row">
         <div class="col">
-          <h5 class="card-header">Timesheet</h5>
-          <%# <select id="defaultSelect" class="form-select timesheet-filter ">
-            <option>Applay filter</option>
-            <option value="1">This Week</option>
-            <option value="2">This month</option>
-            <option value="3">Last month</option>
-          </select> %>
+          <h5 class="card-header1">Timesheet</h5>
           <%= select_tag :timesheets,
                    options_for_select(["This Week","This Month","Last Month","This Year"]),
                    class: 'form-select timesheet-filter ', id:"timesheets" %>
-                   <div name="timesheets", style="padding-top: 5px;"><br>
+                   <div name="timesheets"><br>
         </div>
         <div class="col">
-          <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/timesheets/new' class="btn btn-primary mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add timesheet</span></a></h4>
+          <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/timesheets/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add timesheet</span></a></h4>
         </div>
       </div>
-    <div class="mb-3">
+    <div class="mb-30">
     </div>
       <div class="table-responsive text-nowrap">
         <table class="table " id="timesheet-list-table">

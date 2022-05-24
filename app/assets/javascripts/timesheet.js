@@ -50,11 +50,15 @@ $(document).on('turbolinks:load', function() {
                         "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
                         "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                         "<div class='dropdown-menu'>"
-                        // Edit Employee Button  
-                    if (data.is_approved == 0)
-                        action_html = action_html + "<a class='dropdown-item' href = '/timesheets/" + data.id + "/edit'" +
+                        // Edit timesheet Button  
+                    action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
                         " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                         "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
+
+                    // delete timesheet
+                    action_html = action_html + "<a class='dropdown-item delete-user' href = '/timesheets/" + data.id +
+                        "data-confirm='Are you sure?' data-method='delete' >" +
+                        "<i class='bx bx-trash me-1'></i>Delete</a>"
                     action_html = action_html + "</div></div>"
 
                     return action_html;
@@ -106,6 +110,36 @@ $(document).on('turbolinks:load', function() {
 
     });
 
+    //Override the default confirm dialog by rails
+    $.rails.allowAction = function(link) {
+        if (link.data("confirm") == undefined) {
+            return true;
+        }
+        $.rails.showConfirmationDialog(link);
+        return false;
+    }
+
+    //User click confirm button
+    $.rails.confirmed = function(link) {
+        link.data("confirm", null);
+        link.trigger("click.rails");
+    }
+
+    //Display the confirmation dialog
+    $.rails.showConfirmationDialog = function(link) {
+        var message = link.data("confirm");
+        swal({
+            title: message,
+            type: 'warning',
+            confirmButtonText: 'Sure',
+            confirmButtonColor: '#2acbb3',
+            showCancelButton: true
+        }).then(function(e) {
+            $.rails.confirmed(link);
+        });
+    };
+
+    // filtes
     function generateFilterParams() {
         var filters = {
             timesheet: [$("#timesheets :selected").val()],
