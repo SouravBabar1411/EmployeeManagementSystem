@@ -108,10 +108,10 @@ $(document).on('turbolinks:load', function() {
 
     function generateFilterParams() {
         var filters = {
-            business_id: [$("#timesheets :selected").val()],
+            timesheet: [$("#timesheets :selected").val()],
         }
-        $("select[name='businesses']:selected").each(function() {
-            filters['business_id'].push($(this).data('val'));
+        $("select[name='timesheets']:selected").each(function() {
+            filters['timesheet'].push($(this).data('val'));
         });
 
         return filters;

@@ -12,8 +12,8 @@
           </select> %>
           <%= select_tag :timesheets,
                    options_for_select(["Apply filter","This Week","Last Month"]),
-                   class: 'form-select timesheet-filter '%>
-                   <div name="businesses", style="padding-top: 5px;"><br>
+                   class: 'form-select timesheet-filter ', id:"timesheets" %>
+                   <div name="timesheets", style="padding-top: 5px;"><br>
         </div>
         <div class="col">
           <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/timesheets/new' class="btn btn-primary mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add timesheet</span></a></h4>
