@@ -19,13 +19,19 @@ class TimesheetsController < ApplicationController
     end
 
     if params["filters"].present?
-      if params["filters"] == "{\"timesheet\":[\"Last Month\"]}"
-        # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-        timesheets = timesheets.last_month
-        # timesheets = timesheets.
-        binding.pry
-      end
+      case params["filters"]
+        when "{\"timesheet\":[\"This Month\"]}" 
+          timesheets = timesheets.this_month
+        when "{\"timesheet\":[\"Last Month\"]}" 
+          timesheets = timesheets.last_month
+        when "{\"timesheet\":[\"This Year\"]}"
+          timesheets = timesheets.this_year
+        else
+        Timesheet.all
+        end
     end
+
+    
 
     # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
