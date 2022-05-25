@@ -1,7 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
   # before_action :set_project
-  # skip_before_action :set_job, only: [:users_jobs], raise: false
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index 
@@ -57,7 +56,7 @@ class JobsController < ApplicationController
   end 
 
   def create 
-    @job = Job.new(jobs_params)
+    @job = Job.new(jobs_create_params)
       
       if @job.save 
         JobCreatedMailer.job_assign(@job).deliver
@@ -94,6 +93,10 @@ class JobsController < ApplicationController
 
   def set_job 
     @job = Job.find(params[:id])
+  end 
+
+  def jobs_create_params 
+    params.require(:job).permit(:name, :is_active, :project_id)
   end 
 
   def jobs_params 

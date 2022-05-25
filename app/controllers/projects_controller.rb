@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   # before_action :authenticate_user!
   # before_action :set_company
-  before_action :set_project, only: [:show, :edit, :update, :create, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @project = Project.find_by(params[:id])
@@ -29,7 +29,6 @@ class ProjectsController < ApplicationController
 
   def projects_jobs 
     @projectid = params[:id]
-    @jobs = Project.where(id: params[:id]).first.jobs
   end 
   
   def fetch_projects_jobs 
@@ -52,12 +51,36 @@ class ProjectsController < ApplicationController
     }
   end 
 
+  def projects_users 
+    @projectid = params[:id]
+  end 
+
+  def fetch_projects_users 
+    users = Project.find(params[:projectid]).users.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      users = users.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    users = users.page(datatable_page).per(datatable_per_page)
+    render json: {
+      users: users.as_json,
+      recordsTotal: users.count,
+      recordsFiltered: users.total_count
+    }
+  end 
+
   def new 
     @project = Project.new
   end 
 
   def create 
-    @project = Project.new(project_params)
+    @project = Project.new(project_create_params)
     @project.save
     respond_to do |format|
       if @project.save 
@@ -107,6 +130,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   rescue ActiveRecord::RecordNotFound => error
     redirect_to root_path, notice: "You are fetching the records that are not exists in database."
+  end 
+
+  def project_create_params 
+     params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id)
   end 
 
   def project_params 
