@@ -21,6 +21,9 @@ class Project < ApplicationRecord
   ## Validations
   validates :name, :start_date, presence: true 
 
+  ## callbacks
+  after_save {id = self.id}
+
   def as_json 
     response = super
     response.merge!({user_name: self.users.select(:first_name).pluck(:first_name)})

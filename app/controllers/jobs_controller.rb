@@ -32,11 +32,10 @@ class JobsController < ApplicationController
   def users_jobs 
     @userid = params[:id]
     @jobs = User.where(id: params[:id]).first.jobs
-
   end
 
   def fetch_users_jobs 
-    jobs = User.find(params[:userid]).jobs.order(created_at:"desc")
+    jobs = User.find_by(params[:userid]).jobs.order(created_at:"desc")
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
