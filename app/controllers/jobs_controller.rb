@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
   # before_action :set_project
+  # skip_before_action :set_job, only: [:users_jobs], raise: false
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index 
@@ -8,6 +9,32 @@ class JobsController < ApplicationController
 
   def fetch_jobs 
     jobs = Job.all.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      jobs = jobs.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    jobs = jobs.page(datatable_page).per(datatable_per_page)
+    render json: {
+      jobs: jobs.as_json,
+      recordsTotal: jobs.count,
+      recordsFiltered: jobs.total_count
+    }
+  end 
+
+  def users_jobs 
+    @userid = params[:id]
+    @jobs = User.where(id: params[:id]).first.jobs
+
+  end
+
+  def fetch_users_jobs 
+    jobs = User.find(params[:userid]).jobs.order(created_at:"desc")
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query

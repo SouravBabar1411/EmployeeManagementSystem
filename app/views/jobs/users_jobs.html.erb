@@ -1,0 +1,15 @@
+<div class="content-wrapper">
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
+      <h5 class="card-header">Jobs</h5>
+      <div class="table-responsive text-nowrap">
+      <%= link_to 'Back to User Listing', users_path, class:"btn btn-primary mb-3 project-btn"%>
+        <table class="table" id="users-jobs-list" data-source="<%= fetch_users_jobs_path(format: :json, userid: @userid) %>" >
+          <caption class="ms-4">
+            List of Users Jobs
+          </caption>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
