@@ -41,6 +41,18 @@ $(document).on('turbolinks:load', function() {
             return data.project_name
           }
         },
+        {
+          title: 'Users',
+          data: null,
+          searchable: true,
+          render: function (data, type, row) {
+            var action_html = "<a class='dropdown-item' href = '/jobs/"  + data.id +
+            "'data-toggle='tooltip' data-placement='top' data-original-title='show'>" +
+            "<i class='bx bxs-user' style='color:rgba(77,77,80,0.95)'></i>"+
+            "<span class='badge badge-light'>"+ data.users_count +'</span>'+"</i></a>"; 
+            return action_html;
+          }
+        },
       ],
     aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
     order: [[1, "asc"]],
