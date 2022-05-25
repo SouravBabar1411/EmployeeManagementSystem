@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   // select 2 for dropdown
-  $('.select-employee').select2({
+  $('.js-example-basic-multiple').select2({
     placeholder: "Select an employee",
     allowClear: true
   });

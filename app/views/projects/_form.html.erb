@@ -7,7 +7,7 @@
             <h5 class="mb-0">Add Project</h5>
           </div>
         <div class="card-body">
-          <%= form_for@project,html: { class:"project-form" } do |f| %>
+          <%= form_with(class: 'project-form', model: (@project), local: true) do |f|%>
             <div class="row mb-3">
               <label class="col-sm-2 col-form-label" for="basic-icon-default-name">Name</label>
                 <div class="col-sm-10">
@@ -54,9 +54,10 @@
                 <label class="col-sm-2 col-form-label" for="html5-select-projects">Assign To</label>
                   <div class="col-sm-10">
                     <div class="input-group input-group-merge" id="html5-select-projects">
-                      <%= f.collection_select(:user_ids, User.all, :id, :first_name, { :prompt => 'Select an Employees' }, { class: 'form-control select-employee',multiple: true, data: {error: "#errAssignEmployee"}}) %>
+                      <%= f.collection_select(:user_ids, User.all, :id, :first_name, { :prompt => 'Select an Employees' }, { class: 'form-control js-example-basic-multiple',multiple: true, data: {error: "#errAssignEmployee"}}) %>
                     </div>
                       <span id="errAssignEmployee"></span>
+
                   </div>
               </div>
               <div class="col-sm-10">
