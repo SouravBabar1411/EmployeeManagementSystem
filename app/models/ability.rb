@@ -6,7 +6,7 @@ class Ability
 
     user ||= User.new
      if user.is? :emp_admin
-      can :manage, all
+      can :manage, :all
     else
       can [:index, :fetch_projects], Project
       can [:index, :fetch_jobs], Job
