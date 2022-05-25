@@ -27,17 +27,31 @@ class ProjectsController < ApplicationController
     }
   end 
 
-  def fetch_projects_jobs 
-    @project = Project.find_by(params[:id])
-    # project = Project.find_by(params[:id])
-    binding.pry
-    project_jobs = @project.jobs if @project.present?
-    
-    render json: {
-      projects: project_jobs.as_json
-    }
+  def projects_jobs 
+    @projectid = params[:id]
+    @jobs = Project.where(id: params[:id]).first.jobs
   end 
   
+  def fetch_projects_jobs 
+    jobs = Project.find(params[:projectid]).jobs.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      jobs = jobs.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    jobs = jobs.page(datatable_page).per(datatable_per_page)
+    render json: {
+      jobs: jobs.as_json,
+      recordsTotal: jobs.count,
+      recordsFiltered: jobs.total_count
+    }
+  end 
+
   def new 
     @project = Project.new
   end 

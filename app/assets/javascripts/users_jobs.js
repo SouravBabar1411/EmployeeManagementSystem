@@ -1,12 +1,12 @@
 $(document).on('turbolinks:load', function() {
   // server side listing
-  $("#projects-jobs-list").DataTable({
+  $("#users-jobs-list").DataTable({
     processing: true,
     paging: true,
     serverSide: true,
     responsive: false,
     ajax: {
-        "url": $('#projects-jobs-list').data('source'),
+        "url": $('#users-jobs-list').data('source'),
         "dataSrc": "jobs",
         dataFilter: function (data) {
         var json = jQuery.parseJSON(data);

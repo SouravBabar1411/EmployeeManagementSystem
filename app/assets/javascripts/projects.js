@@ -101,10 +101,10 @@ $(document).on('turbolinks:load', function() {
         {
           title: 'Jobs',
           data: null,
-          searchable: true,
+          searchable: false,
           render: function (data, type, row) {
-            var action_html = "<a class='dropdown-item' href = '/projects/"  + data.id +
-            "'data-toggle='tooltip' data-placement='top' data-original-title='fetch_projects_jobs'>" +
+            var action_html = "<a class='dropdown-item' href = '/projects_jobs/"+ data.id +
+            "' data-toggle='tooltip' data-placement='top' data-original-title='Jobs' >" +
             "<i class='bx bxs-briefcase' style='color:#696cff'>"+
             "<span class='badge badge-light job-badge'>"+ data.jobs_count +'</span>'+"</i></a>"; 
             return action_html;

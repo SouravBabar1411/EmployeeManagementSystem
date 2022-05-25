@@ -71,13 +71,13 @@ Rails.application.configure do
   # For devise host
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  ActionMailer::Base.smtp_settings = {
-    user_name: Rails.application.credentials[Rails.env.to_sym][:sendgrid][:user_name], # This is the string literal 'apikey', NOT the ID of your API key
-    password: Rails.application.credentials[Rails.env.to_sym][:sendgrid][:password], # This is the secret sendgrid API key which was issued during API key creation
-    domain: 'http://localhost:3000',
-    address: 'smtp.sendgrid.net',
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  # ActionMailer::Base.smtp_settings = {
+  #   user_name: Rails.application.credentials.dig(:sendgrid, :api_key), # This is the string literal 'apikey', NOT the ID of your API key
+  #   password: Rails.application.credentials.dig(:sendgrid, :password), # This is the secret sendgrid API key which was issued during API key creation
+  #   domain: 'http://localhost:3000',
+  #   address: 'smtp.sendgrid.net',
+  #   port: 587,
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 end

@@ -15,13 +15,17 @@ Rails.application.routes.draw do
     end
   end 
 
+  get 'projects_jobs/:id', to: 'projects#projects_jobs' 
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
+
   ## jobs routes 
   resources :jobs do 
     collection do 
       get 'fetch_jobs', to: 'jobs#fetch_jobs'
     end 
-  end 
+  end
+  get 'users_jobs/:id', to: 'jobs#users_jobs' 
+  get 'fetch_users_jobs', to: 'jobs#fetch_users_jobs'
   
   #in routes
   devise_for :users,:controllers =>  {  
@@ -30,10 +34,13 @@ Rails.application.routes.draw do
 
   resources :addresses
   
-  resources :users 
-
+  # Routes for Employee module
+  resources :users, only: [:index, :new, :edit, :destroy, :update]
   get 'fetch_employees', to: 'users#fetch_employees'
-  
+  post 'signup', to: 'users#create'
+  put  'updateuser', to: 'users#update'
+
+# >>>>>>> features/employees
   # Routes for timesheets module
   resources :timesheets do 
     member do

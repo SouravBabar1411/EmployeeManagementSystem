@@ -47,6 +47,8 @@ class User < ApplicationRecord
   validates :password, format: { with: /\A(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }
 
   
+  accepts_nested_attributes_for :addresses
+  
   #omniauth google social login
   def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -59,4 +61,11 @@ class User < ApplicationRecord
 
   #Mount uploader
   mount_uploader :image, ImageUploader
+
+  def as_json 
+    response = super
+    response.merge!({jobs_count: self.jobs.count})
+    response
+  end 
+
 end
