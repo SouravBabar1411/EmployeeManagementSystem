@@ -31,7 +31,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  
   # Routes for Employee module
   resources :users, only: [:index, :new, :edit, :destroy, :update]
   get 'fetch_employees', to: 'users#fetch_employees'
@@ -44,7 +43,8 @@ Rails.application.routes.draw do
       get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
     end
   end
-
+  get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
+  
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'
 

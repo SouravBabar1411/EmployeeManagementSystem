@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
+
+  rescue_from CanCan::AccessDenied do
+   flash[:error] = 'Access denied!'
+   redirect_to root_url
+  end
+
   protected
   ## To permit additional parameters
   def configure_permitted_parameters
