@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # Root route of the application
-  root to: "home#index"
+  root to: "dashboards#index"
 
   ## projects routes 
   resources :projects do 
