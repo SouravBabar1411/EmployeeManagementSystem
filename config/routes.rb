@@ -13,7 +13,9 @@ Rails.application.routes.draw do
       get 'fetch_projects', to: 'projects#fetch_projects'
     end
   end 
-
+  get 'users_projects/:id', to: 'projects#users_projects' 
+  get 'fetch_users_projects', to: 'projects#fetch_users_projects'
+  
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
   
   ## jobs routes 

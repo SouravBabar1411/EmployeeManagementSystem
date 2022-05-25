@@ -74,13 +74,15 @@ $(document).on('turbolinks:load', function() {
           }
         },
         {
-          class: 'user-name',
           title: 'Projects',
           data: null,
           searchable: false,
           render: function (data, type, row) {
-            actionText = data.is_active ? 'Active' : 'Inactive'
-            return '<span data-user-id="' + data.id + '"> '  + '</span>'
+            var action_html = "<a class='dropdown-item' href = '/users_projects/"+ data.id +
+            "' data-toggle='tooltip' data-placement='top' data-original-title='Projects' >" +
+            "<i class='bx bxs-briefcase' style='color:#696cff'>"+
+            "<span class='badge badge-light job-badge'>"+ data.projects_count +'</span>'+"</i></a>"; 
+            return action_html;
           }
         },
         {
