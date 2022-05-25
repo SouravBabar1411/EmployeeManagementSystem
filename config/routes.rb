@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :addresses
   
   resources :users do 
     collection do

@@ -29,8 +29,6 @@ class ProjectsController < ApplicationController
 
   def fetch_projects_jobs 
     @project = Project.find_by(params[:id])
-    # project = Project.find_by(params[:id])
-    binding.pry
     project_jobs = @project.jobs if @project.present?
     
     render json: {

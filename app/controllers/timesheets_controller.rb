@@ -17,11 +17,9 @@ class TimesheetsController < ApplicationController
       end
       timesheets = timesheets.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
-
+    
     if params["filters"].present?
-      # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-      timesheets = timesheets.this_week
-      
+      timesheets = timesheets.this_week      
       case params["filters"]
         when "{\"timesheet\":[\"This Month\"]}" 
           timesheets = timesheets.this_month
@@ -34,8 +32,8 @@ class TimesheetsController < ApplicationController
         end
     end
 
-    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
+    #  timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    #  timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
         timesheets: timesheets.as_json,

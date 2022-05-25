@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
         responsive: false,
         info: false,
         ajax: {
-            "url": "/timesheets/fetch_timesheets",
+            "url": "timesheets/fetch_timesheets",
             "dataSrc": 'timesheets'
         },
         columns: [{
@@ -50,7 +50,8 @@ $(document).on('turbolinks:load', function() {
                         "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
                         "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                         "<div class='dropdown-menu'>"
-                        // Edit timesheet Button  
+
+                    // Edit timesheet Button  
                     action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
                         " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                         "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
@@ -115,6 +116,12 @@ $(document).on('turbolinks:load', function() {
         allowClear: true
     });
 
+    $('.select-job').select2({
+        placeholder: "Select job",
+        allowClear: true
+    });
+
+
     // filters
     function generateFilterParams() {
         var filters = {
@@ -128,10 +135,9 @@ $(document).on('turbolinks:load', function() {
     }
 
     function applyFilters(filters) {
-        console.log("hello timesheet", filters);
         if (filters != '') {
             $('#timesheet-list-table').DataTable().ajax.url(
-                    "/fetch_timesheets" + "?filters=" + JSON.stringify(filters)
+                    "/fetch_timesheet" + "?filters=" + JSON.stringify(filters)
                 )
                 .load() //checked
         } else {
