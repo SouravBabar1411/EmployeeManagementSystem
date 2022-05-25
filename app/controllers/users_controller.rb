@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def fetch_employees
-    users = User.where(company_id: current_user.company_id)
+    users = User.where(company_id: current_user.company_id).order(created_at:"desc")
     search_string = []
     filter_query = ''
     ## Check if Search Keyword is Present & Write it's Query
@@ -23,15 +23,13 @@ class UsersController < ApplicationController
     end
 
     if params["filters"].present?
-    filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-    users = users.side_bar_filter(filters)
+      filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
+      users = users.side_bar_filter(filters)
     end
     users = users.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     users = users.page(datatable_page).per(datatable_per_page)
-    binding.pry
     render json: {
       users: users.as_json,
-      draw: params['draw'].to_i,
       recordsTotal: users.count,
       recordsFiltered: users.total_count,
     }
@@ -141,7 +139,7 @@ class UsersController < ApplicationController
   # Search with mentioned column names
   def search_columns
     %w(first_name last_name email)
-  end
+  end 
 
   def address_params
     addr_params = {}

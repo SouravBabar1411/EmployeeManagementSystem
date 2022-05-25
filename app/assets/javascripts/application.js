@@ -37,3 +37,4 @@
 //= require projects
 //= require project-jobs
 //= require jobs
+//= require users_jobs

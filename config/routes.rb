@@ -15,12 +15,15 @@ Rails.application.routes.draw do
   end 
 
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
+  
   ## jobs routes 
   resources :jobs do 
     collection do 
       get 'fetch_jobs', to: 'jobs#fetch_jobs'
     end 
-  end 
+  end
+  get 'users_jobs/:id', to: 'jobs#users_jobs' 
+  get 'fetch_users_jobs', to: 'jobs#fetch_users_jobs'
   
   #in routes
   devise_for :users,:controllers =>  {  

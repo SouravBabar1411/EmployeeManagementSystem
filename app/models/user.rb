@@ -61,4 +61,11 @@ class User < ApplicationRecord
 
   #Mount uploader
   mount_uploader :image, ImageUploader
+
+  def as_json 
+    response = super
+    response.merge!({jobs_count: self.jobs.count})
+    response
+  end 
+
 end
