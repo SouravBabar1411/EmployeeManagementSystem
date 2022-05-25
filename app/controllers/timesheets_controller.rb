@@ -19,6 +19,9 @@ class TimesheetsController < ApplicationController
     end
 
     if params["filters"].present?
+      # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
+      timesheets = timesheets.this_week
+      
       case params["filters"]
         when "{\"timesheet\":[\"This Month\"]}" 
           timesheets = timesheets.this_month
@@ -44,6 +47,10 @@ class TimesheetsController < ApplicationController
   # Display Timesheet Data
   def show
   end
+
+  def toggle_approve_status
+    @timesheet.toggle!(:is_approved).save
+  end 
 
   # GET /timesheets/new
   def new

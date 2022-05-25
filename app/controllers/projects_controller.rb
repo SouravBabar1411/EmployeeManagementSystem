@@ -27,12 +27,24 @@ class ProjectsController < ApplicationController
     }
   end 
 
+  def fetch_projects_jobs 
+    @project = Project.find_by(params[:id])
+    # project = Project.find_by(params[:id])
+    binding.pry
+    project_jobs = @project.jobs if @project.present?
+    
+    render json: {
+      projects: project_jobs.as_json
+    }
+  end 
+  
   def new 
     @project = Project.new
   end 
 
   def create 
     @project = Project.new(project_params)
+    binding.pry
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
@@ -63,9 +75,9 @@ class ProjectsController < ApplicationController
    end
   end 
 
-  def show 
-    @job = @project.jobs.select(:name).pluck(:name)
-  end 
+  # def show 
+  #   @job = @project.jobs.select(:name).pluck(:name)
+  # end 
   private 
 
   def search_columns

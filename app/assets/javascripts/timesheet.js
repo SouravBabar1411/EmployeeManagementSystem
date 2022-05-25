@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
         responsive: false,
         info: false,
         ajax: {
-            "url": "/fetch_timesheets",
+            "url": "/timesheets/fetch_timesheets",
             "dataSrc": 'timesheets'
         },
         columns: [{
@@ -109,37 +109,13 @@ $(document).on('turbolinks:load', function() {
         }
 
     });
+    // select 2
+    $('.select-project').select2({
+        placeholder: "Select project",
+        allowClear: true
+    });
 
-    //Override the default confirm dialog by rails
-    $.rails.allowAction = function(link) {
-        if (link.data("confirm") == undefined) {
-            return true;
-        }
-        $.rails.showConfirmationDialog(link);
-        return false;
-    }
-
-    //User click confirm button
-    $.rails.confirmed = function(link) {
-        link.data("confirm", null);
-        link.trigger("click.rails");
-    }
-
-    //Display the confirmation dialog
-    $.rails.showConfirmationDialog = function(link) {
-        var message = link.data("confirm");
-        swal({
-            title: message,
-            type: 'warning',
-            confirmButtonText: 'Sure',
-            confirmButtonColor: '#2acbb3',
-            showCancelButton: true
-        }).then(function(e) {
-            $.rails.confirmed(link);
-        });
-    };
-
-    // filtes
+    // filters
     function generateFilterParams() {
         var filters = {
             timesheet: [$("#timesheets :selected").val()],
@@ -152,7 +128,7 @@ $(document).on('turbolinks:load', function() {
     }
 
     function applyFilters(filters) {
-        console.log("hello", filters);
+        console.log("hello timesheet", filters);
         if (filters != '') {
             $('#timesheet-list-table').DataTable().ajax.url(
                     "/fetch_timesheets" + "?filters=" + JSON.stringify(filters)
@@ -165,9 +141,6 @@ $(document).on('turbolinks:load', function() {
 
     // timesheet filter
     $('.timesheet-filter').change(function() {
-        console.log("timesheet  1")
-        var b = [$("#timesheets :selected").val()];
-        console.log(b);
         applyFilters(generateFilterParams());
     });
 });

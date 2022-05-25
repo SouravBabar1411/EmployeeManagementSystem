@@ -52,6 +52,14 @@ class JobsController < ApplicationController
   def show 
     redirect_to users_url
   end 
+
+  def destroy 
+    @job.destroy
+    flash[:notice] = "Job was destroy sucessfully."
+    respond_to do |format|
+      format.html { redirect_to jobs_url }
+   end
+  end 
   private 
   
   # def set_project 

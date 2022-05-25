@@ -33,5 +33,5 @@
 //= require timesheet
 //= require select2-full
 //= require projects
-//= require sweetalert2.all.min
 //= require jobs
+//= require project-jobs
