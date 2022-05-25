@@ -8,42 +8,26 @@ class LeaveTrackersController < ApplicationController
     @leavetrackers = LeaveTracker.all
   end
 
-  # def fetch_leavetrackers
-  #   timesheets = Timesheet.all
-  #   search_string = []
-  #   ## Check if Search Keyword is Present & Write it's Query
-  #   if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
-  #     search_columns.each do |term|
-  #       search_string << "#{term} ILIKE :search"
-  #     end
-  #     timesheets = timesheets.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
-  #   end
+  def fetch_leaves
+    leavetrackers = LeaveTracker.all
+    search_string = []
+    ## Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      leavetrackers = leavetrackers.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
 
-  #   if params["filters"].present?
-  #     # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-  #     timesheets = timesheets.this_week
-      
-  #     case params["filters"]
-  #       when "{\"timesheet\":[\"This Month\"]}" 
-  #         timesheets = timesheets.this_month
-  #       when "{\"timesheet\":[\"Last Month\"]}" 
-  #         timesheets = timesheets.last_month
-  #       when "{\"timesheet\":[\"This Year\"]}"
-  #         timesheets = timesheets.this_year
-  #       else
-  #       Timesheet.all
-  #       end
-  #   end
-
-  #    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-  #    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
-
-  #   render json: {
-  #       timesheets: timesheets.as_json,
-  #       draw: params['draw'].to_i,
-  #       recordsTotal: timesheets.count,
-  #   }
-  # end
+    leavetrackers = leavetrackers.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    leavetrackers = leavetrackers.page(datatable_page).per(datatable_per_page)  
+    render json: {
+      leavetrackers:leavetrackers.as_json,
+      draw: params['draw'].to_i,
+      recordsTotal:leavetrackers.count,
+      recordsFiltered:leavetrackers.total_count,
+    }
+  end
 
   # Display Timesheet Data
   def show
@@ -93,11 +77,11 @@ class LeaveTrackersController < ApplicationController
   private
 
   def search_columns
-    %w(description)
+    %w(reason)
   end
 
   def sort_column
-    columns = %w(description)
+    columns = %w(reason)
     columns[params[:order]['0'][:column].to_i - 1]
   end
 
@@ -112,8 +96,3 @@ class LeaveTrackersController < ApplicationController
   end
 
 end
-# from_date   :date             not null
-#  to_date     :date             not null
-#  reason      :text             not null
-#  is_approved :boolean          default(FALSE), not null
-#  user_id 

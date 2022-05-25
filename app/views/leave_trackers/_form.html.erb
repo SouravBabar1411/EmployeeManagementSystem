@@ -1,14 +1,5 @@
-<%= form_for(@leavetracker ,html: {id:'timesheetValidate'}, local: true) do |form| %>
-<% if leavetracker.errors.any? %>
-  <div id="error_explanation" class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-      <ul>
-      <% leavetracker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@leavetracker ,html: {id:'leavtrackervalidate'}, local: true) do |form| %>
+  
   <div class="row mb-3">
     <%= form.label "form_date", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
@@ -54,8 +45,9 @@
       <div class="input-group input-group-merge">
         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i>
         </span>
-        <%= form.text_field :reason , class:"form-control"%>
+        <%= form.text_field :reason , class:"form-control",data: {error: "#errTime3"}%>
       </div>
+      <span id="errTime3"></span>
     </div>
   </div>
 
@@ -69,12 +61,14 @@
   </div>
   </div> 
 
-  <div class="row justify-content-end mt-2">
+  <div class="row justify-content-end ">
     <div class="col-sm-10">
-      <%= form.submit , class:'btn btn-primary' %>
-    </div>
-    <div class="col-sm-3 timesheet-back-btn">
-      <%= link_to 'Back', leave_trackers_path, class:'btn btn-primary' %>
+      <%= form.submit button_leave, class:'btn btn-primary' %>
     </div>
   </div>
+  <div class="row justify-content-end ">
+    <div class="col-sm-3 project-back-btn">
+      <%= link_to 'Back', leave_trackers_path, class:'btn btn-primary' %>
+    </div>
+  </div
 <% end %>

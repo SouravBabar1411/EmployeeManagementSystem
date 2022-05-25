@@ -47,7 +47,8 @@ Rails.application.routes.draw do
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
 
   # LeaveTracker routes
-  resources :leave_trackers 
+  resources :leave_trackers
+  get '/fetch_leaves', to: 'leave_trackers#fetch_leaves' 
   
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'
