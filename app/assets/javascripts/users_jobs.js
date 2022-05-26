@@ -9,9 +9,9 @@ $(document).on('turbolinks:load', function() {
         "url": $('#users-jobs-list').data('source'),
         "dataSrc": "jobs",
         dataFilter: function (data) {
-        var json = jQuery.parseJSON(data);
-        return JSON.stringify(json);
-      },
+          var json = jQuery.parseJSON(data);
+          return JSON.stringify(json);
+        },
     },
       columns: [
         {

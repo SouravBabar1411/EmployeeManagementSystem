@@ -1,4 +1,4 @@
-class JoinTableJobsUsers < ActiveRecord::Migration[5.2]
+class JoinTableJobs < ActiveRecord::Migration[5.2]
   def change
     create_join_table :jobs, :users do |t|
       t.index [:job_id, :user_id]

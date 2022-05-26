@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   # before_action :authenticate_user!
   # before_action :set_company
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  before_action :set_project, only: [:show, :edit, :update, :create, :destroy]
 
   def index
     @project = Project.find_by(params[:id])
@@ -27,12 +28,31 @@ class ProjectsController < ApplicationController
     }
   end 
 
+  def projects_jobs 
+    @projectid = params[:id]
+    @jobs = Project.where(id: params[:id]).first.jobs
+  end 
+  
   def fetch_projects_jobs 
     @project = Project.find_by(params[:id])
-    # project = Project.find_by(params[:id])
     project_jobs = @project.jobs if @project.present?
+    
+    jobs = Project.find(params[:projectid]).jobs.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      jobs = jobs.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    jobs = jobs.page(datatable_page).per(datatable_per_page)
     render json: {
-      projects: project_jobs.as_json
+      jobs: jobs.as_json,
+      recordsTotal: jobs.count,
+      recordsFiltered: jobs.total_count
     }
   end 
 
@@ -79,6 +99,7 @@ class ProjectsController < ApplicationController
   end 
 
   def edit 
+    # authorize! :read, @project
   end 
 
   def update 
@@ -99,9 +120,9 @@ class ProjectsController < ApplicationController
    end
   end 
 
-  def show 
-    @job = @project.jobs.select(:name).pluck(:name)
-  end 
+  # def show 
+  #   @job = @project.jobs.select(:name).pluck(:name)
+  # end 
   private 
 
   def search_columns
@@ -113,10 +134,6 @@ class ProjectsController < ApplicationController
     columns[params[:order]['0'][:column].to_i - 1]
   end
 
-  # def set_company 
-  #   @company = Company.find_by(params[:id])
-  # end 
-
   def set_project 
     @project = Project.find(params[:id])
   rescue ActiveRecord::RecordNotFound => error
@@ -124,6 +141,6 @@ class ProjectsController < ApplicationController
   end 
 
   def project_params 
-    params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id, user_ids: [])
+    params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id, user_ids:[])
   end 
 end

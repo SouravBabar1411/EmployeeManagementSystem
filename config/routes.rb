@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'dashboard/index'
   ## super admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -15,9 +16,9 @@ Rails.application.routes.draw do
   end 
   get 'users_projects/:id', to: 'projects#users_projects' 
   get 'fetch_users_projects', to: 'projects#fetch_users_projects'
-  
+  get 'projects_jobs/:id', to: 'projects#projects_jobs' 
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
-  
+
   ## jobs routes 
   resources :jobs do 
     collection do 
@@ -32,8 +33,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :addresses
-  
   # Routes for Employee module
   resources :users, only: [:index, :new, :edit, :destroy, :update]
   get 'fetch_employees', to: 'users#fetch_employees'
@@ -41,7 +40,18 @@ Rails.application.routes.draw do
   put  'updateuser', to: 'users#update'
 
   # Routes for timesheets module
-  resources :timesheets
+  resources :timesheets do
+    collection do
+      get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
+    end
+  end
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
+
+  # LeaveTracker routes
+  resources :leave_trackers
+  get '/fetch_leaves', to: 'leave_trackers#fetch_leaves' 
+  
+  #dashboard routes
+  get 'dashboards', to: 'dashboards#index'
 
 end

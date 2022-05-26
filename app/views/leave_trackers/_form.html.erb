@@ -1,11 +1,12 @@
-<%= form_for(@timesheet ,html: {id:'timesheetValidate'}, local: true) do |form| %>
+<%= form_for(@leavetracker ,html: {id:'leavtrackervalidate'}, local: true) do |form| %>
+  
   <div class="row mb-3">
-    <%= form.label "Time", class:"col-sm-2 col-form-label"%>
+    <%= form.label "form_date", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-time"></i>
         </span>
-        <%= form.text_field :time, class:"form-control", data: {error: "#errTime1"} %>
+        <%= form.date_field :from_date, class:"form-control", data: {error: "#errTime1"} %>
       </div>
       <span id="errTime1"></span>
     </div>
@@ -27,34 +28,27 @@
   </div>
 
   <div class="row mb-3">
-    <%= form.label "Description",class:"col-sm-2 col-form-label" %>
+    <%= form.label "to_date",class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
       <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-edit"></i>
       </span>
-      <%= form.text_field :description, class:"form-control",data: {error: "#errTime2"} %>
+      <%= form.date_field :to_date, class:"form-control",data: {error: "#errTime2"} %>
       </div>
       <span id="errTime2"></span>
     </div>
   </div>
-
-  <div class="row mb-3">
-    <%= form.label "Project",class:"col-sm-2 col-form-label" %>
+   
+   <div class="row mb-3">
+    <%= form.label "Reason", autocomplete: "first_name", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
-        <%= form.collection_select(:project_id, Project.all, :id, :name, { :prompt => 'Select Project', :selected => @timesheet.project_id }, { class: 'form-control select-project', data: {error: "#errTime3" }}) %>
+        <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i>
+        </span>
+        <%= form.text_area :reason , class:"form-control",data: {error: "#errTime3"}%>
       </div>
       <span id="errTime3"></span>
     </div>
-  </div>
-
-  <div class="row mb-3 mb-2">
-    <%= form.label "Job", class:"col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <div class="input-group input-group-merge">
-      <%= form.collection_select(:job_id, Job.all, :id, :name, { :prompt => 'Select Job', :selected => @timesheet.job_id }, { class: 'form-control select-job', data: {error: "#errTime4" }}) %>
-    </div>
-    <span id="errTime4"></span>
   </div>
 
   <div class="row mb-3 mt-3 mb-2">  
@@ -65,13 +59,16 @@
       </div>
     </div>
   </div>
-  </div> %> 
-  <div class="row justify-content-end mt-2">
+  </div> 
+
+  <div class="row justify-content-end ">
     <div class="col-sm-10">
-      <%= form.submit button_text, class:'btn btn-primary' %>
-    </div>
-    <div class="col-sm-3 timesheet-back-btn">
-      <%= link_to 'Back', timesheets_path, class:'btn btn-primary' %>
+      <%= form.submit button_leave, class:'btn btn-primary' %>
     </div>
   </div>
+  <div class="row justify-content-end ">
+    <div class="col-sm-3 project-back-btn">
+      <%= link_to 'Back', leave_trackers_path, class:'btn btn-primary' %>
+    </div>
+  </div
 <% end %>

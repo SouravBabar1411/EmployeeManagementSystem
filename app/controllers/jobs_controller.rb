@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
+
   # before_action :set_project
   # skip_before_action :set_job, only: [:users_jobs], raise: false
   before_action :set_job, only: [:show, :edit, :update, :destroy]
@@ -30,11 +32,10 @@ class JobsController < ApplicationController
   def users_jobs 
     @userid = params[:id]
     @jobs = User.where(id: params[:id]).first.jobs
-
   end
 
   def fetch_users_jobs 
-    jobs = User.find(params[:userid]).jobs.order(created_at:"desc")
+    jobs = User.find_by(params[:userid]).jobs.order(created_at:"desc")
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -78,6 +79,14 @@ class JobsController < ApplicationController
 
   def show 
     redirect_to users_url
+  end 
+
+  def destroy 
+    @job.destroy
+    flash[:notice] = "Job was destroy sucessfully."
+    respond_to do |format|
+      format.html { redirect_to jobs_url }
+   end
   end 
   private 
   
