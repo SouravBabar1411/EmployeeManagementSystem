@@ -68,7 +68,7 @@ class User < ApplicationRecord
 
   def as_json 
     response = super
-    response.merge!({jobs_count: self.jobs.count})
+    response.merge!(jobs_count: self.jobs.count)
     response
   end 
   

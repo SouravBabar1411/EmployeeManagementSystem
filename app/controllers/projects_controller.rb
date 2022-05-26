@@ -9,7 +9,11 @@ class ProjectsController < ApplicationController
   end 
 
   def fetch_projects 
-    projects = Project.all.order(created_at:"desc")
+    if current_user.emp_admin? 
+     projects = Project.all.order(created_at:"desc")
+    else 
+      projects = current_user.projects.order(created_at:"desc")
+    end 
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -30,7 +34,6 @@ class ProjectsController < ApplicationController
 
   def projects_jobs 
     @projectid = params[:id]
-    @jobs = Project.where(id: params[:id]).first.jobs
   end 
   
   def fetch_projects_jobs 
@@ -56,12 +59,41 @@ class ProjectsController < ApplicationController
     }
   end 
 
+  def projects_users 
+    @projectid = params[:id]
+  end 
+
+  def fetch_projects_users 
+    users = Project.find(params[:projectid]).users.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      users = users.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    users = users.page(datatable_page).per(datatable_per_page)
+    render json: {
+      users: users.as_json,
+      recordsTotal: users.count,
+      recordsFiltered: users.total_count
+    }
+  end 
+
   def new 
     @project = Project.new
   end 
 
   def create 
+<<<<<<< HEAD
     @project = Project.new(project_params)
+=======
+    @project = Project.new(project_create_params)
+    @project.save
+>>>>>>> active-admin
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
@@ -78,6 +110,7 @@ class ProjectsController < ApplicationController
   def update 
     respond_to do |format|
       if @project.update(project_params)
+        ProjectAssignMailer.project_assign(@project).deliver
         format.html { redirect_to projects_url, success: "Project was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -92,10 +125,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
    end
   end 
-
-  # def show 
-  #   @job = @project.jobs.select(:name).pluck(:name)
-  # end 
   private 
 
   def search_columns
@@ -111,6 +140,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   rescue ActiveRecord::RecordNotFound => error
     redirect_to root_path, notice: "You are fetching the records that are not exists in database."
+  end 
+
+  def project_create_params 
+     params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id)
   end 
 
   def project_params 

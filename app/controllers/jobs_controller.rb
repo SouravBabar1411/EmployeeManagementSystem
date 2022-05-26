@@ -3,14 +3,17 @@ class JobsController < ApplicationController
   load_and_authorize_resource
 
   # before_action :set_project
-  # skip_before_action :set_job, only: [:users_jobs], raise: false
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index 
   end 
 
   def fetch_jobs 
-    jobs = Job.all.order(created_at:"desc")
+    if current_user.emp_admin? 
+      jobs = Job.all.order(created_at:"desc")
+    else 
+      jobs = current_user.jobs.order(created_at:"desc")
+    end 
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -60,10 +63,9 @@ class JobsController < ApplicationController
   end 
 
   def create 
-    @job = Job.new(jobs_params)
+    @job = Job.new(jobs_create_params)
       
       if @job.save 
-        JobCreatedMailer.job_assign(@job).deliver
         redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
       else
         format.html{ render :new , status: :unprocessable_entity }
@@ -72,6 +74,7 @@ class JobsController < ApplicationController
 
   def update 
     if @job.update!(jobs_params)
+      JobCreatedMailer.job_assign(@job).deliver
       redirect_to jobs_path
     else  
       redirect_to root_path 
@@ -97,6 +100,10 @@ class JobsController < ApplicationController
 
   def set_job 
     @job = Job.find(params[:id])
+  end 
+
+  def jobs_create_params 
+    params.require(:job).permit(:name, :is_active, :project_id)
   end 
 
   def jobs_params 

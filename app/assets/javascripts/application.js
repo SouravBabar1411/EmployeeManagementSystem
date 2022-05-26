@@ -39,3 +39,4 @@
 //= require jobs
 //= require users_jobs
 //= require leavetracker
+//= require project-users

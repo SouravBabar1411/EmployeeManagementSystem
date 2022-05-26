@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   # Root route of the application
-  root to: "home#index"
+  root to: "dashboards#index"
 
   ## projects routes 
   resources :projects do 
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'projects_jobs/:id', to: 'projects#projects_jobs' 
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
+  get 'projects_users/:id', to: 'projects#projects_users'
+  get 'fetch_projects_users', to: 'projects#fetch_projects_users'
 
   ## jobs routes 
   resources :jobs do 
