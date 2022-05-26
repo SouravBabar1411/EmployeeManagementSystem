@@ -37,4 +37,6 @@ class Timesheet < ApplicationRecord
   scope :last_month, -> { where(created_at: (Time.now.beginning_of_month - 1.month)..((Time.now.beginning_of_month - 1.month).end_of_month)).uniq }
   scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now)}
   scope :this_year, -> { where(created_at: Time.now.beginning_of_year..Time.now) }
+  scope :find_role, ->{ User.where(role:1) }
+
 end

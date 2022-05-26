@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   # LeaveTracker routes
   resources :leave_trackers
   get '/fetch_leaves', to: 'leave_trackers#fetch_leaves' 
+  get '/fetch_leaveapplication', to: 'leave_trackers#fetch_leaveapplication'
   
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'

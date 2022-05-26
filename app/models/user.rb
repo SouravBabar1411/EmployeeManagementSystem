@@ -71,5 +71,5 @@ class User < ApplicationRecord
     response.merge!({jobs_count: self.jobs.count})
     response
   end 
-
+  
 end
