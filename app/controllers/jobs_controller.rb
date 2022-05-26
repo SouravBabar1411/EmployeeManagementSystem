@@ -56,6 +56,7 @@ class JobsController < ApplicationController
 
   def new 
     @job = Job.new
+    authorize! :read, @job
   end 
 
   def create 
