@@ -41,6 +41,11 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   put  'updateuser', to: 'users#update'
 
+  # Routes for Configuration module
+  resources :global_configurations
+  post 'global_configurations/update_config_value', to: "global_configurations#update_config_value"
+    
+
   # Routes for timesheets module
   resources :timesheets do
     collection do

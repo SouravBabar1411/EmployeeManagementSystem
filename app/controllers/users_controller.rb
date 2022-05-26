@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   def index
     user = User.find_by(params[:id])
     @users = user.projects
-    binding.pry
   end
 
   def fetch_employees
