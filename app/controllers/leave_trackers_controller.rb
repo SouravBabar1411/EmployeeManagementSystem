@@ -9,7 +9,11 @@ class LeaveTrackersController < ApplicationController
   end
 
   def fetch_leaves
-    leavetrackers = LeaveTracker.all
+    if current_user.emp_admin? 
+      leavetrackers = LeaveTracker.all
+    else 
+      leavetrackers = current_user.leave_trackers
+    end 
     search_string = []
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?

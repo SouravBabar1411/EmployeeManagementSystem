@@ -50,7 +50,9 @@ $('#timesheet-list-table').DataTable({
                 "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
                 "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                 "<div class='dropdown-menu'>"
-                // Edit timesheet Button  
+
+            if (data.is_approved == 0)
+            // Edit timesheet Button  
             action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
                 " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
@@ -100,14 +102,13 @@ $('#timesheet-list-table').DataTable({
           },
       },
       errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-              $(placement).append(error)
-          } else {
-              error.insertAfter(element);
-          }
+        var placement = $(element).data('error');
+        if (placement) {
+            $(placement).append(error)
+        } else {
+            error.insertAfter(element);
+        }
       }
-
   });
 
   //Override the default confirm dialog by rails
@@ -141,26 +142,26 @@ $('#timesheet-list-table').DataTable({
 
   // filtes
   function generateFilterParams() {
-      var filters = {
-          timesheet: [$("#timesheets :selected").val()],
-      }
-      $("select[name='timesheets']:selected").each(function() {
-          filters['timesheet'].push($(this).data('val'));
-      });
+    var filters = {
+        timesheet: [$("#timesheets :selected").val()],
+    }
+    $("select[name='timesheets']:selected").each(function() {
+        filters['timesheet'].push($(this).data('val'));
+    });
 
-      return filters;
+    return filters;
   }
 
   function applyFilters(filters) {
-      console.log("hello timesheet", filters);
-      if (filters != '') {
-          $('#timesheet-list-table').DataTable().ajax.url(
-                  "/fetch_timesheets" + "?filters=" + JSON.stringify(filters)
-              )
-              .load() //checked
-      } else {
-          $('#timesheet-list-table').DataTable().ajax.reload();
-      }
+    console.log("hello timesheet", filters);
+    if (filters != '') {
+        $('#timesheet-list-table').DataTable().ajax.url(
+            "/fetch_timesheets" + "?filters=" + JSON.stringify(filters)
+            )
+            .load() //checked
+    } else {
+        $('#timesheet-list-table').DataTable().ajax.reload();
+    }
   }
 
   // timesheet filter
