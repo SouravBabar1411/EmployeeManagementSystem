@@ -45,6 +45,7 @@ class LeaveTrackersController < ApplicationController
   # POST /leavtrackers
   def create
     @leavetracker = LeaveTracker.new(leavetracker_params)
+    LeaveTrackerMailer.applay_leave_mail(@leavetracker).deliver
     respond_to do |format|
       if @leavetracker.save!
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully created." }
@@ -57,8 +58,18 @@ class LeaveTrackersController < ApplicationController
   # PATCH/PUT /leavetrackers/1 
   def update                                                    
     respond_to do |format|
-      if @leavetracker.update(leavetracker_params) 
+
+      if @leavetracker.update(leavetracker_params) && params[:leave_tracker][:is_approved].include?("0")
+        LeaveTrackerMailer.reject_leave_mail(@leavetracker).deliver
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
+      
+      elsif @leavetracker.update(leavetracker_params) && params[:leave_tracker][:is_approved].include?("1")
+        LeaveTrackerMailer.approve_leave_mail(@leavetracker).deliver
+        format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
+        
+      elsif @leavetracker.update(leavetracker_params)
+        format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

@@ -46,21 +46,27 @@ $(document).on('turbolinks:load', function() {
               searchable: false,
               orderable: false,
               render: function(data, type, row) {
-                let action_html = "<div class='input-group' data-leavetracker-id ='" + data.id + "'>" +
+                let action_html = ""
+                if($('#leavetracker-listing').data('userrole') == "emp_admin"){
+                action_html = "<div class='input-group' data-leavetracker-id ='" + data.id + "'>" +
                     "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
                     "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                     "<div class='dropdown-menu'>"
+
                     // Edit laeavetracker Button  
                 action_html = action_html + "<a class='dropdown-item btn-sm' href = '/leave_trackers/" + data.id + "/edit'" +
                     " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                     "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
+
                 // delete leavetracker
                 action_html = action_html + "<a class='dropdown-item delete-user' href = '/leave_trackers/" + data.id +
                     "data-confirm='Are you sure?' data-method='delete' >" +
                     "<i class='bx bx-trash me-1'></i>Delete</a>"
-                action_html = action_html + "</div></div>"
-
-                return action_html;
+                }
+              else{
+                action_html = ""
+              }
+              return action_html;
               }
             }
           ],

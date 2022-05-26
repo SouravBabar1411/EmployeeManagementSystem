@@ -16,7 +16,7 @@ class LeaveTracker < ApplicationRecord
   belongs_to :user
 
   ## Validations
-  validates :from_date, :to_date, :reason, :is_approved, presence: true 
+  validates :from_date, :to_date, :reason, presence: true 
 
   def as_json 
     response = super
