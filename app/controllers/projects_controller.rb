@@ -88,12 +88,9 @@ class ProjectsController < ApplicationController
   end 
 
   def create 
-<<<<<<< HEAD
-    @project = Project.new(project_params)
-=======
     @project = Project.new(project_create_params)
     @project.save
->>>>>>> active-admin
+
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
