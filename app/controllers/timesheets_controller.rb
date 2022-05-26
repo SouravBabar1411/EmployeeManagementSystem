@@ -82,6 +82,7 @@ class TimesheetsController < ApplicationController
   def update                                                    
     respond_to do |format|
       if @timesheet.update(timesheet_params) && params[:timesheet][:is_approved].include?("1")
+        
         TimesheetMailer.send_timesheet_approve_email(@timesheet).deliver
         format.html { redirect_to timesheets_path, notice: "Timesheet was successfully updated." }
         # format.json { render :show, status: :ok, location: @timesheet }

@@ -46,7 +46,7 @@ class LeaveTrackersController < ApplicationController
   def create
     @leavetracker = LeaveTracker.new(leavetracker_params)
     respond_to do |format|
-      if @leavetracker.save
+      if @leavetracker.save!
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
