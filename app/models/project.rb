@@ -26,9 +26,10 @@ class Project < ApplicationRecord
 
   def as_json 
     response = super
-    response.merge!({user_name: self.users.select(:first_name).pluck(:first_name)})
-    response.merge!({jobs: self.jobs.select(:name).pluck(:name)})
-    response.merge!({jobs_count: self.jobs.count})
+    response.merge!(user_name: self.users.select(:first_name).pluck(:first_name))
+    response.merge!(jobs: self.jobs.select(:name).pluck(:name))
+    response.merge!(jobs_count: self.jobs.count)
+    response.merge!(users_count: self.users.count)
     response
   end 
 end

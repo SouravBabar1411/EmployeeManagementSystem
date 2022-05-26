@@ -1,13 +1,13 @@
 $(document).on('turbolinks:load', function() {
   // server side listing
-  $("#projects-jobs-list").DataTable({
+  $("#projects-users-list").DataTable({
     processing: true,
     paging: true,
     serverSide: true,
     responsive: false,
     ajax: {
-        "url": $('#projects-jobs-list').data('source'),
-        "dataSrc": "jobs",
+        "url": $('#projects-users-list').data('source'),
+        "dataSrc": "users",
         dataFilter: function (data) {
         var json = jQuery.parseJSON(data);
         return JSON.stringify(json);
@@ -19,7 +19,23 @@ $(document).on('turbolinks:load', function() {
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            return data.name
+            return data.first_name
+          }
+        },
+        {
+          title: 'Last Name',
+          data: null,
+          searchable: true,
+          render: function (data, type, row) {
+            return data.last_name
+          }
+        },
+        {
+          title: 'Email',
+          data: null,
+          searchable: true,
+          render: function (data, type, row) {
+            return data.email
           }
         },
         {
@@ -31,26 +47,6 @@ $(document).on('turbolinks:load', function() {
               return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
             else 
               return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
-          }
-        },
-        {
-          title: 'Project Name',
-          data: null,
-          searchable: true,
-          render: function (data, type, row) {
-            return data.project_name
-          }
-        },
-        {
-          title: 'Users',
-          data: null,
-          searchable: true,
-          render: function (data, type, row) {
-            var action_html = "<a class='dropdown-item' href = '/jobs/"  + data.id +
-            "'data-toggle='tooltip' data-placement='top' data-original-title='show'>" +
-            "<i class='bx bxs-user' style='color:rgba(77,77,80,0.95)'></i>"+
-            "<span class='badge badge-light'>"+ data.users_count +'</span>'+"</i></a>"; 
-            return action_html;
           }
         },
       ],

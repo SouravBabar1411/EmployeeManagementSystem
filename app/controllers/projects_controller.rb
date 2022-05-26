@@ -30,7 +30,6 @@ class ProjectsController < ApplicationController
 
   def projects_jobs 
     @projectid = params[:id]
-    @jobs = Project.where(id: params[:id]).first.jobs
   end 
   
   def fetch_projects_jobs 
@@ -138,6 +137,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   rescue ActiveRecord::RecordNotFound => error
     redirect_to root_path, notice: "You are fetching the records that are not exists in database."
+  end 
+
+  def project_create_params 
+     params.require(:project).permit(:name, :start_date, :end_date, :is_active, :company_id)
   end 
 
   def project_params 
