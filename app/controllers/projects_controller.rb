@@ -97,6 +97,7 @@ class ProjectsController < ApplicationController
   def update 
     respond_to do |format|
       if @project.update(project_params)
+        ProjectAssignMailer.project_assign(@project).deliver
         format.html { redirect_to projects_url, success: "Project was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }

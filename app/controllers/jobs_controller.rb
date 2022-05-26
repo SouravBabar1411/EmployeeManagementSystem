@@ -59,7 +59,6 @@ class JobsController < ApplicationController
     @job = Job.new(jobs_create_params)
       
       if @job.save 
-        JobCreatedMailer.job_assign(@job).deliver
         redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
       else
         format.html{ render :new , status: :unprocessable_entity }
@@ -68,6 +67,7 @@ class JobsController < ApplicationController
 
   def update 
     if @job.update!(jobs_params)
+      JobCreatedMailer.job_assign(@job).deliver
       redirect_to jobs_path
     else  
       redirect_to root_path 
