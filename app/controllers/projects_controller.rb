@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :set_company
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_project, only: [:edit, :update, :destroy]
 
   def index
     @project = Project.find_by(params[:id])
@@ -112,10 +111,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
    end
   end 
-
-  # def show 
-  #   @job = @project.jobs.select(:name).pluck(:name)
-  # end 
   private 
 
   def search_columns

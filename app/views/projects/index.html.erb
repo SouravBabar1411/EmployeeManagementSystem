@@ -3,8 +3,10 @@
     <div class="card">
       <h5 class="card-header">Projects</h5>
       <div class="table-responsive text-nowrap">
-      <%= link_to 'Add Project', new_project_path, class:"btn btn-primary mb-3 project-btn"%>
-        <table class="table" id="projects-list">
+        <% if current_user.emp_admin? %>
+        <%= link_to 'Add Project', new_project_path, class:"btn btn-primary mb-3 project-btn"%>
+        <% end %>
+        <table class="table" id="projects-list" data-userrole="<%= current_user.role %>">
           <caption class="ms-4">
             List of Projects
           </caption>
