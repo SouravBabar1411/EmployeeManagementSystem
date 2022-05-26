@@ -7,7 +7,11 @@ class ProjectsController < ApplicationController
   end 
 
   def fetch_projects 
-    projects = Project.all.order(created_at:"desc")
+    if current_user.emp_admin? 
+     projects = Project.all.order(created_at:"desc")
+    else 
+      projects = current_user.projects.order(created_at:"desc")
+    end 
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query

@@ -7,7 +7,11 @@ class JobsController < ApplicationController
   end 
 
   def fetch_jobs 
-    jobs = Job.all.order(created_at:"desc")
+    if current_user.emp_admin? 
+      jobs = Job.all.order(created_at:"desc")
+    else 
+      jobs = current_user.jobs.order(created_at:"desc")
+    end 
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query

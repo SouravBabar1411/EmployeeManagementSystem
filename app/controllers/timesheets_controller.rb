@@ -7,9 +7,12 @@ class TimesheetsController < ApplicationController
   end
 
   def fetch_timesheets
-    timesheets = Timesheet.all
+    if current_user.emp_admin? 
+      timesheets = Timesheet.all
+    else 
+      timesheets = current_user.timesheets
+    end 
     search_string = []
-    # binding.pry
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
       search_columns.each do |term|

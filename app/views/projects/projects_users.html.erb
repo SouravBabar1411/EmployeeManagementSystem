@@ -4,7 +4,7 @@
       <h5 class="card-header">Users</h5>
       <div class="table-responsive text-nowrap">
       <%= link_to 'Back to Project Listing', projects_path, class:"btn btn-primary mb-3 project-btn"%>
-        <table class="table" id="projects-users-list" data-source="<%= fetch_projects_users_path(format: :json, projectid: @projectid) %>" >
+        <table class="table" id="projects-users-list" data-source="<%= fetch_projects_users_path(format: :json, projectid: @projectid) %>">
           <caption class="ms-4">
             List of Project Users
           </caption>
