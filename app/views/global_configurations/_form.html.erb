@@ -1,0 +1,23 @@
+<%= form_with(url: global_configurations_path, method: 'post', class: 'config-form', model: GlobalConfiguration, local: true) do |f| %>
+      <%= render 'shared/messages', obj: @globalconfig %>  
+      <div class="asset asset_edit">
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.hidden_field :company_id, value: current_user.company_id %>
+              <%= f.label :key, "Key *" %>
+              <%= f.text_field :config_key, :class => 'form-control new-form-common-width', :tabindex => '1', :id => 'conf_key', placeholder: "Enter Key" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :value, "Value *" %>
+              <%= f.text_field :config_value, :class => 'form-control new-form-common-width', :tabindex => '2', :id => 'conf_value', placeholder: "Enter Value" %>
+            </div>
+          </div>
+        </div>
+        <div style="width:100%;">
+          <%= submit_tag('Save', id: 'submit_key_conf_form', class: 'btn btn-primary btn-md', tabindex: '10') %>
+        </div>
+      </div>
+    <% end %>

@@ -66,9 +66,11 @@ class User < ApplicationRecord
   #Mount uploader
   mount_uploader :image, ImageUploader
 
+  # Overriding as_json to include jobs and projects count and display in EMployee page
   def as_json 
     response = super
-    response.merge!(jobs_count: self.jobs.count)
+    response.merge!({jobs_count: self.jobs.count})
+    response.merge!({projects_count: self.projects.count})
     response
   end 
   

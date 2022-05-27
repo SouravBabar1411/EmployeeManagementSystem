@@ -59,12 +59,14 @@ class ProjectsController < ApplicationController
     }
   end 
 
-  def projects_users 
-    @projectid = params[:id]
-  end 
+  def users_projects 
+    @userid = params[:id]
+    @projects = User.where(id: params[:id]).first.projects
 
-  def fetch_projects_users 
-    users = Project.find(params[:projectid]).users.order(created_at:"desc")
+  end
+
+  def fetch_users_projects 
+    projects = User.find(params[:userid]).projects.order(created_at:"desc")
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -72,17 +74,17 @@ class ProjectsController < ApplicationController
       search_columns.each do |term|
         search_string << "#{term} ILIKE :search"
       end
-      users = users.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+      projects = projects.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
 
-    users = users.page(datatable_page).per(datatable_per_page)
+    projects = projects.page(datatable_page).per(datatable_per_page)
     render json: {
-      users: users.as_json,
-      recordsTotal: users.count,
-      recordsFiltered: users.total_count
+      projects: projects.as_json,
+      recordsTotal: projects.count,
+      recordsFiltered: projects.total_count
     }
   end 
-
+  
   def new 
     @project = Project.new
   end 

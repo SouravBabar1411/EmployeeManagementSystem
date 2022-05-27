@@ -7,9 +7,8 @@ class UsersController < ApplicationController
   def index
     user = User.find_by(params[:id])
     @users = user.projects
-    
-    end
-
+  end
+  
   def fetch_employees
     users = User.where(company_id: current_user.company_id).order(created_at:"desc")
     search_string = []

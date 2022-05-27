@@ -14,7 +14,8 @@ Rails.application.routes.draw do
       get 'fetch_projects', to: 'projects#fetch_projects'
     end
   end 
-
+  get 'users_projects/:id', to: 'projects#users_projects' 
+  get 'fetch_users_projects', to: 'projects#fetch_users_projects'
   get 'projects_jobs/:id', to: 'projects#projects_jobs' 
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
   get 'projects_users/:id', to: 'projects#projects_users'
@@ -39,6 +40,11 @@ Rails.application.routes.draw do
   get 'fetch_employees', to: 'users#fetch_employees'
   post 'signup', to: 'users#create'
   put  'updateuser', to: 'users#update'
+
+  # Routes for Configuration module
+  resources :global_configurations
+  post 'global_configurations/update_config_value', to: "global_configurations#update_config_value"
+    
 
   # Routes for timesheets module
   resources :timesheets do
