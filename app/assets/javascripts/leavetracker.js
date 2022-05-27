@@ -11,12 +11,12 @@ $(document).on('turbolinks:load', function() {
       "columns": 
           [ 
             { 
-              title: "to date",
-              data: "to_date" 
-            },
-            { 
               title: "from date",
               data: "from_date" 
+            },
+            { 
+              title: "to date",
+              data: "to_date" 
             },
             { 
               title: "user",

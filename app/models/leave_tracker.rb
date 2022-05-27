@@ -21,8 +21,7 @@ class LeaveTracker < ApplicationRecord
 
   def must_have_valid_from_date
     if from_date != Date.today - 3.days
-      errors.add(:from_date, "must be a valid date")
-      binding.pry
+      errors.add(:from_date, "Applay for leave before 3 days.")
     end
   end
 
