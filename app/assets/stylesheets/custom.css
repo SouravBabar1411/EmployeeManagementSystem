@@ -511,6 +511,7 @@ button:not(:disabled) {
 }
 #birthday{
   max-height: 80px;
+  margin-left: 20px;
 }
 .join-employee{
     margin-left: 40px;

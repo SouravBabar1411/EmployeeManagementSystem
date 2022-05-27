@@ -20,8 +20,8 @@ class LeaveTracker < ApplicationRecord
   validate :must_have_valid_from_date 
 
   def must_have_valid_from_date
-    if from_date <= Date.today
-      errors.add(:from_date, "Enter valid date")
+    if from_date <= Date.today + 3.days
+      errors.add(:from_date, "apply before 3 days")
     end
   end
 

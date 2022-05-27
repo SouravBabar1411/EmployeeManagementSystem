@@ -1,10 +1,13 @@
 <%= form_with(id:'leavtrackervalidate', model: leavetracker, local: true) do |form|%>
+  
   <% if leavetracker.errors.any? %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <% leavetracker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        <% leavetracker.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <div class="row mb-3">
@@ -37,7 +40,7 @@
       <div class="input-group input-group-merge">
       <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-edit"></i>
       </span>
-      <%= form.date_field :to_date, class:"form-control",data: {error: "#errTime2"} %>
+      <%= form.date_field :to_date, min:Date.today,class:"form-control",data: {error: "#errTime2"} %>
       </div>
       <span id="errTime2"></span>
     </div>
