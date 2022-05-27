@@ -1,7 +1,11 @@
 class TimesheetsController < ApplicationController
+  
   before_action :authenticate_user!
   before_action :set_timesheet, only: %i[ edit update destroy ]
-  # timesheet listing
+  load_and_authorize_resource
+
+  
+
   def index
     @timesheets = Timesheet.all
   end
@@ -37,8 +41,8 @@ class TimesheetsController < ApplicationController
         end
     end
 
-    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
+     # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
         timesheets: timesheets.as_json,

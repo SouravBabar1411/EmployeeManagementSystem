@@ -1,4 +1,4 @@
-<%= simple_form_for(@timesheet ,html: {id:'timesheetValidate'}, local: true) do |form| %>
+<%= form_for(@timesheet ,html: {id:'timesheetValidate'}, local: true) do |form| %>
   <div class="row mb-3">
     <%= form.label "Time", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">
@@ -42,7 +42,7 @@
     <%= form.label "Project",class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
-        <%= form.collection_select(:project_id, Project.all, :id, :name, { :prompt => 'All Projects', :selected => @timesheet.project_id }, { class: 'form-control js-example-basic-multiple', data: {error: "#errTime3" }}) %>
+        <%= form.collection_select(:project_id, Project.all, :id, :name, { :prompt => 'Select Project', :selected => @timesheet.project_id }, { class: 'form-control select-project', data: {error: "#errTime3" }}) %>
       </div>
       <span id="errTime3"></span>
     </div>
@@ -52,7 +52,7 @@
     <%= form.label "Job", class:"col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <div class="input-group input-group-merge">
-      <%= form.collection_select(:job_id, Job.all, :id, :name, { :prompt => 'All Jobs', :selected => @timesheet.job_id }, { class: 'form-control js-example-basic-multiple', data: {error: "#errTime4" }}) %>
+      <%= form.collection_select(:job_id, Job.all, :id, :name, { :prompt => 'Select Job', :selected => @timesheet.job_id }, { class: 'form-control select-job', data: {error: "#errTime4" }}) %>
     </div>
     <span id="errTime4"></span>
   </div>
@@ -65,7 +65,7 @@
       </div>
     </div>
   </div>
-
+  </div> 
   <div class="row justify-content-end mt-2">
     <div class="col-sm-10">
       <%= form.submit button_text, class:'btn btn-primary' %>

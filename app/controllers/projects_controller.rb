@@ -35,6 +35,9 @@ class ProjectsController < ApplicationController
   end 
   
   def fetch_projects_jobs 
+    @project = Project.find_by(params[:id])
+    project_jobs = @project.jobs if @project.present?
+    
     jobs = Project.find(params[:projectid]).jobs.order(created_at:"desc")
     search_string = []
 
@@ -95,6 +98,7 @@ class ProjectsController < ApplicationController
   end 
 
   def edit 
+    # authorize! :read, @project
   end 
 
   def update 

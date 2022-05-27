@@ -34,6 +34,10 @@ class User < ApplicationRecord
   ##Enum for roles
   enum role: [:employee, :emp_admin]
 
+  def is?( requested_role )
+    self.role == requested_role.to_s
+  end
+
   ##Associations
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
@@ -67,5 +71,5 @@ class User < ApplicationRecord
     response.merge!(jobs_count: self.jobs.count)
     response
   end 
-
+  
 end

@@ -23,7 +23,6 @@
  *= require sweetalert2.min
  *= require select2
  *= require select2.min
- *= require sweetalert2.min
  */
 
 @import "bootstrap";

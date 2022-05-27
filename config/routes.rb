@@ -34,29 +34,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  resources :addresses
-  
   # Routes for Employee module
   resources :users, only: [:index, :new, :edit, :destroy, :update]
   get 'fetch_employees', to: 'users#fetch_employees'
   post 'signup', to: 'users#create'
   put  'updateuser', to: 'users#update'
-
-# >>>>>>> features/employees
-  # Routes for timesheets module
-  resources :timesheets do 
-    member do
-      patch :toggle_approve_status
-    end 
-  end 
-  get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
-  
-
-  resources :users do 
-    collection do
-      get 'fetch_employees', to: 'users#fetch_employees'
-    end
-  end
 
   # Routes for timesheets module
   resources :timesheets do
@@ -64,7 +46,14 @@ Rails.application.routes.draw do
       get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
     end
   end
+  get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
 
+  # LeaveTracker routes
+  resources :leave_trackers
+  get '/fetch_leaves', to: 'leave_trackers#fetch_leaves' 
+  get '/fetch_leaveapplication', to: 'leave_trackers#fetch_leaveapplication'
+  
   #dashboard routes
-  get 'dashboard', to: 'dashboards#index'
+  get 'dashboards', to: 'dashboards#index'
+
 end

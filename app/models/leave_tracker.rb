@@ -16,5 +16,11 @@ class LeaveTracker < ApplicationRecord
   belongs_to :user
 
   ## Validations
-  validates :from_date, :to_date, :reason, :is_approved, presence: true 
+  validates :from_date, :to_date, :reason, presence: true 
+
+  def as_json 
+    response = super
+    response.merge!({emp_name: self.user.first_name})
+    response
+  end 
 end

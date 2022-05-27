@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update destroy ]
   before_action :address_params, only: [:update]
+  load_and_authorize_resource
+
 
   def index
     user = User.find_by(params[:id])
