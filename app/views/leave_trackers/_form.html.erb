@@ -1,10 +1,7 @@
-<%= form_with(id:'leavtrackervalidate', model: (@leavetracker), local: true) do |form|%>
-  <% if @leavetracker.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
-
-      <ul>
-      <% @leavetracker.errors.full_messages.each do |message| %>
+<%= form_with(id:'leavtrackervalidate', model: leavetracker, local: true) do |form|%>
+  <% if leavetracker.errors.any? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <% leavetracker.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

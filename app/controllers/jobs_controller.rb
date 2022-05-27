@@ -79,6 +79,7 @@ class JobsController < ApplicationController
     else  
       redirect_to root_path 
     end
+    authorize! :read, @job
   end 
 
   def show 
@@ -90,7 +91,8 @@ class JobsController < ApplicationController
     flash[:notice] = "Job was destroy sucessfully."
     respond_to do |format|
       format.html { redirect_to jobs_url }
-   end
+    end
+    authorize! :read, @job
   end 
   private 
   

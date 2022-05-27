@@ -8,10 +8,11 @@ class Ability
      if user.is? :emp_admin
       can :manage, :all
     else
-      can [:index, :fetch_projects, :new, :update, :destroy], Project
-      can [:index, :fetch_jobs, :new, :update, :destroy], Job
+      can [:index, :fetch_projects], Project
+      can [:index, :fetch_jobs], Job
       can [:index, :fetch_employees], User
       can [:index, :fetch_timesheets], Timesheet
+      can [:index, :featch_leavetrackers], LeaveTracker
     end
 
     #
