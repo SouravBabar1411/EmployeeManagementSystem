@@ -167,9 +167,13 @@
         </div>
         <%= address.hidden_field :addressable_type, value: "User" %>
       <% end %>  
-      <div class="actions">
-        <%= f.submit "Save" ,class:"btn btn-primary" %>
-        <%= link_to('Back', users_path, class: 'btn btn-primary float-end') %>
+      <div class="row justify-content-end mt-2">
+        <div class="col-sm-10">
+          <%= f.submit "Save" ,class:"btn btn-primary" %>
+        </div>
+        <div class="col-sm-3 timesheet-back-btn">
+          <%= link_to('Back', users_path, class: 'btn btn-primary float-end') %>
+        </div>
       </div>
     <% end %>
     <%= render 'shared/errors', obj: @user %> 

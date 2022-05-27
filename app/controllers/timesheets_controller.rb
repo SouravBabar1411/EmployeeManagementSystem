@@ -4,8 +4,6 @@ class TimesheetsController < ApplicationController
   before_action :set_timesheet, only: %i[ edit update destroy ]
   load_and_authorize_resource
 
-  
-
   def index
     @timesheets = Timesheet.all
   end
@@ -36,13 +34,15 @@ class TimesheetsController < ApplicationController
           timesheets = timesheets.last_month
         when "{\"timesheet\":[\"This Year\"]}"
           timesheets = timesheets.this_year
-        else
-        Timesheet.all
         end
     end
 
-     # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
+     timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+     timesheets = timesheets.page(datatable_page).per(datatable_per_page)
+
+    # timesheets = timesheets.sort_by(&:"#{sort_column}")
+    # timesheets = timesheets.reverse if sort_direction == 'DESC'
+    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
         timesheets: timesheets.as_json,

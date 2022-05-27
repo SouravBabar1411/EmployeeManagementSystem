@@ -26,10 +26,6 @@ $(document).on('turbolinks:load', function() {
               title: "Reason",
               data: "reason" 
             },
-            { 
-              title: "status",
-              data: "is_approved" 
-            },
             {
               title: 'Is Approve',
               data: null,
