@@ -40,3 +40,6 @@
 //= require users_jobs
 //= require leavetracker
 //= require project-users
+//= require users_projects
+//= require all.min
+//= require jobs-users

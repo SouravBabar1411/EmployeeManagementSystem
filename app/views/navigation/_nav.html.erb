@@ -8,34 +8,15 @@
   </div>
 
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-    <!-- Search -->
     <div class="navbar-nav align-items-center">
-    <div class="nav-item d-flex align-items-center">
-      <i class="bx bx-search fs-4 lh-0"></i>
-      <input
-      type="text"
-      class="form-control border-0 shadow-none"
-      placeholder="Search..."
-      aria-label="Search..."
-      />
+      <div class="nav-item d-flex align-items-center">
+        <a data-size="large">
+          <span class="app-brand-text menu-text fw-bolder "><h3>Welcome to Employee Management System<h3></span>
+        </a>
+      </div>
     </div>
-    </div>
-    <!-- /Search -->
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-    <!-- Place this tag where you want the button to render. -->
-    <li class="nav-item lh-1 me-3">
-      <a
-      class="github-button"
-      href="https://github.com/themeselection/sneat-html-admin-template-free"
-      data-icon="octicon-star"
-      data-size="large"
-      data-show-count="true"
-      aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-      >Star</a
-      >
-    </li>
-
     <!-- User -->
     <li class="nav-item navbar-dropdown dropdown-user dropdown">
       <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -47,18 +28,14 @@
       <li>
         <a class="dropdown-item" href="#">
         <div class="d-flex">
-          <div class="flex-shrink-0 me-3">
+          <div class="me-3">
           <div class="avatar avatar-online">
             <img src="<%= image_url('avatars/profile.jpg') %>" alt class="w-px-40 h-auto rounded-circle" />
           </div>
           </div>
           <div class="flex-grow-1">
-          <span class="fw-semibold d-block"><%= current_user.first_name%></span>
-          <% if current_user.emp_admin? %>
-            <small class="text-muted">Admin</small>
-          <% else %>
-            <small class="text-muted">Employee</small>
-          <% end %>
+          <span class="fw-semibold d-block"><%= current_user.first_name %></span>
+          <small class="text-muted"><%= current_user.role %></small>
           </div>
         </div>
         </a>

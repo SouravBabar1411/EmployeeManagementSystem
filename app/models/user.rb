@@ -12,17 +12,19 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  first_name             :string           not null
-#  last_name              :string           not null
-#  date_of_birth          :date             not null
+#  first_name             :string
+#  last_name              :string
+#  date_of_birth          :date
 #  is_active              :boolean          default(TRUE)
-#  role                   :integer          default(0)
+#  role                   :integer          default("employee")
 #  gender                 :string
 #  image                  :string
 #  password_changed_at    :datetime
 #  company_id             :bigint
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  uid                    :string
+#  provider               :string
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -39,6 +41,7 @@ class User < ApplicationRecord
   end
 
   ##Associations
+  belongs_to :company
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
   has_many :notifications, as: :notificable 
@@ -66,9 +69,11 @@ class User < ApplicationRecord
   #Mount uploader
   mount_uploader :image, ImageUploader
 
+  # Overriding as_json to include jobs and projects count and display in EMployee page
   def as_json 
     response = super
-    response.merge!(jobs_count: self.jobs.count)
+    response.merge!({jobs_count: self.jobs.count})
+    response.merge!({projects_count: self.projects.count})
     response
   end 
   

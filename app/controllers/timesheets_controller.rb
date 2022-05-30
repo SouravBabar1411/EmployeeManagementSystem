@@ -4,8 +4,6 @@ class TimesheetsController < ApplicationController
   before_action :set_timesheet, only: %i[ edit update destroy ]
   load_and_authorize_resource
 
-  
-
   def index
     @timesheets = Timesheet.all
   end
@@ -37,12 +35,12 @@ class TimesheetsController < ApplicationController
         when "{\"timesheet\":[\"This Year\"]}"
           timesheets = timesheets.this_year
         else
-        Timesheet.all
+          timesheets = timesheets.all
         end
     end
 
-     # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
+    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
         timesheets: timesheets.as_json,
@@ -55,9 +53,7 @@ class TimesheetsController < ApplicationController
   def show
   end
 
-  def toggle_approve_status
-    @timesheet.toggle!(:is_approved).save
-  end 
+  
 
   # GET /timesheets/new
   def new

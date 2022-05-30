@@ -3,10 +3,10 @@
     <div class="card">
       <h5 class="card-header">Users</h5>
       <div class="table-responsive text-nowrap">
-      <%= link_to ' Project Listing', projects_path, class:"btn btn-primary mb-3 project-btn"%>
-        <table class="table" id="projects-users-list" data-source="<%= fetch_projects_users_path(format: :json, projectid: @projectid) %>">
+      <%= link_to 'Job Listing', jobs_path, class:"btn btn-primary mb-3 project-btn"%>
+        <table class="table" id="jobs-users-list" data-source="<%= fetch_jobs_users_path(format: :json, jobid: @jobid) %>">
           <caption class="ms-4">
-            List of Project Users
+            List of Job Users
           </caption>
         </table>
       </div>

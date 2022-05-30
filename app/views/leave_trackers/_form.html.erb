@@ -1,13 +1,13 @@
-<%= form_with(id:'leavtrackervalidate', model: (@leavetracker), local: true) do |form|%>
-  <% if @leavetracker.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
-
-      <ul>
-      <% @leavetracker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with(id:'leavtrackervalidate', model: leavetracker, local: true) do |form|%>
+  
+  <% if leavetracker.errors.any? %>
+    <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        <% leavetracker.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <div class="row mb-3">
@@ -16,7 +16,7 @@
       <div class="input-group input-group-merge">
         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-time"></i>
         </span>
-        <%= form.date_field :from_date, class:"form-control datepicker", data: {error: "#errTime1"} %>
+        <%= form.date_field :from_date, min: Date.today,class:"form-control datepicker", data: {error: "#errTime1"} %>
       </div>
       <span id="errTime1"></span>
     </div>
@@ -40,7 +40,7 @@
       <div class="input-group input-group-merge">
       <span id="basic-icon-default-edit2" class="input-group-text"><i class="bx bx-edit"></i>
       </span>
-      <%= form.date_field :to_date, class:"form-control",data: {error: "#errTime2"} %>
+      <%= form.date_field :to_date, min:Date.today,class:"form-control",data: {error: "#errTime2"} %>
       </div>
       <span id="errTime2"></span>
     </div>
@@ -57,20 +57,20 @@
     </div>
   </div>
   <% if current_user.emp_admin? %>
-    <div class="row mb-3 mt-3 mb-2">  
-      <%= form.label :is_approved, class: "col-sm-2 col-form-label" %>
-      <div class="col-sm-10">
-        <div class="input-group input-group-merge">
-          <%= form.select(:is_approved, options_for_select([['False','0'],['True','1']]), {}, class: "form-control")  %>
+    <div class="row mb-3">
+      <label class="col-sm-2 form-label">Is Approved</label>
+        <div class="col-sm-10">
+          <%= form.check_box :is_approved, class:"form-check-input", id:"status" %>
+        <label class="form-check-label" for="status">Approved</label>
         </div>
-      </div>
     </div>
   <% end %>
-  <div class="row justify-content-end">
+  <div class="row justify-content-end mt-2">
     <div class="col-sm-10">
-       <%= form.submit 'Apply Leave', class:'btn btn-primary'%>
+      <%= form.submit "Applay Leave" ,class:'btn btn-primary' %>
     </div>
-    <div class="col-sm-3 project-back-btn">
-       <%= link_to 'Back', leave_trackers_path, class:'btn btn-primary mb-2' %>
+    <div class="col-sm-3 timesheet-back-btn">
+      <%= link_to 'Back', leave_trackers_path, class:'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
