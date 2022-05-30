@@ -163,10 +163,6 @@ $(document).on('turbolinks:load', function() {
             $('#timesheet-list-table').DataTable().ajax.reload();
         }
     }
-<<<<<<< HEAD
-=======
-  }
->>>>>>> active-admin
 
     // timesheet filter
     $('.timesheet-filter').change(function() {
