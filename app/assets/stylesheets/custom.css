@@ -1,4 +1,5 @@
 .collapsible {
+<<<<<<< HEAD
 background-color: rgb(255, 255, 255);
 color: #444;
 cursor: pointer;
@@ -9,156 +10,7 @@ text-align: left;
 outline: none;
 font-size: 15px;
 }
-.timesheet-btn {
-margin-left: 800px;
-}
-
-.card-header1 {
-padding: 1.5rem 1.5rem;
-margin-bottom: -55px;
-background-color: transparent;
-border-bottom: 0 solid #d9dee3;
-}
-
-.active,
-.collapsible:hover {
-background-color: #ccc;
-background-color: #ccc;
-background-color: #ccc;
-}
-.timesheet-btn {
-margin-left: 800px;
-}
-
-.timesheet-btn {
-margin-left: 800px;
-}
-
-.content {
-padding: 0 18px;
-display: none;
-overflow: hidden;
-background-color: #f1f1f1;
-}
-
-.alert {
-padding: 1px;
-margin-left: 4px;
-margin-right: 5px;
-background-color: #ff9600;
-color: white;
-}
-
-.closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-
-.closebtn:hover {
-color: black;
-}
-
-.more_action_bg {
-background-color: #4c499c !important;
-}
-
-.more_action_bg .feather {
-margin-right: 3px;
-}
-
-.more_action_bg .dropdown-item {
-color: #eee !important;
-}
-
-.active,
-.collapsible:hover {
-background-color: #ccc;
-}
-/* Style the collapsible content. Note: hidden by default */
-
-.content {
-padding: 0 18px;
-display: none;
-overflow: hidden;
-background-color: #f1f1f1;
-}
-
-.alert {
-padding: 1px;
-margin-left: -8px;
-margin-right: 5px;
-background-color: #ff9600;
-color: white;
-}
-
-.closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-
-.closebtn:hover {
-color: black;
-}
-
-.more_action_bg {
-background-color: #4c499c !important;
-}
-
-.more_action_bg .feather {
-margin-right: 3px;
-}
-
-.more_action_bg .dropdown-item {
-color: #eee !important;
-}
-
-.collapsible:hover {
-background-color: #ccc;
-}
-
-.more_action_bg .dropdown-item:focus {
-background: transparent !important;
-color: #C2C6DC !important;
-}
-.timesheet-btn {
-    margin-left: 800px;
-}
-.user_table_image_thumb_size {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-}
-#password-strength-status {
-    padding: 5px 10px;
-    color: #FFFFFF;
-    border-radius: 4px;
-    margin-top: 5px;
-}
-.medium-password {
-    background-color: #b7d60a;
-    border: #BBB418 1px solid;
-}
-.weak-password {
-    background-color: #ce1d14;
-    border: #AA4502 1px solid;
-}
-.strong-password {
-    background-color: #12CC1A;
-    border: #0FA015 1px solid;
-}
-.collapsible {
+=======
     background-color: rgb(255, 255, 255);
     color: #444;
     cursor: pointer;
@@ -169,203 +21,50 @@ color: #C2C6DC !important;
     outline: none;
     font-size: 15px;
 }
-.active,
-.collapsible:hover {
-    background-color: #ccc;
-}
-.timesheet-btn {
-    margin-left: 800px;
-    color: #eee !important;
-    margin-left: 800px;
-}
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-}
-.alert {
-    padding: 1px;
-    margin-left: 4px;
-    margin-right: 5px;
-    background-color: #ff9600;
-    color: white;
-}
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.closebtn:hover {
-    color: black;
-}
-.more_action_bg {
-    background-color: #4c499c !important;
-}
-.more_action_bg .feather {
-    margin-right: 3px;
-}
-.more_action_bg .dropdown-item {
-    color: #eee !important;
-    color: #eee !important;
-}
-.more_action_bg .dropdown-item:hover,
-.more_action_bg .dropdown-item:focus {
-    background: transparent !important;
-    color: #C2C6DC !important;
-}
-.timesheet-back-btn {
-    flex: 0 0 auto;
-    width: 15%;
-    background: transparent !important;
-    color: #C2C6DC !important;
-}
-.timesheet-back-btn {
-    flex: 0 0 auto;
-    width: 15%;
-    background: transparent !important;
-    color: #C2C6DC !important;
-}
-.timesheet-back-btn {
-    flex: 0 0 auto;
-    width: 15%;
-}
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
-    cursor: pointer;
-    margin-left: -13px;
-    cursor: pointer;
-    margin-left: -13px;
-}
-.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
-    background: transparent !important;
-    color: #C2C6DC !important;
-}
-.project-btn {
-	margin-left: 800px;
-}
-.project-back-btn {
-    flex: 0 0 auto;
-    width: 15%;
-    cursor: pointer;
-    margin-left: -13px;
-}
-button:not(:disabled) {
-    cursor: pointer;
-    margin-left: -13px;
-}
-.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
-    background: transparent !important;
-    color: #C2C6DC !important;
-}
-.project-btn {
-    margin-left: 800px;
-}
-.project-back-btn {
-    flex: 0 0 auto;
-    width: 15%;
-    flex: 0 0 auto;
-    width: 15%;
-}
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
-	cursor: pointer;
-	margin-left: 140px;
-}
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
-    cursor: pointer;
-    margin-left: 0px;
-}
-#errStatus {
-	margin-left: 155px;
-}
-.badge {
-	position: relative;
-	top: -14px;
-	left: -15px;
-	border: 1px solid;
-	border: none;
-	background: none;
-	border-radius: 10%;
-	width: 2px;
-	line-height: 1px;
-}
-.badge {
-    display: inline-block;
-    padding: 0.52em 0.593em;
-    font-size: 0.8125em;
-    font-weight: 500;
-    line-height: 1;
-    color: black;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
-}
-.job-badge {
-    display: inline-block;
-    padding: 0.52em 0.593em;
-    font-size: 0.8125em;
-    font-weight: 500;
-    line-height: 1;
-    color: black;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
-}
-.select-timesheet {
-    width: 21%;
-}
-.toggle-approve {
-    margin-right: 100px;
-}
-HEAD button:not(:disabled) {
-    cursor: pointer;
-    margin-left: 0px;
-}
-.collapsible {
-    background-color: rgb(255, 255, 255);
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}
-.active,
-.collapsible:hover {
-    background-color: #ccc;
-}
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+>>>>>>> features/authentication
 .timesheet-btn {
     margin-left: 800px;
 }
+
 .card-header1 {
     padding: 1.5rem 1.5rem;
     margin-bottom: -55px;
     background-color: transparent;
     border-bottom: 0 solid #d9dee3;
 }
+
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+    background-color: #ccc;
+    background-color: #ccc;
+}
+<<<<<<< HEAD
+=======
+
+
+/* Style the collapsible content. Note: hidden by default */
+
+>>>>>>> features/authentication
+.timesheet-btn {
+    margin-left: 800px;
+}
+
+.timesheet-btn {
+    margin-left: 800px;
+}
+
 .content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
 }
+
 .alert {
     padding: 1px;
     margin-left: 4px;
@@ -373,6 +72,7 @@ HEAD button:not(:disabled) {
     background-color: #ff9600;
     color: white;
 }
+
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -383,46 +83,429 @@ HEAD button:not(:disabled) {
     cursor: pointer;
     transition: 0.3s;
 }
+
 .closebtn:hover {
     color: black;
 }
+
 .more_action_bg {
     background-color: #4c499c !important;
 }
+
 .more_action_bg .feather {
     margin-right: 3px;
 }
+
 .more_action_bg .dropdown-item {
     color: #eee !important;
 }
+
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> features/authentication
+/* Style the collapsible content. Note: hidden by default */
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.alert {
+    padding: 1px;
+    margin-left: -8px;
+    margin-right: 5px;
+    background-color: #ff9600;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.more_action_bg {
+    background-color: #4c499c !important;
+}
+
+.more_action_bg .feather {
+    margin-right: 3px;
+}
+
+.more_action_bg .dropdown-item {
+    color: #eee !important;
+}
+
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+.more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-btn {
+    margin-left: 800px;
+}
+
+.user_table_image_thumb_size {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+#password-strength-status {
+    padding: 5px 10px;
+    color: #FFFFFF;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.medium-password {
+    background-color: #b7d60a;
+    border: #BBB418 1px solid;
+}
+
+.weak-password {
+    background-color: #ce1d14;
+    border: #AA4502 1px solid;
+}
+
+.strong-password {
+    background-color: #12CC1A;
+    border: #0FA015 1px solid;
+}
+
+.collapsible {
+    background-color: rgb(255, 255, 255);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+<<<<<<< HEAD
+=======
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+>>>>>>> features/authentication
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+}
+<<<<<<< HEAD
+=======
+
+
+/* Style the collapsible content. Note: hidden by default */
+
+>>>>>>> features/authentication
+.timesheet-btn {
+    margin-left: 800px;
+    color: #eee !important;
+    margin-left: 800px;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.alert {
+    padding: 1px;
+    margin-left: 4px;
+    margin-right: 5px;
+    background-color: #ff9600;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.more_action_bg {
+    background-color: #4c499c !important;
+}
+
+.more_action_bg .feather {
+    margin-right: 3px;
+}
+
+.more_action_bg .dropdown-item {
+    color: #eee !important;
+    color: #eee !important;
+}
+
 .more_action_bg .dropdown-item:hover,
 .more_action_bg .dropdown-item:focus {
     background: transparent !important;
     color: #C2C6DC !important;
 }
+
 .timesheet-back-btn {
     flex: 0 0 auto;
     width: 15%;
+    background: transparent !important;
+    color: #C2C6DC !important;
 }
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+<<<<<<< HEAD
+=======
+    margin-left: 800px;
+}
+
+.user_table_image_thumb_size {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+#password-strength-status {
+    padding: 5px 10px;
+    color: #FFFFFF;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.medium-password {
+    background-color: #b7d60a;
+    border: #BBB418 1px solid;
+}
+
+.weak-password {
+    background-color: #ce1d14;
+    border: #AA4502 1px solid;
+}
+
+.strong-password {
+    background-color: #12CC1A;
+    border: #0FA015 1px solid;
+}
+
+.collapsible {
+    background-color: rgb(255, 255, 255);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+.timesheet-btn {
+    margin-left: 800px;
+    color: #eee !important;
+    margin-left: 800px;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.alert {
+    padding: 1px;
+    margin-left: 4px;
+    margin-right: 5px;
+    background-color: #ff9600;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.more_action_bg {
+    background-color: #4c499c !important;
+}
+
+.more_action_bg .feather {
+    margin-right: 3px;
+}
+
+.more_action_bg .dropdown-item {
+    color: #eee !important;
+    color: #eee !important;
+}
+
+.more_action_bg .dropdown-item:hover,
+.more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+>>>>>>> features/authentication
+}
+
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
 button:not(:disabled) {
     cursor: pointer;
     margin-left: -13px;
+    cursor: pointer;
+    margin-left: -13px;
 }
-.more_action_bg .dropdown-item:hover,
-.more_action_bg .dropdown-item:focus {
+
+.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
     background: transparent !important;
     color: #C2C6DC !important;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+    margin-left: -13px;
+    cursor: pointer;
+    margin-left: -13px;
 }
+
+.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+>>>>>>> features/authentication
+}
+
 .project-btn {
     margin-left: 800px;
 }
+
 .project-back-btn {
     flex: 0 0 auto;
     width: 15%;
+    cursor: pointer;
+    margin-left: -13px;
 }
+
+button:not(:disabled) {
+    cursor: pointer;
+    margin-left: -13px;
+}
+
+.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.project-btn {
+    margin-left: 800px;
+}
+
+.project-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+    flex: 0 0 auto;
+    width: 15%;
+<<<<<<< HEAD
+=======
+    flex: 0 0 auto;
+    width: 15%;
+    cursor: pointer;
+    margin-left: -13px;
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+    margin-left: -13px;
+}
+
+.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.project-btn {
+    margin-left: 800px;
+}
+
+.project-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+    flex: 0 0 auto;
+    width: 15%;
+>>>>>>> features/authentication
+}
+
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
@@ -430,47 +513,24 @@ button:not(:disabled) {
     cursor: pointer;
     margin-left: 140px;
 }
+
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
 button:not(:disabled) {
     cursor: pointer;
     margin-left: 0px;
-}
-#errStatus {
-    margin-left: 155px;
-}
-.badge {
-    position: relative;
-    top: -14px;
-    left: -15px;
-    border: 1px solid;
-    border: none;
-    background: none;
-    border-radius: 10%;
-    width: 2px;
-    line-height: 1px;
-}
-.badge {
-    display: inline-block;
-    padding: 0.52em 0.593em;
-    font-size: 0.8125em;
-    font-weight: 500;
-    line-height: 1;
-    color: black;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
-}
-.select-timesheet {
-    width: 21%;
+<<<<<<< HEAD
+=======
     cursor: pointer;
     margin-left: 0px;
+>>>>>>> features/authentication
 }
+
 #errStatus {
     margin-left: 155px;
 }
+
 .badge {
     position: relative;
     top: -14px;
@@ -482,6 +542,7 @@ button:not(:disabled) {
     width: 2px;
     line-height: 1px;
 }
+
 .badge {
     display: inline-block;
     padding: 0.52em 0.593em;
@@ -494,6 +555,7 @@ button:not(:disabled) {
     vertical-align: baseline;
     border-radius: 0.25rem;
 }
+
 .job-badge {
     display: inline-block;
     padding: 0.52em 0.593em;
@@ -506,32 +568,494 @@ button:not(:disabled) {
     vertical-align: baseline;
     border-radius: 0.25rem;
 }
+
+.select-timesheet {
+    width: 21%;
+}
+
+.toggle-approve {
+    margin-right: 100px;
+}
+
+HEAD button:not(:disabled) {
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+.collapsible {
+    background-color: rgb(255, 255, 255);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+<<<<<<< HEAD
+=======
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+>>>>>>> features/authentication
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+}
+<<<<<<< HEAD
+=======
+
+
+/* Style the collapsible content. Note: hidden by default */
+
+>>>>>>> features/authentication
+.timesheet-btn {
+    margin-left: 800px;
+}
+
+.card-header1 {
+    padding: 1.5rem 1.5rem;
+    margin-bottom: -55px;
+    background-color: transparent;
+    border-bottom: 0 solid #d9dee3;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.alert {
+    padding: 1px;
+    margin-left: 4px;
+    margin-right: 5px;
+    background-color: #ff9600;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.more_action_bg {
+    background-color: #4c499c !important;
+}
+
+.more_action_bg .feather {
+    margin-right: 3px;
+}
+
+.more_action_bg .dropdown-item {
+    color: #eee !important;
+}
+
+.more_action_bg .dropdown-item:hover,
+.more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+<<<<<<< HEAD
+=======
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.job-badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.select-timesheet {
+    width: 21%;
+}
+
+.toggle-approve {
+    margin-right: 100px;
+}
+
+HEAD button:not(:disabled) {
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+.collapsible {
+    background-color: rgb(255, 255, 255);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+.timesheet-btn {
+    margin-left: 800px;
+}
+
+.card-header1 {
+    padding: 1.5rem 1.5rem;
+    margin-bottom: -55px;
+    background-color: transparent;
+    border-bottom: 0 solid #d9dee3;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.alert {
+    padding: 1px;
+    margin-left: 4px;
+    margin-right: 5px;
+    background-color: #ff9600;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.more_action_bg {
+    background-color: #4c499c !important;
+}
+
+.more_action_bg .feather {
+    margin-right: 3px;
+}
+
+.more_action_bg .dropdown-item {
+    color: #eee !important;
+}
+
+.more_action_bg .dropdown-item:hover,
+.more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.timesheet-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+>>>>>>> features/authentication
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+    margin-left: -13px;
+}
+
+.more_action_bg .dropdown-item:hover,
+.more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.project-btn {
+    margin-left: 800px;
+}
+
+.project-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+    margin-left: -13px;
+}
+
+.more_action_bg .dropdown-item:hover,
+.more_action_bg .dropdown-item:focus {
+    background: transparent !important;
+    color: #C2C6DC !important;
+}
+
+.project-btn {
+    margin-left: 800px;
+}
+
+.project-back-btn {
+    flex: 0 0 auto;
+    width: 15%;
+>>>>>>> features/authentication
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+    margin-left: 140px;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+    margin-left: 140px;
+>>>>>>> features/authentication
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+#errStatus {
+    margin-left: 155px;
+}
+
+.badge {
+    position: relative;
+    top: -14px;
+    left: -15px;
+    border: 1px solid;
+    border: none;
+    background: none;
+    border-radius: 10%;
+    width: 2px;
+    line-height: 1px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.select-timesheet {
+    width: 21%;
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+#errStatus {
+    margin-left: 155px;
+}
+
+.badge {
+    position: relative;
+    top: -14px;
+    left: -15px;
+    border: 1px solid;
+    border: none;
+    background: none;
+    border-radius: 10%;
+    width: 2px;
+    line-height: 1px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.job-badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.select-timesheet {
+    width: 21%;
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+#errStatus {
+    margin-left: 155px;
+}
+
+.badge {
+    position: relative;
+    top: -14px;
+    left: -15px;
+    border: 1px solid;
+    border: none;
+    background: none;
+    border-radius: 10%;
+    width: 2px;
+    line-height: 1px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.select-timesheet {
+    width: 21%;
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+#errStatus {
+    margin-left: 155px;
+}
+
+.badge {
+    position: relative;
+    top: -14px;
+    left: -15px;
+    border: 1px solid;
+    border: none;
+    background: none;
+    border-radius: 10%;
+    width: 2px;
+    line-height: 1px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.job-badge {
+    display: inline-block;
+    padding: 0.52em 0.593em;
+    font-size: 0.8125em;
+    font-weight: 500;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
 .select-timesheet {
   width: 21%;
 }
+<<<<<<< HEAD
 #birthday{
   max-height: 80px;
+=======
+
+#birthday {
+    margin-left: 40px;
+    max-height: 80px;
+>>>>>>> features/authentication
 }
-.join-employee{
+
+.join-employee {
     margin-left: 40px;
 }
-.cardBirthday{
+
+.cardBirthday {
     background-image: url("birthday.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     background-size: 100% 800%;
 }
-.cardNewJoiner{
+
+.cardNewJoiner {
     background-image: url("welcome.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     background-size: 80% 200%;
 }
+
 .card {
     margin-top: 20px;
     min-width: 439px;
+<<<<<<< HEAD
 }
 #holiday{
   margin-left: 40px;
@@ -543,4 +1067,6 @@ button:not(:disabled) {
 }
 .leave-submit-btn{
   margin-top: 60px;*/
+=======
+>>>>>>> features/authentication
 }

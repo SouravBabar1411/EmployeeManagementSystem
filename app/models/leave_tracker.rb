@@ -17,6 +17,13 @@ class LeaveTracker < ApplicationRecord
 
   ## Validations
   validates :from_date, :to_date, :reason, presence: true 
+  validate :must_have_valid_from_date 
+
+  def must_have_valid_from_date
+    if from_date = from_date && from_date - 3.days && from_date - 2.days && from_date - 1.days
+      errors.add(:from_date, "must be a valid date")
+    end
+  end
 
   def as_json 
     response = super
