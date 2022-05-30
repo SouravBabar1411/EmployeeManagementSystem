@@ -71,6 +71,29 @@ $(document).on('turbolinks:load', function() {
             [1, "asc"]
         ]
     });
+
+    // sweet alert 
+     $('#timesheet-list-table').on('click', '.delete-user', function () {
+    event.preventDefault(); // don't forget to prevent the default event
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    });
+  });
+     
     // Validations
     $("#timesheetValidate").validate({
         rules: {
@@ -163,10 +186,6 @@ $(document).on('turbolinks:load', function() {
             $('#timesheet-list-table').DataTable().ajax.reload();
         }
     }
-<<<<<<< HEAD
-=======
-  }
->>>>>>> active-admin
 
     // timesheet filter
     $('.timesheet-filter').change(function() {

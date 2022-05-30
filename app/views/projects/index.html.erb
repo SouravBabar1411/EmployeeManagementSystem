@@ -4,7 +4,9 @@
       <h5 class="card-header">Projects</h5>
       <div class="table-responsive text-nowrap">
       <% if can? :create, Project %>
-      <%= link_to 'Add Project', new_project_path,  class:"btn btn-primary mb-3 project-btn"%>
+      <div class="col">
+          <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/projects/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add project</span></a></h4>
+        </div>
       <% end %>
         <table class="table" id="projects-list">
           <caption class="ms-4">

@@ -523,6 +523,13 @@ button:not(:disabled) {
     background-position: center center;
     background-size: 100% 800%;
 }
+.cardLeave{
+    background-image: url("leave.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-size: 100% 800%;
+}
 .cardNewJoiner{
     background-image: url("welcome.png");
     background-repeat: no-repeat;

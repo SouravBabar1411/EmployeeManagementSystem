@@ -113,7 +113,7 @@ $(document).on('turbolinks:load', function() {
                 "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
                 // Delete Job Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/jobs/" + data.id +
+                action_html = action_html + "<a class='dropdown-item delete-user' href = '/jobs/" + data.id +
                         "data-confirm='Are you sure?' data-method='delete' >" +
                         '<i class="bx bx-trash me-1"></i>Delete' + '</a>'
   
@@ -140,5 +140,27 @@ $(document).on('turbolinks:load', function() {
     },
       
     order: [['1', 'desc']]
+  });
+
+   // sweet alert 
+     $('#jobs-list').on('click', '.delete-user', function () {
+    event.preventDefault(); // don't forget to prevent the default event
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    });
   });
 });
