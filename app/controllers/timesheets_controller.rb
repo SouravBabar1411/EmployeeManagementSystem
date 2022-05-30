@@ -37,11 +37,7 @@ class TimesheetsController < ApplicationController
         end
     end
 
-     timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-     timesheets = timesheets.page(datatable_page).per(datatable_per_page)
-
-    # timesheets = timesheets.sort_by(&:"#{sort_column}")
-    # timesheets = timesheets.reverse if sort_direction == 'DESC'
+    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
@@ -55,9 +51,7 @@ class TimesheetsController < ApplicationController
   def show
   end
 
-  def toggle_approve_status
-    @timesheet.toggle!(:is_approved).save
-  end 
+  
 
   # GET /timesheets/new
   def new

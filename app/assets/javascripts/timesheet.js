@@ -1,15 +1,14 @@
 $(document).on('turbolinks:load', function() {
     // Timesheets Server Side Listing
     $('#timesheet-list-table').DataTable({
-        paging: true,
         serverSide: true,
         responsive: false,
         info: false,
         ajax: {
             "url": "/fetch_timesheets",
-            "dataSrc": 'timesheets'
+            "dataSrc": "timesheets"
         },
-        columns: [{
+        "columns": [{
                 title: 'Project Name',
                 data: "project_name"
             },
@@ -67,9 +66,11 @@ $(document).on('turbolinks:load', function() {
                 }
             }
         ],
+        aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],      
         order: [
-            [1, "asc"]
-        ]
+            [0, "asc"]
+        ],
+        pageLength: 5
     });
 
     // sweet alert 
@@ -134,34 +135,6 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
-    //Override the default confirm dialog by rails
-    $.rails.allowAction = function(link) {
-        if (link.data("confirm") == undefined) {
-            return true;
-        }
-        $.rails.showConfirmationDialog(link);
-        return false;
-    }
-
-    //User click confirm button
-    $.rails.confirmed = function(link) {
-        link.data("confirm", null);
-        link.trigger("click.rails");
-    }
-
-    //Display the confirmation dialog
-    $.rails.showConfirmationDialog = function(link) {
-        var message = link.data("confirm");
-        swal({
-            title: message,
-            type: 'warning',
-            confirmButtonText: 'Sure',
-            confirmButtonColor: '#2acbb3',
-            showCancelButton: true
-        }).then(function(e) {
-            $.rails.confirmed(link);
-        });
-    };
 
     // filtes
     function generateFilterParams() {
