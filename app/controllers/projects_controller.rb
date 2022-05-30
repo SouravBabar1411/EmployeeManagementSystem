@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   # before_action :authenticate_user!
   # before_action :set_company
   load_and_authorize_resource
-  before_action :set_project, only: [:show, :edit, :update, :create, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @project = Project.find_by(params[:id])
