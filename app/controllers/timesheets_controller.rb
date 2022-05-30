@@ -34,6 +34,8 @@ class TimesheetsController < ApplicationController
           timesheets = timesheets.last_month
         when "{\"timesheet\":[\"This Year\"]}"
           timesheets = timesheets.this_year
+        else
+          timesheets = timesheets.all
         end
     end
 

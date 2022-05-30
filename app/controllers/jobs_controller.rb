@@ -63,8 +63,7 @@ class JobsController < ApplicationController
   end 
 
   def create 
-    @job = Job.new(jobs_create_params)
-      
+    @job = Job.new(jobs_new_params)
     if @job.save 
       redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
     else
@@ -104,7 +103,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end 
 
-  def jobs_create_params 
+  def jobs_new_params 
     params.require(:job).permit(:name, :is_active, :project_id)
   end 
 
