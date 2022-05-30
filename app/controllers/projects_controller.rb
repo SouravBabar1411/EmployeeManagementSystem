@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
 
   def create 
     @project = Project.new(project_create_params)
-    @project.save!
+    @project.save
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
