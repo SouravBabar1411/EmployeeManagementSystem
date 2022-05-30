@@ -1,6 +1,5 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
 
   # before_action :set_project
   before_action :set_job, only: [:show, :edit, :update, :destroy]
@@ -59,12 +58,11 @@ class JobsController < ApplicationController
 
   def new 
     @job = Job.new
-    authorize! :read, @job
   end 
 
   def create 
-    @job = Job.new(jobs_new_params)
-    if @job.save 
+    @job = Job.new(jobs_create_params)
+    if @job.save!
       redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
     else
       format.html{ render :new , status: :unprocessable_entity }
@@ -103,7 +101,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
   end 
 
-  def jobs_new_params 
+  def jobs_create_params 
     params.require(:job).permit(:name, :is_active, :project_id)
   end 
 
