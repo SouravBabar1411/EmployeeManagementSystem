@@ -11,12 +11,12 @@ $(document).on('turbolinks:load', function() {
       "columns": 
           [ 
             { 
-              title: "to date",
-              data: "to_date" 
-            },
-            { 
               title: "from date",
               data: "from_date" 
+            },
+            { 
+              title: "to date",
+              data: "to_date" 
             },
             { 
               title: "user",
@@ -25,10 +25,6 @@ $(document).on('turbolinks:load', function() {
             { 
               title: "Reason",
               data: "reason" 
-            },
-            { 
-              title: "status",
-              data: "is_approved" 
             },
             {
               title: 'Is Approve',
@@ -50,12 +46,14 @@ $(document).on('turbolinks:load', function() {
                     "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
                     "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                     "<div class='dropdown-menu'>"
-
+                
+                if (data.is_approved == 0)
                     // Edit laeavetracker Button  
                 action_html = action_html + "<a class='dropdown-item btn-sm' href = '/leave_trackers/" + data.id + "/edit'" +
                     " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                     "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
-
+                    
+                if (data.is_approved == 0)
                 // delete leavetracker
                 action_html = action_html + "<a class='dropdown-item delete-user' href = '/leave_trackers/" + data.id +
                     "data-confirm='Are you sure?' data-method='delete' >" +
@@ -72,6 +70,29 @@ $(document).on('turbolinks:load', function() {
     ],
     pageLength: 5
   });
+
+  
+  $('#leavetracker-listing').on('click', '.delete-user', function () {
+    event.preventDefault(); // don't forget to prevent the default event
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    });
+  });
+
 
   // Validations
   $("#leavtrackervalidate").validate({

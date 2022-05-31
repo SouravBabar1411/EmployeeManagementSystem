@@ -74,7 +74,7 @@
       <div data-i18n="Analytics">Dashboard</div>
       <% end %>
     </li>
-    
+    <% if current_user.emp_admin? %>
     <li class="mm-active">
       <a href="javascript:void(0);" data-toggle="collapse"  class="collapsible menu-link menu-toggle">
       <i class="menu-icon tf-icons bx bxs-business"></i> 
@@ -95,20 +95,35 @@
         </li>
       </ul>
     </li>
-    <li class="menu-item">
-      <a href="/timesheets" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-        <div data-i18n="Account Settings">Timesheet</div>
-      </a>
-    </li>  
-    <li class="menu-item">
-      <%= link_to leave_trackers_path, class:"menu-link" do %> 
-        <i class="menu-icon tf-icons bx bxs-widget"></i>
-        <div data-i18n="Account Settings">LeaveTracker</div>
+    <% end %>
+    <% if current_user.employee? %>
+      <li class="menu-item">
+        <%= link_to projects_path , class:"menu-link" do %>
+          <i class="menu-icon tf-icons bx bxs-component" style="color:rgba(51,51,45,0.67)"></i>
+          <div data-i18n="Account Settings">My Projects</div>
+        <% end %>
+      </li> 
+      <li class="menu-item">
+        <%= link_to jobs_path , class:"menu-link" do %>
+          <i class="menu-icon tf-icons bx bxs-briefcase"></i>
+          <div data-i18n="Account Settings">My Jobs</div>
+        <% end %>
+      </li>
       <% end %>
-      </a>
-    </li>  
-    
+
+      <li class="menu-item">
+        <%= link_to timesheets_path , class:"menu-link" do %>
+          <i class="menu-icon tf-icons bx bxs-time-five"></i>
+          <div data-i18n="Account Settings">Timesheet</div>
+        <% end %>
+      </li>
+      <li class="menu-item">
+        <%= link_to leave_trackers_path , class:"menu-link" do %>
+          <i class="menu-icon tf-icons bx bxs-widget"></i>
+          <div data-i18n="Account Settings">Leave Application</div>
+        <% end %>
+      </li> 
+    <% if current_user.emp_admin? %>
     <li class="menu-item">
       <a href="javascript:void(0);" class="collapsible menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -137,6 +152,7 @@
         <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
         <div data-i18n="Authentications">Authentications</div>
       </a>
+    <% end %>
         <ul class="menu-sub">
           <% if !current_user.present? %>  
             <li class="menu-item">

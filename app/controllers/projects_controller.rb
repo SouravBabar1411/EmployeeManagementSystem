@@ -1,15 +1,17 @@
 class ProjectsController < ApplicationController
-  # before_action :authenticate_user!
-  # before_action :set_company
-  load_and_authorize_resource
-  before_action :set_project, only: [:show, :edit, :update, :create, :destroy]
+  before_action :authenticate_user!
+  before_action :set_project, only: [:edit, :update, :destroy]
 
   def index
     @project = Project.find_by(params[:id])
   end 
 
   def fetch_projects 
-    projects = Project.all.order(created_at:"desc")
+    if current_user.emp_admin? 
+     projects = Project.all.order(created_at:"desc")
+    else 
+      projects = current_user.projects.order(created_at:"desc")
+    end 
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -55,14 +57,12 @@ class ProjectsController < ApplicationController
     }
   end 
 
-  def users_projects 
-    @userid = params[:id]
-    @projects = User.where(id: params[:id]).first.projects
+  def projects_users 
+    @projectid = params[:id]
+  end 
 
-  end
-
-  def fetch_users_projects 
-    projects = User.find(params[:userid]).projects.order(created_at:"desc")
+  def fetch_projects_users 
+    users = Project.find(params[:projectid]).users.order(created_at:"desc")
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -70,24 +70,24 @@ class ProjectsController < ApplicationController
       search_columns.each do |term|
         search_string << "#{term} ILIKE :search"
       end
-      projects = projects.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+      users = users.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
     end
 
-    projects = projects.page(datatable_page).per(datatable_per_page)
+    users = users.page(datatable_page).per(datatable_per_page)
     render json: {
-      projects: projects.as_json,
-      recordsTotal: projects.count,
-      recordsFiltered: projects.total_count
+      users: users.as_json,
+      recordsTotal: users.count,
+      recordsFiltered: users.total_count
     }
   end 
-  
+
   def new 
     @project = Project.new
   end 
 
   def create 
-    binding.pry
-    @project = Project.new(project_params)
+    @project = Project.new(project_create_params)
+    @project.save
     respond_to do |format|
       if @project.save 
         format.html{ redirect_to projects_url , success: "Project was sucessfully added." }
@@ -103,7 +103,8 @@ class ProjectsController < ApplicationController
 
   def update 
     respond_to do |format|
-      if @project.update(project_params)
+      if @project.update!(project_params)
+        ProjectAssignMailer.project_assign(@project).deliver
         format.html { redirect_to projects_url, success: "Project was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -118,10 +119,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
    end
   end 
-
-  # def show 
-  #   @job = @project.jobs.select(:name).pluck(:name)
-  # end 
   private 
 
   def search_columns

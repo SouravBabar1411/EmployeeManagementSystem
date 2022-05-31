@@ -2,15 +2,15 @@
 #
 # Table name: timesheets
 #
-#  id           :bigint           not null, primary key
-#  string       :time             not null
-#  description  :text             not null
-#  is_approved  :boolean          default(FALSE), not null
-#  user_id      :bigint           not null
-#  project_id   :bigint           not null
-#  job_id       :bigint           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id          :bigint           not null, primary key
+#  time        :string           not null
+#  description :text             not null
+#  is_approved :boolean          default(FALSE), not null
+#  user_id     :bigint           not null
+#  project_id  :bigint           not null
+#  job_id      :bigint           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 class Timesheet < ApplicationRecord
   ## Associations
@@ -37,4 +37,6 @@ class Timesheet < ApplicationRecord
   scope :last_month, -> { where(created_at: (Time.now.beginning_of_month - 1.month)..((Time.now.beginning_of_month - 1.month).end_of_month)).uniq }
   scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now)}
   scope :this_year, -> { where(created_at: Time.now.beginning_of_year..Time.now) }
+  scope :find_role, ->{ User.where(role:1) }
+
 end

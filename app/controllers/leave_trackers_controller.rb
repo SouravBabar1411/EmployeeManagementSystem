@@ -9,7 +9,11 @@ class LeaveTrackersController < ApplicationController
   end
 
   def fetch_leaves
-    leavetrackers = LeaveTracker.all
+    if current_user.emp_admin? 
+      leavetrackers = LeaveTracker.all
+    else 
+      leavetrackers = current_user.leave_trackers
+    end 
     search_string = []
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
@@ -47,6 +51,7 @@ class LeaveTrackersController < ApplicationController
     @leavetracker = LeaveTracker.new(leavetracker_params)
     respond_to do |format|
       if @leavetracker.save
+        LeaveTrackerMailer.applay_leave_mail(@leavetracker).deliver
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -57,8 +62,18 @@ class LeaveTrackersController < ApplicationController
   # PATCH/PUT /leavetrackers/1 
   def update                                                    
     respond_to do |format|
-      if @leavetracker.update(leavetracker_params) 
+
+      if @leavetracker.update(leavetracker_params) && params[:leave_tracker][:is_approved].include?("0")
+        LeaveTrackerMailer.reject_leave_mail(@leavetracker).deliver
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
+      
+      elsif @leavetracker.update(leavetracker_params) && params[:leave_tracker][:is_approved].include?("1")
+        LeaveTrackerMailer.approve_leave_mail(@leavetracker).deliver
+        format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
+        
+      elsif @leavetracker.update(leavetracker_params)
+        format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

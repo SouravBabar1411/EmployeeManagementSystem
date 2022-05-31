@@ -9,8 +9,6 @@ text-align: left;
 outline: none;
 font-size: 15px;
 }
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-
 .timesheet-btn {
 margin-left: 800px;
 }
@@ -28,8 +26,6 @@ background-color: #ccc;
 background-color: #ccc;
 background-color: #ccc;
 }
-/* Style the collapsible content. Note: hidden by default */
-
 .timesheet-btn {
 margin-left: 800px;
 }
@@ -137,109 +133,6 @@ background: transparent !important;
 color: #C2C6DC !important;
 }
 .timesheet-btn {
-	margin-left: 800px;
-}
-.user_table_image_thumb_size {
-	width: 50px;
-	height: 50px;
-	border-radius: 10px;
-}
-#password-strength-status {
-	padding: 5px 10px;
-	color: #FFFFFF;
-	border-radius: 4px;
-	margin-top: 5px;
-}
-.medium-password {
-	background-color: #b7d60a;
-	border: #BBB418 1px solid;
-}
-.weak-password {
-	background-color: #ce1d14;
-	border: #AA4502 1px solid;
-}
-.strong-password {
-	background-color: #12CC1A;
-	border: #0FA015 1px solid;
-}
-.collapsible {
-	background-color: rgb(255, 255, 255);
-	color: #444;
-	cursor: pointer;
-	padding: 18px;
-	width: 100%;
-	border: none;
-	text-align: left;
-	outline: none;
-	font-size: 15px;
-}
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active,
-.collapsible:hover {
-	background-color: #ccc;
-}
-/* Style the collapsible content. Note: hidden by default */
-.timesheet-btn {
-	margin-left: 800px;
-	color: #eee !important;
-	margin-left: 800px;
-}
-.content {
-	padding: 0 18px;
-	display: none;
-	overflow: hidden;
-	background-color: #f1f1f1;
-}
-.alert {
-	padding: 1px;
-	margin-left: 4px;
-	margin-right: 5px;
-	background-color: #ff9600;
-	color: white;
-}
-.closebtn {
-	margin-left: 15px;
-	color: white;
-	font-weight: bold;
-	float: right;
-	font-size: 22px;
-	line-height: 20px;
-	cursor: pointer;
-	transition: 0.3s;
-}
-.closebtn:hover {
-	color: black;
-}
-.more_action_bg {
-	background-color: #4c499c !important;
-}
-.more_action_bg .feather {
-	margin-right: 3px;
-}
-.more_action_bg .dropdown-item {
-	color: #eee !important;
-	color: #eee !important;
-}
-.more_action_bg .dropdown-item:hover,
-.more_action_bg .dropdown-item:focus {
-	background: transparent !important;
-	color: #C2C6DC !important;
-}
-.timesheet-back-btn {
-	flex: 0 0 auto;
-	width: 15%;
-	background: transparent !important;
-	color: #C2C6DC !important;
-}
-.timesheet-back-btn {
-	flex: 0 0 auto;
-	width: 15%;
-	background: transparent !important;
-	color: #C2C6DC !important;
-}
-.timesheet-back-btn {
-	flex: 0 0 auto;
-	width: 15%;
     margin-left: 800px;
 }
 .user_table_image_thumb_size {
@@ -276,12 +169,10 @@ color: #C2C6DC !important;
     outline: none;
     font-size: 15px;
 }
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active,
 .collapsible:hover {
     background-color: #ccc;
 }
-/* Style the collapsible content. Note: hidden by default */
 .timesheet-btn {
     margin-left: 800px;
     color: #eee !important;
@@ -348,14 +239,6 @@ color: #C2C6DC !important;
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
 button:not(:disabled) {
-	cursor: pointer;
-	margin-left: -13px;
-	cursor: pointer;
-	margin-left: -13px;
-}
-.more_action_bg .dropdown-item:hover .more_action_bg .dropdown-item:focus {
-	background: transparent !important;
-	color: #C2C6DC !important;
     cursor: pointer;
     margin-left: -13px;
     cursor: pointer;
@@ -366,7 +249,7 @@ button:not(:disabled) {
     color: #C2C6DC !important;
 }
 .project-btn {
-	margin-left: 800px;
+    margin-left: 800px;
 }
 .project-back-btn {
     flex: 0 0 auto;
@@ -395,8 +278,8 @@ button:not(:disabled) {
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled),
 button:not(:disabled) {
-	cursor: pointer;
-	margin-left: 140px;
+    cursor: pointer;
+    margin-left: 140px;
 }
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
@@ -406,18 +289,18 @@ button:not(:disabled) {
     margin-left: 0px;
 }
 #errStatus {
-	margin-left: 155px;
+    margin-left: 155px;
 }
 .badge {
-	position: relative;
-	top: -14px;
-	left: -15px;
-	border: 1px solid;
-	border: none;
-	background: none;
-	border-radius: 10%;
-	width: 2px;
-	line-height: 1px;
+    position: relative;
+    top: -14px;
+    left: -15px;
+    border: 1px solid;
+    border: none;
+    background: none;
+    border-radius: 10%;
+    width: 2px;
+    line-height: 1px;
 }
 .badge {
     display: inline-block;
@@ -464,12 +347,10 @@ HEAD button:not(:disabled) {
     outline: none;
     font-size: 15px;
 }
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active,
 .collapsible:hover {
     background-color: #ccc;
 }
-/* Style the collapsible content. Note: hidden by default */
 .timesheet-btn {
     margin-left: 800px;
 }
@@ -626,11 +507,11 @@ button:not(:disabled) {
     border-radius: 0.25rem;
 }
 .select-timesheet {
-    width: 21%;
+  width: 21%;
 }
 #birthday{
-    margin-left: 40px;
-    max-height: 80px;
+  max-height: 80px;
+  margin-left: 20px;
 }
 .join-employee{
     margin-left: 40px;
@@ -640,7 +521,14 @@ button:not(:disabled) {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    background-size: 100% 200%;
+    background-size: 100% 800%;
+}
+.cardLeave{
+    background-image: url("leave.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-size: 100% 800%;
 }
 .cardNewJoiner{
     background-image: url("welcome.png");
@@ -653,26 +541,14 @@ button:not(:disabled) {
     margin-top: 20px;
     min-width: 439px;
 }
-.fa, .fab, .fal, .far, .fas {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  line-height: 1;
+#holiday{
+  margin-left: 40px;
+  margin-top: 60px;
 }
-.fa-lg {
-  font-size: 1.33333em;
-  line-height: .75em;
-  vertical-align: -.0667em;
+.leave-back-btn{
+  margin-bottom: 30px;
+  margin-right: 10px;
 }
-.fa-check-circle:before {
-  content: "\f058";
-}
-.fa-times-circle:before {
-  content: "\f057";
-}
-.fa-edit:before {
-  content: "\f044";
+.leave-submit-btn{
+  margin-top: 60px;
 }

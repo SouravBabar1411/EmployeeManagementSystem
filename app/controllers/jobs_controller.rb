@@ -1,6 +1,5 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
 
   # before_action :set_project
   before_action :set_job, only: [:show, :edit, :update, :destroy]
@@ -9,7 +8,11 @@ class JobsController < ApplicationController
   end 
 
   def fetch_jobs 
-    jobs = Job.all.order(created_at:"desc")
+    if current_user.emp_admin? 
+      jobs = Job.all.order(created_at:"desc")
+    else 
+      jobs = current_user.jobs.order(created_at:"desc")
+    end 
     search_string = []
 
     # Check if Search Keyword is Present & Write it's Query
@@ -59,21 +62,21 @@ class JobsController < ApplicationController
 
   def create 
     @job = Job.new(jobs_create_params)
-      
-      if @job.save 
-        JobCreatedMailer.job_assign(@job).deliver
-        redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
-      else
-        format.html{ render :new , status: :unprocessable_entity }
-      end 
+    if @job.save!
+      redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
+    else
+      format.html{ render :new , status: :unprocessable_entity }
+    end 
   end 
 
   def update 
-    if @job.update!(jobs_params)
+    if @job.update(jobs_params)
+      JobCreatedMailer.job_assign(@job).deliver
       redirect_to jobs_path
     else  
       redirect_to root_path 
     end
+    authorize! :read, @job
   end 
 
   def show 
@@ -85,7 +88,8 @@ class JobsController < ApplicationController
     flash[:notice] = "Job was destroy sucessfully."
     respond_to do |format|
       format.html { redirect_to jobs_url }
-   end
+    end
+    authorize! :read, @job
   end 
   private 
   

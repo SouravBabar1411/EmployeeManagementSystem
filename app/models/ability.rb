@@ -11,6 +11,8 @@ class Ability
       can [:index, :fetch_projects], Project
       can [:index, :fetch_jobs], Job
       can [:index, :fetch_employees], User
+      can [:index, :fetch_timesheets], Timesheet
+      can [:index, :featch_leavetrackers], LeaveTracker
     end
 
     #

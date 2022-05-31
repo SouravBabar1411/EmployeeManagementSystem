@@ -12,17 +12,19 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  first_name             :string           not null
-#  last_name              :string           not null
-#  date_of_birth          :date             not null
+#  first_name             :string
+#  last_name              :string
+#  date_of_birth          :date
 #  is_active              :boolean          default(TRUE)
-#  role                   :integer          default(0)
+#  role                   :integer          default("employee")
 #  gender                 :string
 #  image                  :string
 #  password_changed_at    :datetime
 #  company_id             :bigint
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  uid                    :string
+#  provider               :string
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -73,5 +75,5 @@ class User < ApplicationRecord
     response.merge!({projects_count: self.projects.count})
     response
   end 
-
+  
 end

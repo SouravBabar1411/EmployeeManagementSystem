@@ -44,25 +44,25 @@
         <div class="dropdown-divider"></div>
       </li>
       <li>
-          <a class="dropdown-item" href="<%= edit_user_path(current_user.id) %>">
+          <%= link_to edit_user_path(current_user.id), class:"dropdown-item" do %>
           <i class="bx bx-user me-2"></i>
           <span class="align-middle">Edit Profile</span>
-          </a>
+          <% end %>
       </li>
       <li>
-          <a class="dropdown-item" href="<%= edit_user_registration_path %>">
+          <%= link_to edit_user_registration_path, class:"dropdown-item" do %>
           <i class="bx bx-cog me-2"></i>
           <span class="align-middle">Change Password</span>
-          </a>
+          <% end %>
       </li>
       <li>
           <div class="dropdown-divider"></div>
       </li>
       <li>
-          <a class="dropdown-item" href="">
+          <%= link_to destroy_user_session_path, class:"dropdown-item" do %>
           <i class="bx bx-power-off me-2"></i>
           <span class="align-middle">Log Out</span>
-          </a>
+          <% end %>
       </li>
       </ul>
     </li>
