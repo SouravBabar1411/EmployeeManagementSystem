@@ -8,7 +8,7 @@ class TimesheetsController < ApplicationController
     @timesheets = Timesheet.all
   end
 
-  def fetch_timesheets
+    def fetch_timesheets
     if current_user.emp_admin? 
       timesheets = Timesheet.all
     else 

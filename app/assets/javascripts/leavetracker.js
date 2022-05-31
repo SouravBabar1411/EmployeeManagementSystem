@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  // Timesheets Server Side Listing
+  // LeaveTracker Server Side Listing
   $('#leavetracker-listing').DataTable({
       serverSide: true,
       responsive: false,
