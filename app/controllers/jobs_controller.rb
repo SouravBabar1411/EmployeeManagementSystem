@@ -1,7 +1,5 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-
-  # before_action :set_project
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index 
@@ -56,13 +54,39 @@ class JobsController < ApplicationController
     }
   end 
 
+  def jobs_users 
+    @jobid = params[:id]
+  end 
+
+  def fetch_jobs_users 
+    @job = Job.find_by(params[:id])
+    jobs_users = @job.users if @job.present?
+    users = Job.find(params[:jobid]).users.order(created_at:"desc")
+    search_string = []
+
+    # Check if Search Keyword is Present & Write it's Query
+    if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
+      search_columns.each do |term|
+        search_string << "#{term} ILIKE :search"
+      end
+      users = users.where(search_string.join(' OR '), search: "%#{params[:search][:value]}%")
+    end
+
+    users = users.page(datatable_page).per(datatable_per_page)
+    render json: {
+      users: users.as_json,
+      recordsTotal: users.count,
+      recordsFiltered: users.total_count
+    }
+  end 
+
   def new 
     @job = Job.new
   end 
 
   def create 
     @job = Job.new(jobs_create_params)
-    if @job.save!
+    if @job.save 
       redirect_to(jobs_url, :notice => 'Job was sucessfully added.')
     else
       format.html{ render :new , status: :unprocessable_entity }
@@ -70,7 +94,7 @@ class JobsController < ApplicationController
   end 
 
   def update 
-    if @job.update(jobs_params)
+    if @job.update(jobs_update_params)
       JobCreatedMailer.job_assign(@job).deliver
       redirect_to jobs_path
     else  
@@ -92,10 +116,6 @@ class JobsController < ApplicationController
     authorize! :read, @job
   end 
   private 
-  
-  # def set_project 
-  #   @project = Project.find_by(:name => params[:name])
-  # end 
 
   def set_job 
     @job = Job.find(params[:id])
@@ -105,7 +125,7 @@ class JobsController < ApplicationController
     params.require(:job).permit(:name, :is_active, :project_id)
   end 
 
-  def jobs_params 
+  def jobs_update_params 
     params.require(:job).permit(:name, :is_active, :project_id,user_ids: [])
   end 
 end
