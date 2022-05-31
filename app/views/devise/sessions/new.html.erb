@@ -69,12 +69,7 @@
           <h4 class="mb-2">Welcome to EMS! 👋</h4>
           <p class="mb-4">Please sign-in to your account to continue</p>
           <%= form_for(resource, as: resource_name, html: {id: 'login' },url: session_path(resource_name)) do |f| %>
-            <p class="notice"><%= notice %>
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            </p>
-	            <p class="alert alert-warning"><%= alert %>
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            </p>
+            <%= render 'shared/messages' %>
             <div class="mb-3">
               <%= f.label :email,class:'form-lable' %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control'%>

@@ -123,62 +123,6 @@
           <div data-i18n="Account Settings">Leave Application</div>
         <% end %>
       </li> 
-    <% if current_user.emp_admin? %>
-    <li class="menu-item">
-      <a href="javascript:void(0);" class="collapsible menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Account Settings">Account Settings</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="pages-account-settings-account.html" class="menu-link">
-            <div data-i18n="Account">Account</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="pages-account-settings-notifications.html" class="menu-link">
-            <div data-i18n="Notifications">Notifications</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="pages-account-settings-connections.html" class="menu-link">
-            <div data-i18n="Connections">Connections</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="javascript:void(0);" class="collapsible menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-        <div data-i18n="Authentications">Authentications</div>
-      </a>
-    <% end %>
-        <ul class="menu-sub">
-          <% if !current_user.present? %>  
-            <li class="menu-item">
-              <a href="auth-login-basic.html" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Login</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Register</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Forgot Password</div>
-              </a>
-            </li>
-          <% else %>
-            <li class="menu-item">
-              <a href="<%= destroy_user_session_path %>" class="menu-link" target="_blank">
-                <div data-i18n="Basic">Logout</div>
-              </a>
-            </li>
-          <% end %>   
-        </ul>
-    </li>
   </ul>
 </aside>
 

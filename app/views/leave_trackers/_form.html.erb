@@ -1,5 +1,4 @@
 <%= form_with(id:'leavtrackervalidate', model: leavetracker, local: true) do |form|%>
-  
   <% if leavetracker.errors.any? %>
     <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -16,7 +15,7 @@
       <div class="input-group input-group-merge">
         <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-time"></i>
         </span>
-        <%= form.date_field :from_date, min: Date.today,class:"form-control datepicker", data: {error: "#errTime1"} %>
+        <%= form.date_field :from_date, min: Date.today,class:"form-control", data: {error: "#errTime1"} %>
       </div>
       <span id="errTime1"></span>
     </div>

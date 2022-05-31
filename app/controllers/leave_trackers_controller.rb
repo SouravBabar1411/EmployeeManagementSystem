@@ -6,6 +6,7 @@ class LeaveTrackersController < ApplicationController
 
   def index
     @leavetrackers = LeaveTracker.all
+    # binding.pry
   end
 
   def fetch_leaves

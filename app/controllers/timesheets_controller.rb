@@ -1,3 +1,4 @@
+
 class TimesheetsController < ApplicationController
   
   before_action :authenticate_user!
@@ -24,26 +25,29 @@ class TimesheetsController < ApplicationController
     end
 
     if params["filters"].present?
-      # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-      timesheets = timesheets.this_week
+    # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
+    # timesheets = timesheets.this_week
       
       case params["filters"]
-      when "{\"timesheet\":[\"This Month\"]}" 
-        timesheets = timesheets.this_month
-      when "{\"timesheet\":[\"Last Month\"]}" 
-        timesheets = timesheets.last_month
-      when "{\"timesheet\":[\"This Year\"]}"
-        timesheets = timesheets.this_year
-      end
+        when "{\"timesheet\":[\"This Month\"]}" 
+          timesheets = timesheets.this_month
+        when "{\"timesheet\":[\"Last Month\"]}" 
+          timesheets = timesheets.last_month
+        when "{\"timesheet\":[\"This Year\"]}"
+          timesheets = timesheets.this_year
+        else
+          timesheets = timesheets.all
+        end
     end
 
-    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
-
+    timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    timesheets = timesheets.page(datatable_page).per(datatable_per_page)  
+    
     render json: {
-      timesheets: timesheets.as_json,
+      timesheets:timesheets.as_json,
       draw: params['draw'].to_i,
-      recordsTotal: timesheets.count,
+      recordsTotal:timesheets.count,
+      recordsFiltered:timesheets.total_count,
     }
   end
 
@@ -51,9 +55,7 @@ class TimesheetsController < ApplicationController
   def show
   end
 
-  
-
-  # 
+  # GET /timesheets/new
   def new
     @timesheet = Timesheet.new
     # @timesheet = current_user.timesheets.build
@@ -63,7 +65,7 @@ class TimesheetsController < ApplicationController
   def edit
   end
 
-  # Create and save timesheet
+  # POST /timesheets or /timesheets.json
   def create
     @timesheet = Timesheet.new(timesheet_params)
     respond_to do |format|
@@ -109,21 +111,6 @@ class TimesheetsController < ApplicationController
   def sort_column
     columns = %w(description)
     columns[params[:order]['0'][:column].to_i - 1]
-  end
-
-   ## Returns Datatable Sorting Direction
-  def datatable_sort_direction
-    params[:order]['0'][:dir] == 'desc' ? 'desc' : 'asc'
-  end
-
-  ## Returns Datatable Page Number
-  def datatable_page
-    params[:start].to_i / datatable_per_page + 1
-  end
-
-  ## Returns Datatable Per Page Length Count
-  def datatable_per_page
-    params[:length].to_i > 0 ? params[:length].to_i : 10
   end
 
   # Use callbacks to share common setup or constraints between actions.

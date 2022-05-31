@@ -41,6 +41,7 @@ class User < ApplicationRecord
   end
 
   ##Associations
+  belongs_to :company
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
   has_many :notifications, as: :notificable 

@@ -6,7 +6,7 @@
       <% if can? :create, Project %>
       <div class="col">
           <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/projects/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add project</span></a></h4>
-        </div>
+      </div>
       <% end %>
         <table class="table" id="projects-list" data-userrole="<%= current_user.role %>">
           <caption class="ms-4">

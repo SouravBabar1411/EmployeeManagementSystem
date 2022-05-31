@@ -38,7 +38,8 @@
 //= require project-jobs
 //= require jobs
 //= require users_jobs
-//= require users_projects
 //= require leavetracker
 //= require project-users
+//= require users_projects
 //= require all.min
+//= require jobs-users

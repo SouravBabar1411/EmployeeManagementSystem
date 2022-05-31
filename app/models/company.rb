@@ -15,6 +15,7 @@
 #
 class Company < ApplicationRecord
   ## Associations
+  has_many :users
   has_many :addresses, as: :addressable  
   has_many :contact_infos, as: :contactable 
   has_many :projects , dependent: :destroy

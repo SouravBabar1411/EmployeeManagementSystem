@@ -5,52 +5,52 @@
       <div class="col-xxl">
         <div class="card mb-4">
           <div class="card-body">
-  <%= form_with(class: 'job-form', model: (@job), local: true) do |f|%>
-    <div class="row mb-3">
-      <label class="col-sm-2 col-form-label" for="basic-icon-default-name">Name</label>
-        <div class="col-sm-10">
-          <div class="input-group input-group-merge">
-            <span id="basic-icon-default-name2" class="input-group-text">
-            <i class="bx bx-code-block"></i></span>
-              <%= f.text_field :name, id:"basic-icon-default-name", class:"form-control", placeholder: "Enter Job Name", data: {error: "#errName"} %>
-          </div>
-            <span id="errName"></span>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label class="col-sm-2 form-label">Status</label>
-          <div class="col-sm-10">
-            <%= f.check_box :is_active, class:"form-check-input", id:"status", data: {error: "#errStatus"} %>
-          <label class="form-check-label" for="status">Active</label>
-          </div>
-            <span id="errStatus"></span>
-      </div>
-      <div class="row mb-3">
-        <%= f.label "Project",class:"col-sm-2 col-form-label" %>
-        <div class="col-sm-10">
-          <div class="input-group input-group-merge">
-              <%= f.collection_select(:project_id, Project.all, :id, :name, { :prompt => 'All Projects', :selected => @job.project_id }, { class: 'form-control select-projects', data: {error: "#errSelectProject"} }) %>
-          </div>
-            <span id="errSelectProject"></span>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" for="html5-select-users">Assign To</label>
-          <div class="col-sm-10">
-            <div class="input-group input-group-merge" id="html5-select-users">
-              <%= f.collection_select(:user_ids, User.all, :id, :first_name, { :prompt => 'Select an Employees' }, { class: 'form-control select-users',multiple: true, data: {error: "#errSelectEmployees"} }) %>
-            </div>
-              <span id="errSelectEmployees"></span>
-          </div>
-      </div>
-      <div class="row justify-content-end">
-        <div class="col-sm-10">
-            <%= f.submit action_text, class:'btn btn-primary'%>
-        </div>
-        <div class="col-sm-3 project-back-btn">
-            <%= link_to 'Back', jobs_path, class:'btn btn-primary mb-2' %>
-        </div>
-  <% end %>
+            <%= form_with(class: 'job-form', model: (@job), local: true) do |f|%>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="basic-icon-default-name">Name</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-name2" class="input-group-text">
+                      <i class="bx bx-code-block"></i></span>
+                        <%= f.text_field :name, id:"basic-icon-default-name", class:"form-control", placeholder: "Enter Job Name", data: {error: "#errName"} %>
+                    </div>
+                      <span id="errName"></span>
+                  </div>
+              </div>
+              <div class="row mb-3">
+                  <label class="col-sm-2 form-label">Status</label>
+                    <div class="col-sm-10">
+                      <%= f.check_box :is_active, class:"form-check-input", id:"status", data: {error: "#errStatus"} %>
+                    <label class="form-check-label" for="status">Active</label>
+                    </div>
+                      <span id="errStatus"></span>
+                </div>
+                <div class="row mb-3">
+                  <%= f.label "Project",class:"col-sm-2 col-form-label" %>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                        <%= f.collection_select(:project_id, Project.all, :id, :name, { :prompt => 'All Projects', :selected => @job.project_id }, { class: 'form-control select-projects', data: {error: "#errSelectProject"} }) %>
+                    </div>
+                      <span id="errSelectProject"></span>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="html5-select-users">Assign To</label>
+                    <div class="col-sm-10">
+                      <div class="input-group input-group-merge" id="html5-select-users">
+                        <%= f.collection_select(:user_ids, User.all, :id, :first_name, { :prompt => 'Select an Employees' }, { class: 'form-control select-users',multiple: true, data: {error: "#errSelectEmployees"} }) %>
+                      </div>
+                        <span id="errSelectEmployees"></span>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                  <div class="col-sm-10">
+                      <%= f.submit action_text, class:'btn btn-primary'%>
+                  </div>
+                  <div class="col-sm-3 project-back-btn">
+                      <%= link_to 'Back', jobs_path, class:'btn btn-primary mb-2' %>
+                  </div>
+            <% end %>
           </div>
         </div>
       </div>
