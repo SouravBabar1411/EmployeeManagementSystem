@@ -1,3 +1,4 @@
+
 class TimesheetsController < ApplicationController
   
   before_action :authenticate_user!
@@ -39,13 +40,20 @@ class TimesheetsController < ApplicationController
         end
     end
 
-    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
-
+    timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    timesheets = timesheets.page(datatable_page).per(datatable_per_page)  
+    
     render json: {
+<<<<<<< HEAD
       timesheets: timesheets.as_json,
       draw: params['draw'].to_i,
       recordsTotal: timesheets.count,
+=======
+      timesheets:timesheets.as_json,
+      draw: params['draw'].to_i,
+      recordsTotal:timesheets.count,
+      recordsFiltered:timesheets.total_count,
+>>>>>>> authentication-migration-merge
     }
   end
   

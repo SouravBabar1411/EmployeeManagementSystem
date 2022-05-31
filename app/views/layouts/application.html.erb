@@ -28,9 +28,9 @@
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
-         <%if user_signed_in?%>
-          <%= render 'navigation/nav' %>
-         <%end%>
+          <%if user_signed_in?%>
+            <%= render 'navigation/nav' %>
+          <%end%>
           <!-- Content wrapper -->
           <div class="content-wrapper">
 
@@ -40,15 +40,14 @@
             <!-- Content -->
             <%= yield %>
             <!-- Content -->
+            <div class="content-backdrop fade"></div>
             <!-- Footer -->
             <%= render 'shared/footer' %>
             <!-- Footer -->
-            <div class="content-backdrop fade"></div>
-            </div>
-            <!-- Content wrapper -->
-          </div>  
-          <!-- / Layout page -->
-        </div>
+          </div>
+          <!-- Content wrapper -->
+        </div>  
+        <!-- / Layout page -->
       </div>
     </div>
     <!-- / Layout wrapper -->

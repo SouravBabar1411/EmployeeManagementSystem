@@ -4,6 +4,7 @@ $(document).on('turbolinks:load', function() {
       serverSide: true,
       responsive: false,
       info: false,
+      paging: true,
       ajax: {
           "url": "/fetch_timesheets",
           "dataSrc": "timesheets"
@@ -43,7 +44,6 @@ $(document).on('turbolinks:load', function() {
               title: 'Actions',
               data: null,
               searchable: false,
-              orderable: false,
               render: function(data, type, row) {
                   let action_html = "<div class='input-group' data-timesheet-id ='" + data.id + "'>" +
                       "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function() {
                       "<div class='dropdown-menu'>"
 
                   if (data.is_approved == 0)
-                  // Edit timesheet Button  
+                  // Edit timesheet Button
                       action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
                       " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                       "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
@@ -66,14 +66,19 @@ $(document).on('turbolinks:load', function() {
               }
           }
       ],
-      aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],      
-      order: [
-          [0, "asc"]
+      aLengthMenu: [
+          [5, 10, 15, 20],
+          [5, 10, 15, 20]
       ],
-      pageLength: 5
+      order: [
+          [1, "asc"]
+      ],
+      bInfo: false,
+      pageLength: 5,
   });
 
   // sweet alert 
+<<<<<<< HEAD
   $('#timesheet-list-table').on('click', '.delete-user', function () {
     event.preventDefault(); // don't forget to prevent the default event
     Swal.fire({
@@ -95,6 +100,29 @@ $(document).on('turbolinks:load', function() {
     });
   });
      
+=======
+  $('#timesheet-list-table').on('click', '.delete-user', function() {
+      event.preventDefault(); // don't forget to prevent the default event
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+              )
+          }
+      });
+  });
+
+>>>>>>> authentication-migration-merge
   // Validations
   $("#timesheetValidate").validate({
       rules: {

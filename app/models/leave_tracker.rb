@@ -40,5 +40,4 @@ class LeaveTracker < ApplicationRecord
     response.merge!({emp_name: self.user.first_name})
     response
   end 
-
 end

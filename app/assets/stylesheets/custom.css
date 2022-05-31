@@ -41,29 +41,6 @@ overflow: hidden;
 background-color: #f1f1f1;
 }
 
-.alert {
-padding: 1px;
-margin-left: 4px;
-margin-right: 5px;
-background-color: #ff9600;
-color: white;
-}
-
-.closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-
-.closebtn:hover {
-color: black;
-}
-
 .more_action_bg {
 background-color: #4c499c !important;
 }
@@ -87,29 +64,6 @@ padding: 0 18px;
 display: none;
 overflow: hidden;
 background-color: #f1f1f1;
-}
-
-.alert {
-padding: 1px;
-margin-left: -8px;
-margin-right: 5px;
-background-color: #ff9600;
-color: white;
-}
-
-.closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-
-.closebtn:hover {
-color: black;
 }
 
 .more_action_bg {
@@ -184,26 +138,7 @@ display: none;
 overflow: hidden;
 background-color: #f1f1f1;
 }
-.alert {
-padding: 1px;
-margin-left: 4px;
-margin-right: 5px;
-background-color: #ff9600;
-color: white;
-}
-.closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-.closebtn:hover {
-color: black;
-}
+
 .more_action_bg {
 background-color: #4c499c !important;
 }
@@ -366,26 +301,7 @@ display: none;
 overflow: hidden;
 background-color: #f1f1f1;
 }
-.alert {
-padding: 1px;
-margin-left: 4px;
-margin-right: 5px;
-background-color: #ff9600;
-color: white;
-}
-.closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
-}
-.closebtn:hover {
-color: black;
-}
+
 .more_action_bg {
 background-color: #4c499c !important;
 }
@@ -529,6 +445,13 @@ background-repeat: no-repeat;
 background-size: cover;
 background-position: center center;
 background-size: 100% 800%;
+}
+.cardProject{
+    background-image: url("leave.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-size: 100% 800%;
 }
 .cardNewJoiner{
 background-image: url("welcome.png");
