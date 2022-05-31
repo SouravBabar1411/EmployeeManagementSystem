@@ -39,14 +39,17 @@
 				</div>
 		</div>
 	</div>
-	<div class="col-sm-5" id="birthday">
+	<div class="col-sm-5 mt-3" id="birthday">
 		<div class="card mb-4">
-			<h5 class="card-header">Projects</h5>
+			<h5 class="card-header">Project</h5>
 			<hr class="m-0" />
-				<div class="card-body">
+				<div class="card-body cardProject mt-5">
 					<div class="row gy-3">
 					<div class="col-md">
-						<small class="text-light fw-semibold">Reports</small>
+						<small class="text-light fw-semibold">Project</small>
+						<ul>
+							<li><%= @projects %></li>
+					  </ul>
 					</div>
 					</div>
 				</div>
@@ -54,17 +57,19 @@
 				</div>
 		</div>
 	</div>
-	<div class="col-sm-5" id="birthday">
+	<div class="col-sm-5 mt-3" id="birthday">
 		<div class="card mb-4">
-			<h5 class="card-header">Request For Approve leave </h5>
+			<h5 class="card-header">Request for leaves</h5>
 			<hr class="m-0" />
-				<div class="card-body">
+				<div class="card-body cardLeave mt-5">
 					<div class="row gy-3">
 					<div class="col-md">
-						<small class="text-light fw-semibold"></small>
+						<small class="text-light fw-semibold">Pending Leave's</small>
 						<ul>
-							<li>pending  <%= @leaves %></li>
+						 <li><%= @leaves %></li>
 					  </ul>
+					</div>
+					</div>
 				</div>
 				<div class="card-body">
 				</div>

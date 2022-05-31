@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   # before_action :set_project
   before_action :set_job, only: [:show, :edit, :update, :destroy]
@@ -59,7 +59,6 @@ class JobsController < ApplicationController
 
   def new 
     @job = Job.new
-    authorize! :read, @job
   end 
 
   def create 
