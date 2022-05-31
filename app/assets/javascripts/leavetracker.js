@@ -70,8 +70,8 @@ $(document).on('turbolinks:load', function() {
     ],
     pageLength: 5
   });
-
   
+
   $('#leavetracker-listing').on('click', '.delete-user', function () {
     event.preventDefault(); // don't forget to prevent the default event
     Swal.fire({

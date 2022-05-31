@@ -17,11 +17,13 @@ class LeaveTracker < ApplicationRecord
 
   ## Validations
   validates :from_date, :to_date, :reason, presence: true 
-  validate :must_have_valid_from_date 
+  validate :must_have_valid_from_date
 
   def must_have_valid_from_date
-    if from_date <= Date.today + 3.days
-      errors.add(:from_date, "apply before 3 days")
+    global_val = GlobalConfiguration.where(config_key: "takeleavebefore").pluck(:config_value)    
+    # binding.pry
+    if from_date <= Date.today + global_val[0].days
+      errors.add(:from_date, "apply before #{global_val[0]} days")
     end
   end
 
@@ -30,4 +32,6 @@ class LeaveTracker < ApplicationRecord
     response.merge!({emp_name: self.user.first_name})
     response
   end 
+
+
 end

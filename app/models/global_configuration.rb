@@ -4,7 +4,7 @@
 #
 #  id           :bigint           not null, primary key
 #  config_key   :string           not null
-#  config_value :string           not null
+#  config_value :integer          not null
 #  company_id   :bigint
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
