@@ -18,12 +18,22 @@ class LeaveTracker < ApplicationRecord
   ## Validations
   validates :from_date, :to_date, :reason, presence: true 
   validate :must_have_valid_from_date
+  validate :leave_count
 
   def must_have_valid_from_date
     global_val = GlobalConfiguration.where(config_key: "takeleavebefore").pluck(:config_value)    
     # binding.pry
     if from_date <= Date.today + global_val[0].days
-      errors.add(:from_date, "apply before #{global_val[0]} days")
+      errors.add(:base, "apply for leave  before #{global_val[0]} days")
+    end
+  end
+
+  def leave_count
+    leave = GlobalConfiguration.where(config_key: "totalleaves").pluck(:config_value)
+    user = self.user
+    user_leave_count = user.leave_trackers.count
+    if leave[0] <= user_leave_count
+      errors.add(:base, "your leave's are over")
     end
   end
 
@@ -33,5 +43,5 @@ class LeaveTracker < ApplicationRecord
     response
   end 
 
-
+  
 end

@@ -24,8 +24,8 @@ class TimesheetsController < ApplicationController
     end
 
     if params["filters"].present?
-      # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
-      timesheets = timesheets.this_week
+    # filters = JSON.parse(params["filters"].gsub("=>", ":").gsub(":nil,", ":null,"))
+    timesheets = timesheets.this_week
       
       case params["filters"]
         when "{\"timesheet\":[\"This Month\"]}" 
@@ -43,17 +43,15 @@ class TimesheetsController < ApplicationController
     # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
 
     render json: {
-        timesheets: timesheets.as_json,
-        draw: params['draw'].to_i,
-        recordsTotal: timesheets.count,
+      timesheets: timesheets.as_json,
+      draw: params['draw'].to_i,
+      recordsTotal: timesheets.count,
     }
   end
-
+  
   # Display Timesheet Data
   def show
   end
-
-  
 
   # GET /timesheets/new
   def new
