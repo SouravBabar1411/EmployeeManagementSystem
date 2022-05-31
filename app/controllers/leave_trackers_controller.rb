@@ -1,6 +1,6 @@
 class LeaveTrackersController < ApplicationController
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :set_leavetracker, only: %i[ edit update destroy ]
   # load_and_authorize_resource
 

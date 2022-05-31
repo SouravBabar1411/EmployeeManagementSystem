@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  # Api routes
+  namespace :api do
+    namespace :v1 do
+      resources :leave_trackers
+    end
+  end
+
   # Root route of the application
   root to: "dashboards#index"
 
@@ -63,5 +70,4 @@ Rails.application.routes.draw do
   
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'
-
 end

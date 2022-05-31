@@ -35,9 +35,9 @@ class LeaveTracker < ApplicationRecord
     end
   end
 
-  def as_json 
-    response = super
-    response.merge!({emp_name: self.user.first_name})
-    response
-  end 
+  # def as_json 
+  #   response = super
+  #   response.merge!({emp_name: self.user.first_name})
+  #   response
+  # end 
 end
