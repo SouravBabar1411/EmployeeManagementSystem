@@ -17,3 +17,10 @@ ActionMailer::Base.smtp_settings = {
   authentication: :plain,
   enable_starttls_auto: true
 }
+# Below lines are added to stop rails to put field_with_error class when
+# errors appear on the screen. We have used custom.css for showing errors 
+# in the application
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  html_tag.html_safe
+end
+}
