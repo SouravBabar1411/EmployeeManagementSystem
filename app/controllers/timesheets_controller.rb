@@ -44,16 +44,10 @@ class TimesheetsController < ApplicationController
     timesheets = timesheets.page(datatable_page).per(datatable_per_page)  
     
     render json: {
-<<<<<<< HEAD
-      timesheets: timesheets.as_json,
-      draw: params['draw'].to_i,
-      recordsTotal: timesheets.count,
-=======
-      timesheets:timesheets.as_json,
-      draw: params['draw'].to_i,
-      recordsTotal:timesheets.count,
-      recordsFiltered:timesheets.total_count,
->>>>>>> authentication-migration-merge
+    timesheets:timesheets.as_json,
+    draw: params['draw'].to_i,
+    recordsTotal:timesheets.count,
+    recordsFiltered:timesheets.total_count,
     }
   end
   
