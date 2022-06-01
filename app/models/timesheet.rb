@@ -22,15 +22,15 @@ class Timesheet < ApplicationRecord
   validates :time, :description,  presence: true 
 
   ## Modify JSON Response
-  # def as_json
-  #   response = super
-  #   response.merge!({user_name: self.user.first_name})
-  #   response.merge!({project_name: self.project.name})
-  #   response.merge!({job_name: self.job.name})
-  #   response.merge!({startdate: self.created_at.strftime("%Y-%m-%d")})
-  #   # response.merge!({workingtime: self.time.strftime("%I:%M")})
-  #   response
-  # end
+  def as_json
+    response = super
+    response.merge!({user_name: self.user.first_name})
+    response.merge!({project_name: self.project.name})
+    response.merge!({job_name: self.job.name})
+    response.merge!({startdate: self.created_at.strftime("%Y-%m-%d")})
+    # response.merge!({workingtime: self.time.strftime("%I:%M")})
+    response
+  end
   
   scope :yesterday, -> { where(created_at: (Time.now - 1.day..Time.now))}
   scope :this_week, -> { where(created_at: Time.now.at_beginning_of_week...Time.now.at_end_of_week - 2.days) }
