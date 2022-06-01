@@ -34,7 +34,7 @@ class Timesheet < ApplicationRecord
   
   scope :yesterday, -> { where(created_at: (Time.now - 1.day..Time.now))}
   scope :this_week, -> { where(created_at: Time.now.at_beginning_of_week...Time.now.at_end_of_week - 2.days) }
-  scope :last_month, -> { where(created_at: (Time.now.beginning_of_month - 1.month)..((Time.now.beginning_of_month - 1.month).end_of_month)).uniq }
+  scope :last_month, -> { where(created_at: 1.month.ago.beginning_of_month..1.month.ago.end_of_month) }
   scope :this_month, -> { where(created_at: Time.now.beginning_of_month..Time.now)}
   scope :this_year, -> { where(created_at: Time.now.beginning_of_year..Time.now) }
 
