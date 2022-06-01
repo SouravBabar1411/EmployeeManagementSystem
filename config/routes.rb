@@ -12,10 +12,17 @@ Rails.application.routes.draw do
     end
   end
 
-  # Api routes
+  # Api routes for projects
   namespace :api do
     namespace :v1 do
       resources :projects
+    end
+  end
+
+  # Api routes jobs
+  namespace :api do
+    namespace :v1 do
+      resources :jobs
     end
   end
 
