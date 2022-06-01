@@ -1,81 +1,81 @@
 $(document).on('turbolinks:load', function() {
   // Timesheets Server Side Listing
-  $('#timesheet-list-table').DataTable({
-      serverSide: true,
-      responsive: false,
-      info: false,
-      paging: true,
-      ajax: {
-          "url": "/fetch_timesheets",
-          "dataSrc": "timesheets"
-      },
-      "columns": [{
-              title: 'Project Name',
-              data: "project_name"
-          },
-          {
-              title: 'Job Name',
-              data: "job_name"
-          },
-          {
-              title: 'Description',
-              data: "description"
-          },
-          {
-              title: 'Time',
-              data: "time"
-          },
-          {
-              title: 'Date',
-              data: "startdate"
-          },
-          {
-              title: 'Is Approve',
-              data: null,
-              render: function(data, type, row) {
-                  if (data.is_approved == 1)
-                      return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
-                  else
-                      return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
-              }
+$('#timesheet-list-table').DataTable({
+	processing: true,
+	paging: true,
+	serverSide: true,
+	responsive: false,
+		ajax: {
+				"url": "/fetch_timesheets",
+				"dataSrc": "timesheets"
+		},
+		"columns": [{
+						title: 'Project Name',
+						data: "project_name"
+				},
+				{
+						title: 'Job Name',
+						data: "job_name"
+				},
+				{
+						title: 'Description',
+						data: "description"
+				},
+				{
+						title: 'Time',
+						data: "time"
+				},
+				{
+						title: 'Date',
+						data: "startdate"
+				},
+				{
+						title: 'Is Approve',
+						data: null,
+						render: function(data, type, row) {
+								if (data.is_approved == 1)
+										return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
+								else
+										return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
+						}
 
-          },
-          {
-              title: 'Actions',
-              data: null,
-              searchable: false,
-              render: function(data, type, row) {
-                  let action_html = "<div class='input-group' data-timesheet-id ='" + data.id + "'>" +
-                      "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
-                      "<i class='bx bx-dots-vertical-rounded'></i></button>" +
-                      "<div class='dropdown-menu'>"
+				},
+				{
+						title: 'Actions',
+						data: null,
+						searchable: false,
+						render: function(data, type, row) {
+								let action_html = "<div class='input-group' data-timesheet-id ='" + data.id + "'>" +
+										"<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
+										"<i class='bx bx-dots-vertical-rounded'></i></button>" +
+										"<div class='dropdown-menu'>"
 
-                  if (data.is_approved == 0)
-                  // Edit timesheet Button
-                      action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
-                      " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
-                      "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
+								if (data.is_approved == 0)
+								// Edit timesheet Button
+										action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
+										" data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
+										"<i class='bx bx-edit-alt me-1'></i> Edit</a>"
 
-                  // delete timesheet
-                  action_html = action_html + "<a class='dropdown-item delete-user' href = '/timesheets/" + data.id +
-                      "data-confirm='Are you sure?' data-method='delete' >" +
-                      "<i class='bx bx-trash me-1'></i>Delete</a>"
-                  action_html = action_html + "</div></div>"
+								// delete timesheet
+								action_html = action_html + "<a class='dropdown-item delete-user' href = '/timesheets/" + data.id +
+										"data-confirm='Are you sure?' data-method='delete' >" +
+										"<i class='bx bx-trash me-1'></i>Delete</a>"
+								action_html = action_html + "</div></div>"
 
-                  return action_html;
-              }
-          }
-      ],
-      aLengthMenu: [
-          [5, 10, 15, 20],
-          [5, 10, 15, 20]
-      ],
-      order: [
-          [1, "asc"]
-      ],
-      bInfo: false,
-      pageLength: 5,
-  });
+								return action_html;
+						}
+				}
+		],
+		aLengthMenu: [
+				[5, 10, 15, 20],
+				[5, 10, 15, 20]
+		],
+		order: [
+				[1, "asc"]
+		],
+		bInfo: false,
+		pageLength: 5,
+});
 
   // sweet alert 
 

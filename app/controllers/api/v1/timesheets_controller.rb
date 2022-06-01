@@ -1,11 +1,11 @@
 class Api::V1::TimesheetsController < ApplicationController
 	before_action :set_timesheet, only: %i[ edit update destroy ]
   def index
-    @timesheets = Timesheet.all
+    timesheets = Timesheet.all
     # respond_to do |format|
     #   format.json { render :json => @timesheets.to_json, status => :ok }
     # end
-    render_success 200, true, 'timesheets fetched successfully', @timesheets.as_json
+    render_success 200, true, 'timesheets fetched successfully', timesheets.as_json
   end
 
   def create
@@ -25,11 +25,11 @@ class Api::V1::TimesheetsController < ApplicationController
   end
   
   def update                                                    
-    if @timesheet.update(timesheet_params)
+    if timesheet.update(timesheet_params)
       render_success 200, true, 'timesheet updated successfully', @timesheet.as_json
     else
-      if @timesheet.errors
-        errors = @timesheet.errors.full_messages.join(", ")
+      if timesheet.errors
+        errors = timesheet.errors.full_messages.join(", ")
       else
         errors = 'timesheet update failed'
       end
@@ -39,7 +39,7 @@ class Api::V1::TimesheetsController < ApplicationController
   end
 
   def destroy
-    @timesheet.destroy
+    timesheet.destroy
 
     render_success 200, true, 'timesheet deleted successfully', {}
   end
@@ -57,9 +57,9 @@ class Api::V1::TimesheetsController < ApplicationController
 
   ## Set timesheet Object, Return Error if not found
   def set_timesheet
-    @timesheet = Timesheet.where(id: params[:id]).first
+    timesheet = Timesheet.where(id: params[:id]).first
 
-    unless @timesheet
+    unless timesheet
       return return_error 404, false, 'timesheet not found', {}
     end
   end

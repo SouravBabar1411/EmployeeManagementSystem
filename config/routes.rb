@@ -11,6 +11,14 @@ Rails.application.routes.draw do
       resources :leave_trackers
     end
   end
+
+  # Api routes
+  namespace :api do
+    namespace :v1 do
+      resources :projects
+    end
+  end
+
   # Api Routes
   namespace :api do
     namespace :v1 do
