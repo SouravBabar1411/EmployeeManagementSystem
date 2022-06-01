@@ -17,7 +17,7 @@ class LeaveTracker < ApplicationRecord
 
   ## Validations
   validates :from_date, :to_date, :reason, presence: true 
-  # validate :must_have_valid_from_date
+  validate :must_have_valid_from_date
   validate :leave_count
 
   def must_have_valid_from_date

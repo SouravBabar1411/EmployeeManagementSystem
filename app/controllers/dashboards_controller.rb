@@ -1,4 +1,5 @@
 class DashboardsController < ApplicationController
+  before_action :authenticate_user!
   
   def index
     @birthdays = User.where(date_of_birth:  (Time.now)).select(:first_name).pluck(:first_name)

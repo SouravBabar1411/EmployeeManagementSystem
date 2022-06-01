@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[ edit update destroy ]
   before_action :address_params, only: [:update]
   load_and_authorize_resource

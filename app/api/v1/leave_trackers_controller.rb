@@ -3,7 +3,6 @@ module Api
   class LeaveTrackersController < ApplicationController
     before_action :set_leavetracker, only: %i[ edit update destroy ]
 
-
     def index
       @leavetrackers = LeaveTracker.all
       render_success 200, true, 'LeaveTracker fetched successfully', @leavetrackers.as_json
