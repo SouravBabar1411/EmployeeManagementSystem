@@ -5,14 +5,14 @@ module Api
 
     def index
       @leavetrackers = LeaveTracker.all
-      render_success 200, true, 'LeaveTracker fetched successfully', @leavetrackers.as_json
+      render_success 200, true, 'Leaves fetched successfully', @leavetrackers.as_json
     end
 
     def create
       @leavetracker = LeaveTracker.new(leavetracker_params)
 
       if @leavetracker.save
-        render_success 200, true, 'leavetracker created successfully', @leavetracker.as_json
+        render_success 200, true, 'leave created successfully', @leavetracker.as_json
       else
         if @leavetracker.errors
           errors = @leavetracker.errors.full_messages.join(", ")
@@ -26,12 +26,12 @@ module Api
   
     def update                                                    
       if @leavetracker.update(leavetracker_params)
-        render_success 200, true, 'leavetracker updated successfully', @leavetracker.as_json
+        render_success 200, true, 'leave updated successfully', @leavetracker.as_json
       else
         if @leavetracker.errors
           errors = @leavetracker.errors.full_messages.join(", ")
         else
-          errors = 'leavetracker update failed'
+          errors = 'leave update failed'
         end
 
         return_error 500, false, errors, {}
@@ -41,11 +41,11 @@ module Api
     def destroy
       @leavetracker.destroy
 
-      render_success 200, true, 'leavetracker deleted successfully', {}
+      render_success 200, true, 'leave deleted successfully', {}
     end
   
     def show
-      render_success 200, true, 'leavetracker fetched successfully', @leavetracker.as_json
+      render_success 200, true, 'leave fetched successfully', @leavetracker.as_json
     end
 
     private
@@ -53,7 +53,6 @@ module Api
     def set_leavetracker
       @leavetracker = LeaveTracker.find(params[:id])
     end
-
 
     def leavetracker_params
       params.require(:leave_tracker).permit(:from_date, :to_date, :reason, :is_approved, :user_id )
