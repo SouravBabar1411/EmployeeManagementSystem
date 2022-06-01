@@ -11,6 +11,12 @@ Rails.application.routes.draw do
       resources :leave_trackers
     end
   end
+  # Api Routes
+  namespace :api do
+    namespace :v1 do
+      resources :timesheets
+    end
+  end
 
   # Root route of the application
   root to: "dashboards#index"
