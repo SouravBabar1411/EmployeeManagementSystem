@@ -1,14 +1,14 @@
 <%= form_with(id:'leavtrackervalidate', model: leavetracker, local: true) do |form|%>
   <% if leavetracker.errors.any? %>
-    <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <div>
         <% leavetracker.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li><%= message %></li><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         <% end %>
       </div>
     </div>
   <% end %>
+
   <div class="row mb-3">
     <%= form.label "form_date", class:"col-sm-2 col-form-label"%>
     <div class="col-sm-10">

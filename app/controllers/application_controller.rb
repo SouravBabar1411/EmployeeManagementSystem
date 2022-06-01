@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -7,6 +7,21 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do
    flash[:error] = 'Access denied!'
    redirect_to root_url
+  end
+
+  ## Set Page Number
+  def page
+    @page ||= params[:page] || 1
+  end
+
+  ## Set Per Page Records Length
+  def per_page
+    @per_page ||= params[:per_page] || 20
+  end
+
+  ## Set Total Records Count in Response Header
+  def set_pagination_header(resource)
+    headers['X-Total-Count'] = resource.total_count
   end
 
   protected
@@ -30,4 +45,25 @@ class ApplicationController < ActionController::Base
   def datatable_sort_direction
     params[:order]['0'][:dir] == 'desc' ? 'desc' : 'asc'
   end
+
+  ## Return Success Response
+  def render_success(code, status, message, data = {})
+    render json: {
+        code: code,
+        status: status,
+        message: message,
+        data: data
+    }, status: code
+  end
+
+  ## Return Error Response
+  def return_error(code, status, message, data = {})
+    render json: {
+        code: code,
+        status: status,
+        message: message,
+        data: data
+    }, status: code
+  end
+
 end
