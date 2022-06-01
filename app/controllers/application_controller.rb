@@ -10,6 +10,27 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  
+  # Return success response
+  def render_success code, status, message, data = {}
+    render json: {
+      code: code,
+      status: status,
+      message: message,
+      data: data 
+    }, status: code
+  end
+    
+  # Return error response
+  def return_error(code, status, message, data = {})
+    render json: {
+      code: code,
+      status: status,
+      message: message,
+      data: data
+  }, status: code
+  end
+
   ## To permit additional parameters
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:first_name,:last_name,:date_of_birth,:is_active,:role,:gender,:image,:company_id ])

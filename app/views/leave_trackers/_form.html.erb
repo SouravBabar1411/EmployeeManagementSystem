@@ -1,6 +1,6 @@
 <%= form_with(id:'leavtrackervalidate', model: leavetracker, local: true) do |form|%>
   <% if leavetracker.errors.any? %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-dan alert-dismissible fade show" role="alert">
       <div>
         <% leavetracker.errors.full_messages.each do |message| %>
           <li><%= message %></li> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
