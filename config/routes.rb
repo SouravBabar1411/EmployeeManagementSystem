@@ -91,6 +91,7 @@ Rails.application.routes.draw do
   resources :leave_trackers
   get '/fetch_leaves', to: 'leave_trackers#fetch_leaves' 
   get '/fetch_leaveapplication', to: 'leave_trackers#fetch_leaveapplication'
+  patch '/fetch_leaveapplication/:id', to: 'leave_trackers#approve_reject'
   
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'

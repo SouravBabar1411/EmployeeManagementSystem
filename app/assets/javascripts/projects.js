@@ -135,7 +135,7 @@ $(document).on('turbolinks:load', function() {
   
               action_html = action_html + "</div></div>"
             }
-            else{
+            else {
               action_html = ""
             }
             return action_html;
