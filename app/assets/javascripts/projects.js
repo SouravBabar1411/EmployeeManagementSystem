@@ -148,9 +148,6 @@ $(document).on('turbolinks:load', function() {
     order: [[1, "asc"]],
     bInfo: false,
     pageLength: 5,
-    // oLanguage: {
-    //   sProcessing: "<div class='spinner-border' role='status'><span class='sr-only'></span></div>"
-    // },
     aoColumnDefs: [
       {'bSortable': false, 'aTargets': [0]}
     ],

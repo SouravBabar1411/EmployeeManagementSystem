@@ -42,32 +42,57 @@ $(document).on('turbolinks:load', function() {
           searchable: false,
           orderable: false,
           render: function(data, type, row) {
-            let action_html = "<div class='input-group' data-leavetracker-id ='" + data.id + "'>" +
+            let action_html = ""
+            if($('#leavetracker-listing').data('userrole') == "employee"){
+            action_html = "<div class='input-group' data-leavetracker-id ='" + data.id + "'>" +
                 "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
                 "<i class='bx bx-dots-vertical-rounded'></i></button>" +
                 "<div class='dropdown-menu'>"
-            
-            if (data.is_approved == 0)
+
                 // Edit laeavetracker Button  
             action_html = action_html + "<a class='dropdown-item btn-sm' href = '/leave_trackers/" + data.id + "/edit'" +
                 " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
                 "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
-                
+
             // delete leavetracker
             action_html = action_html + "<a class='dropdown-item delete-user' href = '/leave_trackers/" + data.id +
                 "data-confirm='Are you sure?' data-method='delete' >" +
                 "<i class='bx bx-trash me-1'></i>Delete</a>"
-            action_html = action_html + "</div></div>"
+            }
+          else{
+            action_html = ""
+            action_html = "<div class='input-group' data-leavetracker-id ='" + data.id + "'>" +
+                "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
+                "<i class='bx bx-dots-vertical-rounded'></i></button>" +
+                "<div class='dropdown-menu'>"
 
-            return action_html;
+                // Edit laeavetracker Button  
+            action_html = action_html + "<a class='dropdown-item btn-sm' href = '/leave_trackers/" + data.id + "/edit'" +
+                " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
+                "<i class='bx bx-edit-alt me-1'></i> Approve</a>"
+
+            // delete leavetracker
+            action_html = action_html + "<a class='dropdown-item delete-user' href = '/leave_trackers/" + data.id +
+                "data-confirm='Are you sure?' data-method='delete' >" +
+                "<i class='bx bx-trash me-1'></i>Reject</a>"
+          }
+          return action_html;
           }
         }
       ],
-    aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],      
-    order: [
-        [0, "asc"]
+    aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
+    order: [[1, "asc"]],
+    bInfo: false,
+    pageLength: 5,
+    aoColumnDefs: [
+      {'bSortable': false, 'aTargets': [0]}
     ],
-    pageLength: 5
+    initComplete: function (settings, json) {
+      $(".dt-buttons .btn").removeClass("btn-secondary");
+      // $('.dataTables_filter').addClass('search-icon-placement');
+    },
+      
+    order: [['1', 'desc']]
   });
   
 
