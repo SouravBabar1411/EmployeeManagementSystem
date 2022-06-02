@@ -104,3 +104,6 @@ gem "select2-rails"
 
 #for authorization
 gem 'cancancan', '~> 1.9'
+
+## authentication 
+gem 'devise_token_auth'

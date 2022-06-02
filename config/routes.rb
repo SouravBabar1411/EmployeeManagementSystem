@@ -12,7 +12,24 @@ Rails.application.routes.draw do
     end
   end
 
-  # Api Routes for timesheet
+  # Api routes for projects
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+        registrations: 'registrations', sessions: 'sessions'
+     }
+      resources :projects
+    end
+  end
+
+  # Api routes jobs
+  namespace :api do
+    namespace :v1 do
+      resources :jobs
+    end
+  end
+
+  # Api Routes
   namespace :api do
     namespace :v1 do
       resources :timesheets

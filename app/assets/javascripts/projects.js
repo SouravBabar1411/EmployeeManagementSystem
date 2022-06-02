@@ -52,15 +52,7 @@ $(document).on('turbolinks:load', function() {
         var json = jQuery.parseJSON(data);
         return JSON.stringify(json);
       },
-    },columnDefs : [
-        { targets : [6],
-          render : function (data, type, row) {
-            if($('#projects-list').data('userrole') == "employee"){
-             return data == '1'
-           }
-          }
-        }
-   ],
+    },
       columns: [
         {
           title: 'Name',
