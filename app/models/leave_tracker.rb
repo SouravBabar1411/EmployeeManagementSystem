@@ -29,10 +29,10 @@ class LeaveTracker < ApplicationRecord
 
   def leave_count
     leave = GlobalConfiguration.where(config_key: "totalleaves").pluck(:config_value)
-    user_leave_count = self.user.leave_trackers.count
-    if leave[0] <= user_leave_count
-      errors.add(:base, "your leave's are over")
-    end
+    # user_leave_count = self.user.leave_trackers.count
+    # if leave[0] <= user_leave_count
+    #   errors.add(:base, "your leave's are over")
+    # end
   end
 
   def as_json 

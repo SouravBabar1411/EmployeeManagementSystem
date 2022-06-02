@@ -1,6 +1,6 @@
 class LeaveTrackerMailer < ApplicationMailer
 
-	def applay_leave_mail(leavetracker)
+	def apply_leave_mail(leavetracker)
 		@leavetracker = leavetracker
 		mail(to:  User.where(role:1).select(:email).pluck(:email),
 		subject: 'Application For Leave')
