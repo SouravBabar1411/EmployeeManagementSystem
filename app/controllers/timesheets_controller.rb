@@ -14,7 +14,7 @@ class TimesheetsController < ApplicationController
     if current_user.emp_admin? 
       timesheets = Timesheet.all
     else 
-      timesheets = current_user.leave_trackers
+      timesheets = current_user.timesheets
     end 
     search_string = []
 
