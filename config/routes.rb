@@ -5,6 +5,37 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  # Api routes for leave_tracker
+  namespace :api do
+    namespace :v1 do
+      resources :leave_trackers
+    end
+  end
+
+  # Api routes for projects
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+        registrations: 'registrations', sessions: 'sessions'
+     }
+      resources :projects
+    end
+  end
+
+  # Api routes jobs
+  namespace :api do
+    namespace :v1 do
+      resources :jobs
+    end
+  end
+
+  # Api Routes
+  namespace :api do
+    namespace :v1 do
+      resources :timesheets
+    end
+  end
+
   # Root route of the application
   root to: "dashboards#index"
 
@@ -20,6 +51,8 @@ Rails.application.routes.draw do
   get 'fetch_projects_jobs', to: 'projects#fetch_projects_jobs'
   get 'projects_users/:id', to: 'projects#projects_users'
   get 'fetch_projects_users', to: 'projects#fetch_projects_users'
+  get 'jobs_users/:id', to: 'jobs#jobs_users'
+  get 'fetch_jobs_users', to: 'jobs#fetch_jobs_users'
 
   ## jobs routes 
   resources :jobs do 
@@ -58,8 +91,8 @@ Rails.application.routes.draw do
   resources :leave_trackers
   get '/fetch_leaves', to: 'leave_trackers#fetch_leaves' 
   get '/fetch_leaveapplication', to: 'leave_trackers#fetch_leaveapplication'
+  patch '/fetch_leaveapplication/:id', to: 'leave_trackers#approve_reject'
   
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'
-
 end

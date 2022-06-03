@@ -3,12 +3,10 @@
     <div class="card">
       <h5 class="card-header">Jobs</h5>
       <div class="table-responsive text-nowrap">
-      <% if can? :create, Job %>
-      <div class="col">
-          <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/jobs/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add job</span></a></h4>
+        <div class="col">
+          <h4 class="fw-bold float-end m-3"><span class="text-muted fw-light"><a href='/jobs/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add job</span></a></h4>
         </div>
-      <% end %>
-        <table class="table" id="jobs-list">
+        <table class="table" id="jobs-list" data-userrole="<%= current_user.role %>">
           <caption class="ms-4">
             List of Jobs
           </caption>

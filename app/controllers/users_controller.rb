@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[ edit update destroy ]
   before_action :address_params, only: [:update]
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
 
   def index
@@ -45,8 +46,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params) 
-    @user.save
+    @user = User.new(user_params)
+    @user.save!
     # @address = Address.new(build_address_params)
     if @user.save #&& @address.save
       session[:user_id] = @user.id

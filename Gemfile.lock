@@ -146,6 +146,10 @@ GEM
     devise-security (0.11.1)
       devise (>= 4.2.0, < 5.0)
       railties (>= 3.2.6, < 6.0)
+    devise_token_auth (1.2.0)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 6.2)
     erubi (1.10.0)
     execjs (2.8.1)
     faraday (2.3.0)
@@ -364,6 +368,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise (~> 4.8)
   devise-security (~> 0.11.1)
+  devise_token_auth
   jbuilder (~> 2.5)
   jquery-datatables
   jquery-rails

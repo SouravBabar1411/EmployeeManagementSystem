@@ -93,7 +93,7 @@ $(document).on('turbolinks:load', function() {
           data: null,
           searchable: true,
           render: function (data, type, row) {
-            var action_html = "<a class='dropdown-item' href = '/jobs/"  + data.id +
+            var action_html = "<a class='dropdown-item' href = '/jobs_users/"  + data.id +
             "'data-toggle='tooltip' data-placement='top' data-original-title='show'>" +
             "<i class='bx bxs-user' style='color:rgba(77,77,80,0.95)'></i>"+
             "<span class='badge badge-light'>"+ data.users_count +'</span>'+"</i></a>"; 
@@ -104,22 +104,28 @@ $(document).on('turbolinks:load', function() {
           class: 'user-name',
           title: 'Actions', data: null, searchable: false, orderable: false,
           render: function (data, type, row) {
-            let action_html = "<div class='input-group' data-user-id ='" + data.id + "'>" +
-                  "<button type='button' class='btn p-0' data-bs-toggle='dropdown'>"+
-                    "<i class='bx bx-dots-vertical-rounded'></i></button>"+
-                    "<div class='dropdown-menu'>"
-                // Edit Job Button  
-                action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id + "/edit'" +
-                "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
-                "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
-                // Delete Job Button  
-                action_html = action_html + "<a class='dropdown-item delete-user' href = '/jobs/" + data.id +
-                        "data-confirm='Are you sure?' data-method='delete' >" +
-                        '<i class="bx bx-trash me-1"></i>Delete' + '</a>'
-  
-              action_html = action_html + "</div></div>"
-              
-            return action_html;
+            let action_html = ""
+              if($('#jobs-list').data('userrole') == "emp_admin"){
+                  action_html = "<div class='input-group' data-user-id ='" + data.id + "'>" +
+                    "<button type='button' class='btn p-0' data-bs-toggle='dropdown'>"+
+                      "<i class='bx bx-dots-vertical-rounded'></i></button>"+
+                      "<div class='dropdown-menu'>"
+                  // Edit Project Button  
+                  action_html = action_html + "<a class='dropdown-item' href = '/jobs/"  + data.id + "/edit'" +
+                  "'data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
+                  "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
+                  // Delete Project Button  
+                  
+                  action_html = action_html + "<a class='dropdown-item' href = '/jobs/" + data.id +
+                          "data-confirm='Are you sure?' data-method='delete' >" +
+                          '<i class="bx bx-trash me-1"></i>Delete' + '</a>'
+    
+                action_html = action_html + "</div></div>"
+              }
+              else{
+                action_html = ""
+              }
+              return action_html;
           }
         },
       ],

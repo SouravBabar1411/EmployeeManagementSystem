@@ -1,20 +1,20 @@
 class LeaveTrackerMailer < ApplicationMailer
 
-	def applay_leave_mail(leavetracker)
+	def apply_leave_mail(leavetracker)
 		@leavetracker = leavetracker
 		mail(to:  User.where(role:1).select(:email).pluck(:email),
-		subject: 'Application For Leave')
+				subject: 'Application For Leave')
 	end
 
 	def approve_leave_mail(leavetracker)
     @leavetracker = leavetracker
     mail(to: @leavetracker.user.email,
-    subject: "Leave Approved")
+    		subject: "Leave Approved")
   end
 
   def reject_leave_mail(leavetracker)
   	@leavetracker = leavetracker
   	mail(to: @leavetracker.user.email,
-  	subject: "Leave Rejected")
+  			subject: "Leave Rejected")
   end
 end

@@ -1,3 +1,4 @@
+
 class TimesheetsController < ApplicationController
   
   before_action :authenticate_user!
@@ -9,12 +10,14 @@ class TimesheetsController < ApplicationController
   end
 
   def fetch_timesheets
+
     if current_user.emp_admin? 
       timesheets = Timesheet.all
     else 
       timesheets = current_user.timesheets
     end 
     search_string = []
+
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
       search_columns.each do |term|
@@ -39,21 +42,19 @@ class TimesheetsController < ApplicationController
         end
     end
 
-    # timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
-    # timesheets = timesheets.page(datatable_page).per(datatable_per_page)
-
+    timesheets = timesheets.order("#{sort_column} #{datatable_sort_direction}") unless sort_column.nil?
+    timesheets = timesheets.page(datatable_page).per(datatable_per_page)  
     render json: {
-        timesheets: timesheets.as_json,
-        draw: params['draw'].to_i,
-        recordsTotal: timesheets.count,
+      timesheets:timesheets.as_json,
+      draw: params['draw'].to_i,
+      recordsTotal:timesheets.count,
+      recordsFiltered:timesheets.total_count,
     }
   end
 
   # Display Timesheet Data
   def show
   end
-
-  
 
   # GET /timesheets/new
   def new

@@ -1,18 +1,19 @@
 class LeaveTrackersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_leavetracker, only: %i[ edit update destroy ]
+  before_action :set_leavetracker, only: %i[ edit update destroy approve_reject ]
   # load_and_authorize_resource
 
   def index
     @leavetrackers = LeaveTracker.all
+     # binding.pry
   end
 
   def fetch_leaves
     if current_user.emp_admin? 
-      leavetrackers = LeaveTracker.all
+      leavetrackers = LeaveTracker.all.order(created_at: :desc)
     else 
-      leavetrackers = current_user.leave_trackers
+      leavetrackers = current_user.leave_trackers.order(created_at: :desc)
     end 
     search_string = []
     ## Check if Search Keyword is Present & Write it's Query
@@ -51,7 +52,7 @@ class LeaveTrackersController < ApplicationController
     @leavetracker = LeaveTracker.new(leavetracker_params)
     respond_to do |format|
       if @leavetracker.save
-        LeaveTrackerMailer.applay_leave_mail(@leavetracker).deliver
+        LeaveTrackerMailer.apply_leave_mail(@leavetracker).deliver
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -63,21 +64,26 @@ class LeaveTrackersController < ApplicationController
   def update                                                    
     respond_to do |format|
 
-      if @leavetracker.update(leavetracker_params) && params[:leave_tracker][:is_approved].include?("0")
-        LeaveTrackerMailer.reject_leave_mail(@leavetracker).deliver
-        format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
-      
-      elsif @leavetracker.update(leavetracker_params) && params[:leave_tracker][:is_approved].include?("1")
-        LeaveTrackerMailer.approve_leave_mail(@leavetracker).deliver
-        format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
-        
-      elsif @leavetracker.update(leavetracker_params)
+      if @leavetracker.update(leavetracker_params) 
         format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully updated." }
 
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
+  end
+  
+  # Approve/Reject toggal
+  def approve_reject
+    if @leavetracker.is_approved
+      response = toggle_leave(false)
+      LeaveTrackerMailer.reject_leave_mail(@leavetracker).deliver
+    else
+      response = toggle_leave(true)
+      LeaveTrackerMailer.approve_leave_mail(@leavetracker).deliver
+    end
+    render json: response
+    # binding.pry
   end
 
   # DELETE /timesheets/1 or /timesheets/1.json
@@ -87,6 +93,25 @@ class LeaveTrackersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to leave_trackers_path, notice: "LeaveTracker was successfully destroyed." }
     end
+  end
+
+  ## Approve/Reject leave
+  def toggle_leave(approve_status)
+    @leavetracker.is_approved = approve_status
+    if @leavetracker.save
+      response = {
+        success: true,
+        title: "#{@leavetracker.is_approved ? 'Approve' : 'Reject'} a Leave",
+        message: "Leave #{@leavetracker.is_approved ? 'approved' : 'rejected'} successfully!"
+      }
+    else
+      response = {
+        success: false,
+        title: "#{@leavetracker.is_approved ? 'Approve' : 'Reject'} a Leave",
+        message: "#{@leavetracker.is_approved ? 'Approving' : 'Rejecting'} leave failed, Try again later!"
+      }
+    end
+    response
   end
  
   private

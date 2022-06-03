@@ -27,6 +27,8 @@
 #  provider               :string
 #
 class User < ApplicationRecord
+            
+  include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -41,6 +43,7 @@ class User < ApplicationRecord
   end
 
   ##Associations
+  belongs_to :company
   has_many :addresses, as: :addressable
   has_many :contact_infos, as: :contactable   
   has_many :notifications, as: :notificable 
@@ -76,5 +79,4 @@ class User < ApplicationRecord
     response.merge!({projects_count: self.projects.count})
     response
   end 
-  
 end
