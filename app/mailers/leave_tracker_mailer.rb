@@ -8,7 +8,6 @@ class LeaveTrackerMailer < ApplicationMailer
 
 	def approve_leave_mail(leavetracker)
     @leavetracker = leavetracker
-    binding.pry
     mail(to: @leavetracker.user.email,
     		subject: "Leave Approved")
   end

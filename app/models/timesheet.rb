@@ -28,7 +28,6 @@ class Timesheet < ApplicationRecord
     response.merge!({project_name: self.project.name})
     response.merge!({job_name: self.job.name})
     response.merge!({startdate: self.created_at.strftime("%Y-%m-%d")})
-    # response.merge!({workingtime: self.time.strftime("%I:%M")})
     response
   end
   

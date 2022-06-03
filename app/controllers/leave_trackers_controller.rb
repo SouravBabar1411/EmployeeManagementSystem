@@ -11,9 +11,9 @@ class LeaveTrackersController < ApplicationController
 
   def fetch_leaves
     if current_user.emp_admin? 
-      leavetrackers = LeaveTracker.all
+      leavetrackers = LeaveTracker.all.order(created_at: :desc)
     else 
-      leavetrackers = current_user.leave_trackers
+      leavetrackers = current_user.leave_trackers.order(created_at: :desc)
     end 
     search_string = []
     ## Check if Search Keyword is Present & Write it's Query
@@ -72,9 +72,9 @@ class LeaveTrackersController < ApplicationController
       end
     end
   end
-
+  
+  # Approve/Reject toggal
   def approve_reject
-    binding.pry
     if @leavetracker.is_approved
       response = toggle_leave(false)
       LeaveTrackerMailer.reject_leave_mail(@leavetracker).deliver
@@ -98,7 +98,7 @@ class LeaveTrackersController < ApplicationController
   ## Approve/Reject leave
   def toggle_leave(approve_status)
     @leavetracker.is_approved = approve_status
-    if @leavetracker.save!
+    if @leavetracker.save
       response = {
         success: true,
         title: "#{@leavetracker.is_approved ? 'Approve' : 'Reject'} a Leave",
