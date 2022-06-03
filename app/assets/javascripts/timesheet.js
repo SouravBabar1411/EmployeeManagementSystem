@@ -10,61 +10,74 @@ $('#timesheet-list-table').DataTable({
 				"dataSrc": "timesheets"
 		},
 		"columns": [{
-						title: 'Project Name',
-						data: "project_name"
+					title: 'Project Name',
+					data: "project_name"
 				},
 				{
-						title: 'Job Name',
-						data: "job_name"
+					title: 'Job Name',
+					data: "job_name"
 				},
 				{
-						title: 'Description',
-						data: "description"
+					title: 'Description',
+					data: "description"
 				},
 				{
-						title: 'Time',
-						data: "time"
+					title: 'Time',
+					data: "time"
 				},
 				{
-						title: 'Date',
-						data: "startdate"
+					title: 'Date',
+					data: "startdate"
 				},
 				{
-						title: 'Is Approve',
-						data: null,
-						render: function(data, type, row) {
-								if (data.is_approved == 1)
-										return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
-								else
-										return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
-						}
+					title: 'Is Approve',
+					data: null,
+					render: function(data, type, row) {
+						if (data.is_approved == 1)
+								return '<i class="bx bxs-check-circle" style="color:#43a430"></i>'
+						else
+								return '<i class="bx bxs-check-circle" style="color:#c5c9c4"></i>'
+					}
 
 				},
 				{
-						title: 'Actions',
-						data: null,
-						searchable: false,
-						render: function(data, type, row) {
-								let action_html = "<div class='input-group' data-timesheet-id ='" + data.id + "'>" +
-										"<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
-										"<i class='bx bx-dots-vertical-rounded'></i></button>" +
-										"<div class='dropdown-menu'>"
+          title: 'Actions',
+          data: null,
+          searchable: false,
+          orderable: false,
+          render: function(data, type, row) {
+            let action_html = ""
+            if($('#timesheet-list-table').data('userrole') == "employee"){
+            action_html = "<div class='input-group' data-leavetracker-id ='" + data.id + "'>" +
+                "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>" +
+                "<i class='bx bx-dots-vertical-rounded'></i></button>" +
+                "<div class='dropdown-menu'>"
 
-								if (data.is_approved == 0)
-								// Edit timesheet Button
-										action_html = action_html + "<a class='dropdown-item btn-sm' href = '/timesheets/" + data.id + "/edit'" +
-										" data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
-										"<i class='bx bx-edit-alt me-1'></i> Edit</a>"
+                // Edit laeavetracker Button  
+            action_html = action_html + "<a class='dropdown-item btn-sm' href = '/leave_trackers/" + data.id + "/edit'" +
+                " data-toggle='tooltip' data-placement='top' data-original-title='Edit'>" +
+                "<i class='bx bx-edit-alt me-1'></i> Edit</a>"
 
-								// delete timesheet
-								action_html = action_html + "<a class='dropdown-item delete-user' href = '/timesheets/" + data.id +
-										"data-confirm='Are you sure?' data-method='delete' >" +
-										"<i class='bx bx-trash me-1'></i>Delete</a>"
-								action_html = action_html + "</div></div>"
+            // delete leavetracker
+            action_html = action_html + "<a class='dropdown-item delete-user' href = '/leave_trackers/" + data.id +
+                "data-confirm='Are you sure?' data-method='delete' >" +
+                "<i class='bx bx-trash me-1'></i>Delete</a>"
+            }
+          else{
+            action_html = ""
+            actionText = data.is_approved ? 'Reject' : 'Approve'
+            action_html = "<div class='input-group' data-user-id ='" + data.id + "'>" +
+                  "<button type='button' class='btn p-0 ' data-bs-toggle='dropdown'>"+
+                    "<i class='bx bx-dots-vertical-rounded'></i></button>"+
+                    "<div class='dropdown-menu'>"
 
-								return action_html;
-						}
-				}
+            action_html = action_html + "<a class='dropdown-item reject-leave' href = 'javascript:void(0);' data-toggle='tooltip' data-placement='top' data-user-id = '"
+                + data.id + "'>" + "<i class='bx bxs-exit me-1'></i>"+actionText+"</a>"
+
+          }
+          return action_html;
+          }
+        }
 		],
 		aLengthMenu: [
 				[5, 10, 15, 20],
@@ -77,8 +90,49 @@ $('#timesheet-list-table').DataTable({
 		pageLength: 5,
 });
 
-  // sweet alert 
+  $('#timesheet-list-table').on('click', '.reject-leave', function () {
 
+    // var challengeId = $(this).parent().parent().data('challenge-id');
+    var timeId = $(this).data('user-id');
+
+    if ($(this).html().includes('Reject')) {
+      swalTitle = 'Reject'
+      swalText = 'Do you want to Reject the Leave?'
+    } else {
+      swalTitle = 'Approve'
+      swalText = 'Do you want to approve the leave?'
+    }
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: swalText,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, ' + swalTitle + ' it!',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn btn-danger ml-1',
+      buttonsStyling: false,
+    }).then(function (result) {
+      if (result.value) {
+        $('.loader').fadeIn();
+        $.ajax({
+          type: 'PATCH',
+          url: "/timesheet/" + timeId,
+          success: function (data) {
+            $('.loader').fadeOut();
+            swalNotify(data.title, data.message);
+            if (data.success) {
+              $('#timesheet-list-table').DataTable().ajax.reload(null, false);
+            }
+          }
+        });
+      }
+    });
+  });
+
+  // sweet alert 
   $('#timesheet-list-table').on('click', '.delete-user', function () {
     event.preventDefault(); // don't forget to prevent the default event
     Swal.fire({
@@ -99,6 +153,16 @@ $('#timesheet-list-table').DataTable({
       }
     });
   });
+
+  // Trigger SWAL Notification
+  function swalNotify(title, message) {
+    Swal.fire({
+      title: title,
+      text: message,
+      confirmButtonClass: 'btn btn-primary',
+      buttonsStyling: false,
+    });
+  }
      
   // Validations
   $("#timesheetValidate").validate({

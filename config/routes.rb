@@ -86,6 +86,7 @@ Rails.application.routes.draw do
     end
   end
   get '/fetch_timesheets', to: 'timesheets#fetch_timesheets'
+  patch '/timesheet/:id' , to: 'timesheets#approve_reject' 
 
   # LeaveTracker routes
   resources :leave_trackers
