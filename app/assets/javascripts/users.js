@@ -134,7 +134,7 @@ $(document).on('turbolinks:load', function() {
       dom: '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
       oLanguage: {
         sLengthMenu: "_MENU_",
-        sSearch: ""
+        sSearch: "Search: "
       },
       aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
       order: [[1, "desc"]],

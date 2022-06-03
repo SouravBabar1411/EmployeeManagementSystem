@@ -10,10 +10,6 @@
   font-size: 15px;
 }
 
-.timesheet-btn {
-  margin-left: 800px;
-}
-
 .card-header1 {
   padding: 1.5rem 1.5rem;
   margin-bottom: -55px;
@@ -28,12 +24,9 @@
   background-color: #ccc;
 }
 
-.timesheet-btn {
+.shared-add-btn {
   margin-left: 800px;
-}
-
-.timesheet-btn {
-  margin-left: 800px;
+  color: #eee !important;
 }
 
 .content {
@@ -89,10 +82,6 @@
   color: #c2c6dc !important;
 }
 
-.timesheet-btn {
-  margin-left: 800px;
-}
-
 .user_table_image_thumb_size {
   width: 50px;
   height: 50px;
@@ -136,12 +125,6 @@
 .active,
 .collapsible:hover {
   background-color: #ccc;
-}
-
-.timesheet-btn {
-  margin-left: 800px;
-  color: #eee !important;
-  margin-left: 800px;
 }
 
 .content {
@@ -314,9 +297,7 @@ HEAD button:not(:disabled) {
 .collapsible:hover {
   background-color: #ccc;
 }
-.timesheet-btn {
-  margin-left: 800px;
-}
+
 .card-header1 {
   padding: 1.5rem 1.5rem;
   margin-bottom: -55px;
@@ -452,46 +433,6 @@ button:not(:disabled) {
 }
 .select-timesheet {
   width: 21%;
-}
-#birthday {
-  max-height: 80px;
-  margin-left: 20px;
-}
-.join-employee {
-  margin-left: 40px;
-}
-.cardBirthday {
-  background-image: url("birthday.png");
-  /*background-repeat: no-repeat;*/
-  background-size: cover;
-  height: 250px;
-  /*background-position: center center;*/
-  /*background-size: 100%;*/
-}
-.cardLeave {
-  background-image: url("leave2.png");
-  height: 250px;
-  /*background-repeat: no-repeat;*/
-  background-size: cover;
-  /*background-position: center center;*/
-  /*background-size: 100% 800%;*/
-}
-.cardNewJoiner {
-  background-image: url("welcome2.png");
-  /*background-repeat: no-repeat;*/
-  background-size: cover;
-  height: 250px;
-  /*background-position: center center;*/
-  /*background-size: 80% 200%;*/
-}
-
-.cardProject {
-  background-image: url("project2.jpg");
-  /*background-repeat: no-repeat;*/
-  background-size: cover;
-  height: 250px;
-  /*background-position: center center;*/
-  /*background-size: 80% 200%;*/
 }
 
 .google-social-login:after {

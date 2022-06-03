@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     users = User.where(company_id: current_user.company_id).order(created_at:"desc")
     search_string = []
     filter_query = ''
+
     ## Check if Search Keyword is Present & Write it's Query
     if params.has_key?('search') && params[:search].has_key?('value') && params[:search][:value].present?
     terms = params[:search][:value].split(' ')

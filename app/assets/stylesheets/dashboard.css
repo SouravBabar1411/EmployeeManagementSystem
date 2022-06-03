@@ -1,0 +1,45 @@
+/*DASHBOARD*/
+
+.cardBirthday {
+  background-image: url("birthday.png");
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+  height: 250px;
+  /*background-position: center center;*/
+  /*background-size: 100%;*/
+}
+
+.cardLeave {
+  background-image: url("leave2.png");
+  height: 250px;
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+  /*background-position: center center;*/
+  /*background-size: 100% 800%;*/
+}
+.cardNewJoiner {
+  background-image: url("welcome2.png");
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+  height: 250px;
+  /*background-position: center center;*/
+  /*background-size: 80% 200%;*/
+}
+
+.cardProject {
+  background-image: url("project2.jpg");
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+  height: 250px;
+  /*background-position: center center;*/
+  /*background-size: 80% 200%;*/
+}
+
+#birthday {
+  max-height: 80px;
+  margin-left: 20px;
+}
+
+.join-employee {
+  margin-left: 40px;
+}

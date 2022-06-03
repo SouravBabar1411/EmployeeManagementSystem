@@ -5,7 +5,7 @@
       <div class="table-responsive text-nowrap">
       <% if can? :create, Project %>
       <div class="col">
-          <h4 class="fw-bold float-end m-3"><span class="text-muted fw-light"><a href='/projects/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add project</span></a></h4>
+          <h4 class="fw-bold float-end m-3"><span class="text-muted fw-light"><a href='/projects/new' class="btn btn-primary mt-1 mb-2 shared-add-btn"><i class='bx bx-plus'></i><span>Add project</span></a></h4>
       </div>
       <% end %>
         <table class="table" id="projects-list" data-userrole="<%= current_user.role %>">
