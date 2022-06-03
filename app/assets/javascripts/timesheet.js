@@ -17,6 +17,10 @@ $('#timesheet-list-table').DataTable({
 					title: 'Job Name',
 					data: "job_name"
 				},
+        // {
+        //   title: 'employee',
+        //   data: "user_name"
+        // },
 				{
 					title: 'Description',
 					data: "description"
@@ -97,10 +101,10 @@ $('#timesheet-list-table').DataTable({
 
     if ($(this).html().includes('Reject')) {
       swalTitle = 'Reject'
-      swalText = 'Do you want to Reject the Leave?'
+      swalText = 'Do you want to Reject the timesheet?'
     } else {
       swalTitle = 'Approve'
-      swalText = 'Do you want to approve the leave?'
+      swalText = 'Do you want to approve the timesheet?'
     }
     
     Swal.fire({
