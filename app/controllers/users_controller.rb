@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params) 
     @user.save
     # @address = Address.new(build_address_params)
     if @user.save #&& @address.save

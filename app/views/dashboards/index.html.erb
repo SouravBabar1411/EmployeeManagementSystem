@@ -1,75 +1,83 @@
-<div class="row">
-	<div class="col-sm-5 mt-3" id="birthday">
-		<div class="card mb-4">
-			<h5 class="card-header">Birthday</h5>
-			<hr class="m-0" />
-				<div class="card-body cardBirthday mt-5">
-					<div class="row gy-3">
-					<div class="col-md">
-						<small class="text-light fw-semibold">Today's birthdays</small>
-						<ul>
-						<% @birthdays.each do |birthday| %>
-						<li><%= birthday %></li>
-						<% end %>
-					</ul>
-					</div>
-					</div>
-				</div>
-				<div class="card-body">
-				</div>
+<div class="row p-4">
+  <div class="col-sm-5 mt-3" id="birthday">
+    <div class="card mb-4">
+	    <h5 class="card-header">Birthday</h5>
+	    <hr class="m-0" />
+	    <div class="card-body cardBirthday">
+	      <div class="row gy-3">
+	        <div class="col-md">
+			  <small class="text-light fw-semibold">Today's birthdays</small>
+			  <ul>
+			    <% @birthdays.each do |birthday| %>
+			    <li><%= birthday %></li>
+			    <% end %>
+			  </ul>
+			</div>
+		  </div>
 		</div>
+	    <!-- <div class="card-body">
+	    </div> -->
+	  </div>
 	</div>
 	<div class="col-sm-5 mt-3 join-employee">
-		<div class="card mb-4">
-			<h5 class="card-header">New Hires</h5>
-			<hr class="m-0" />
-				<div class="card-body cardNewJoiner mt-5">
-					<div class="row gy-3">
-					<div class="col-md">
-						<small class="text-light fw-semibold">New Joinies</small>
-					<ul>
-						<% @birthdays.each do |birthday| %>
-						<li><%= birthday %></li>
-						<% end %>
-					</ul>
-					</div>
-					</div>
-				</div>
-				<div class="card-body">
-				</div>
+	  <div class="card mb-4">
+	    <h5 class="card-header">New Joinies</h5>
+		<hr class="m-0" />
+		<div class="card-body cardNewJoiner">
+		  <div class="row gy-3">
+		    <div class="col-md">
+			  <small class="text-light fw-semibold">New Joinies</small>
+			  <ul>
+			    <% @birthdays.each do |birthday| %>
+				<li><%= birthday %></li>
+				<% end %>
+			  </ul>
+			</div>
+		  </div>
 		</div>
+		<!-- 	<div class="card-body">
+		</div> -->
+	  </div>
 	</div>
-	<div class="col-sm-5" id="birthday">
-		<div class="card mb-4">
-			<h5 class="card-header">Projects</h5>
-			<hr class="m-0" />
-				<div class="card-body">
-					<div class="row gy-3">
-					<div class="col-md">
-						<small class="text-light fw-semibold">Reports</small>
-					</div>
-					</div>
-				</div>
-				<div class="card-body">
-				</div>
+
+	<div class="col-sm-5 mt-3 join-employee">
+	  <div class="card mb-4">
+	    <h5 class="card-header">New Hires</h5>
+		<hr class="m-0" />
+		<div class="card-body cardProject">
+		  <div class="row gy-3">
+		    <div class="col-md">
+			  <small class="text-light fw-semibold">New Hires</small>
+			  <ul>
+			    <% @birthdays.each do |birthday| %>
+				<li><%= birthday %></li>
+				<% end %>
+			  </ul>
+			</div>
+		  </div>
 		</div>
+		<!-- 	<div class="card-body">
+		</div> -->
+	  </div>
 	</div>
+
 	<div class="col-sm-5 mt-3" id="birthday">
-		<div class="card mb-4">
-			<h5 class="card-header">Request for leaves</h5>
-			<hr class="m-0" />
-				<div class="card-body cardLeave mt-5">
-					<div class="row gy-3">
-					<div class="col-md">
-						<small class="text-light fw-semibold">Pending Leave's</small>
-						<ul>
-						 <li><%= @leaves %></li>
-					  </ul>
-					</div>
-					</div>
-				</div>
-				<div class="card-body">
-				</div>
+	  <div class="card mb-4">
+	    <h5 class="card-header">Request for leaves</h5>
+		<hr class="m-0" />
+		<div class="card-body cardLeave">
+		  <div class="row gy-3">
+		    <div class="col-md">
+			  <small class="text-light fw-semibold">Pending Leave's</small>
+			    <ul>
+				  <li><%= @leaves %></li>
+				</ul>
+			</div>
+		  </div>
 		</div>
+		<!-- <div class="card-body">
+		</div> -->
+	  </div>
 	</div>
+  </div>
 </div>

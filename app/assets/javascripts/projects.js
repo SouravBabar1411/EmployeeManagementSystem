@@ -170,7 +170,4 @@ $(document).on('turbolinks:load', function() {
       
     order: [['1', 'desc']]
   });
-  
-
 });
-console.log("test project")

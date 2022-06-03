@@ -1,7 +1,8 @@
+<!-- LOGIN PAGE -->
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
-      <!-- Register -->
+      <!-- Login -->
       <div class="card">
         <div class="card-body">
           <!-- Logo -->
@@ -70,35 +71,63 @@
           <p class="mb-4">Please sign-in to your account to continue</p>
           <%= form_for(resource, as: resource_name, html: {id: 'login' },url: session_path(resource_name)) do |f| %>
             <p class="notice"><%= notice %>
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             </p>
-	            <p class="alert alert-warning"><%= alert %>
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+	          <p class="alert alert-warning text-left"><%= alert %>
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             </p>
+            
             <div class="mb-3">
               <%= f.label :email,class:'form-lable' %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control'%>
             </div>
+            
             <div class="mb-3">
               <%= f.label :password,class:'form-lable' %><br />
               <%= f.password_field :password, autocomplete: "current-password",class:'form-control' %>
             </div>
 
-            <% if devise_mapping.rememberable? %>
-              <div class="mb-3 ">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
+            <div class="row center-block text-center">
+              <% if devise_mapping.rememberable? %>
+                <div class="mb-3 col-6 ">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+            
+              <div class="col-6">
+                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <%= link_to "Forgot password?", new_password_path(resource_name) %><br />
+                <% end %>
               </div>
-            <% end %>
-
+            </div>
+            
             <div class="actions">
               <%= f.submit "Log in",class:'btn btn-primary d-grid w-100'%>
             </div>
+          
           <% end %>
-          <%= render "devise/shared/links" %>
+
+           <div class="row center-block text-center">
+              <!--  Google Social Login -->
+            <div class="col-6">
+              <%- if devise_mapping.omniauthable? %>
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <%= link_to "Sign Up with", omniauth_authorize_path(resource_name, provider), method: :post, class:"google-social-login" %><br />
+                <% end %>
+              <% end %>
+            </div>
+            
+             <div class="col-6 mt-3">
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+              <% end %>
+            </div>
+            </div>
+        
+          </div>
         </div>
       </div>
-      <!-- /Register -->
     </div>
   </div>
 </div>
