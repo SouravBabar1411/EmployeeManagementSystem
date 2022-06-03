@@ -24,7 +24,6 @@
  *= require select2
  *= require select2.min
  *= require dashboard
- *= require timesheet
  */
 
 @import "bootstrap";
