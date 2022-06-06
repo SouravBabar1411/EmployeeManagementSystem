@@ -1,13 +1,11 @@
-<!-- LOGIN PAGE -->
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
-      <!-- Login -->
       <div class="card">
         <div class="card-body">
           <!-- Logo -->
           <div class="app-brand justify-content-center">
-            <a href="index.html" class="app-brand-link gap-2">
+            <a href="" class="app-brand-link gap-2">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -69,22 +67,17 @@
           <!-- /Logo -->
           <h4 class="mb-2">Welcome to EMS! 👋</h4>
           <p class="mb-4">Please sign-in to your account to continue</p>
+          <!--  Login form -->
           <%= form_for(resource, as: resource_name, html: {id: 'login' },url: session_path(resource_name)) do |f| %>
-            <p class="notice"><%= notice %>
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            </p>
-	          <p class="alert alert-warning text-left"><%= alert %>
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            </p>
-            
+            <%= render 'shared/messages' %>
             <div class="mb-3">
-              <%= f.label :email,class:'form-lable' %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control'%>
+              <%= f.label :email, class:'form-lable' %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control'%>
             </div>
             
             <div class="mb-3">
-              <%= f.label :password,class:'form-lable' %><br />
-              <%= f.password_field :password, autocomplete: "current-password",class:'form-control' %>
+              <%= f.label :password, class:'form-lable' %><br />
+              <%= f.password_field :password, autocomplete: "current-password", class:'form-control' %>
             </div>
 
             <div class="row center-block text-center">
@@ -103,13 +96,12 @@
             </div>
             
             <div class="actions">
-              <%= f.submit "Log in",class:'btn btn-primary d-grid w-100'%>
+              <%= f.submit "Sign in", class:'btn btn-primary d-grid w-100'%>
             </div>
-          
           <% end %>
-
-           <div class="row center-block text-center">
-              <!--  Google Social Login -->
+          <!--  Login form -->
+          <div class="row center-block text-center">
+            <!--  Google Social Login -->
             <div class="col-6">
               <%- if devise_mapping.omniauthable? %>
                 <%- resource_class.omniauth_providers.each do |provider| %>
@@ -117,15 +109,12 @@
                 <% end %>
               <% end %>
             </div>
-            
-             <div class="col-6 mt-3">
+            <div class="col-6 mt-3">
               <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
                 <%= link_to "Sign up", new_registration_path(resource_name) %><br />
               <% end %>
             </div>
-            </div>
-        
-          </div>
+          </div> 
         </div>
       </div>
     </div>
