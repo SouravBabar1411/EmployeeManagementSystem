@@ -2,8 +2,8 @@
 class TimesheetsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_timesheet, only: %i[ edit update destroy ]
-  load_and_authorize_resource
+  before_action :set_timesheet, only: %i[ edit update destroy  approve_reject]
+  # load_and_authorize_resource
 
   def index
     @timesheets = Timesheet.all
@@ -93,6 +93,35 @@ class TimesheetsController < ApplicationController
       end
     end
   end
+
+  def approve_reject
+    if @timesheet.is_approved
+      response = toggle_leave(false)
+    else
+      response = toggle_leave(true)
+      TimesheetMailer.send_timesheet_approve_email(@timesheet).deliver
+    end
+    render json: response
+  end
+
+  def toggle_leave(approve_status)
+    @timesheet.is_approved = approve_status
+    if @timesheet.save
+      response = {
+        success: true,
+        title: "#{@timesheet.is_approved ? 'Approve' : 'Reject'} a timesheet",
+        message: "Leave #{@timesheet.is_approved ? 'approved' : 'rejected'} successfully!"
+      }
+    else
+      response = {
+        success: false,
+        title: "#{@timesheet.is_approved ? 'Approve' : 'Reject'} a timesheet",
+        message: "#{@timesheet.is_approved ? 'Approving' : 'Rejecting'} leave failed, Try again later!"
+      }
+    end
+    response
+  end
+ 
 
   # DELETE /timesheets/1 or /timesheets/1.json
   def destroy
