@@ -95,4 +95,10 @@ Rails.application.routes.draw do
   
   #dashboard routes
   get 'dashboards', to: 'dashboards#index'
+
+  namespace :api, :path => 'api', :defaults => {:format => :json} do
+    namespace :v1 do
+      resources :users, only: [:index, :create]
+    end
+  end
 end

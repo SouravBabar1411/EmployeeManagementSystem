@@ -181,19 +181,19 @@ $(document).on('turbolinks:load', function() {
         'user[date_of_birth]': {
           required: true
         },
-        'user[address_line_1]': {
+        'user[addresses_attributes][0][address_line_1]': {
           required: true
         },
-        'user[city]': {
+        'user[addresses_attributes][0][city]': {
           required: true
         },
-        'user[state]': {
+        'user[addresses_attributes][0][state]': {
           required: true
         },
-        'user[country]': {
+        'user[addresses_attributes][0][country]': {
           required: true
         },
-        'user[zipcode]': {
+        'user[addresses_attributes][0][zipcode]': {
           required: true
         }
       },
@@ -223,19 +223,19 @@ $(document).on('turbolinks:load', function() {
         'user[date_of_birth]': {
           required: 'Please enter Date of Birth'
         },
-        'user[address_line_1]': {
+        'user[addresses_attributes][0][address_line_1]': {
           required: 'Please enter Address Line 1'
         },
-        'user[city]': {
+        'user[addresses_attributes][0][city]': {
           required: 'Please enter City'
         },
-        'user[state]': {
+        'user[addresses_attributes][0][state]': {
           required: 'Please enter State'
         },
-        'user[country]': {
+        'user[addresses_attributes][0][country]': {
           required: 'Please enter Country'
         },
-        'user[zipcode]': {
+        'user[addresses_attributes][0][zipcode]': {
           required: 'Please enter Zipcode'
         }
       },
