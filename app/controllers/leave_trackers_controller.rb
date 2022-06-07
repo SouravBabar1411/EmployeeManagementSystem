@@ -80,7 +80,6 @@ class LeaveTrackersController < ApplicationController
       LeaveTrackerMailer.reject_leave_mail(@leavetracker).deliver
     else
       response = toggle_leave(true)
-      LeaveTrackerMailer.approve_leave_mail(@leavetracker).deliver
     end
     render json: response
     # binding.pry
@@ -98,7 +97,8 @@ class LeaveTrackersController < ApplicationController
   ## Approve/Reject leave
   def toggle_leave(approve_status)
     @leavetracker.is_approved = approve_status
-    if @leavetracker.save
+    if @leavetracker.save!
+      LeaveTrackerMailer.approve_leave_mail(@leavetracker).deliver
       response = {
         success: true,
         title: "#{@leavetracker.is_approved ? 'Approve' : 'Reject'} a Leave",
