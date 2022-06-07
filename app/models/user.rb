@@ -32,7 +32,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable,
+         :recoverable, :rememberable, :validatable,
          :password_expirable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   ##Enum for roles
@@ -59,14 +59,15 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :addresses
   
   #omniauth google social login
-  # def self.from_omniauth(auth)
-	 #  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-		# user.provider = auth.provider
-		# user.uid = auth.uid
-		# user.email = auth.info.email
-		# user.password = Devise.friendly_token[0,20]
-	 #  end
-  # end
+  def self.from_omniauth(auth)
+	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+		user.provider = auth.provider
+		user.uid = auth.uid
+		user.email = auth.info.email
+		user.password = Devise.friendly_token[0,20]
+    # user.skip_confirmation! unless user.confirmed?
+	  end
+  end
 
   #Mount uploader
   mount_uploader :image, ImageUploader
@@ -78,5 +79,4 @@ class User < ApplicationRecord
     response.merge!({projects_count: self.projects.count})
     response
   end 
-  
 end

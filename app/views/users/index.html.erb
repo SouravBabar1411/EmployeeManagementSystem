@@ -2,9 +2,15 @@
   <div class="card">
     <h5 class="card-header">Employees</h5>
     <div class="col">
-        <% if current_user.emp_admin? %>
-        <h4 class="fw-bold"><span class="text-muted fw-light"><a href='/users/new' class="btn btn-primary mt-1 mb-2 timesheet-btn"><i class='bx bx-plus'></i><span>Add employee</span></a></h4>
-        <% end %>
+      <% if current_user.emp_admin? %>
+      <h4 class="fw-bold float-end m-3">
+        <span class="text-muted fw-light">
+          <a href='/users/new' class="btn btn-primary mt-1 mb-2 shared-add-btn"><i class='bx bx-plus'></i><span>Add employee
+          </a>
+        </span>
+      </h4>
+      <% end %>
+   
     </div>
     <div class="table-responsive text-nowrap">
       <%= render 'shared/messages', obj: @user %>  

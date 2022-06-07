@@ -23,6 +23,7 @@
  *= require sweetalert2.min
  *= require select2
  *= require select2.min
+ *= require dashboard
  */
 
 @import "bootstrap";

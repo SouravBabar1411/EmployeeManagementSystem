@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function() {
           searchable: false,
           render: function (data, type, row) {
             actionText = data.is_active ? 'Active' : 'Inactive'
-            return '<span class="badge bg-label-primary me-1" data-user-id="' + data.id + '"> ' +
+            return '<span class="badge bg-label-primary w-100" data-user-id="' + data.id + '"> ' +
             actionText + '</span>'
           }
         },
@@ -134,7 +134,7 @@ $(document).on('turbolinks:load', function() {
       dom: '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
       oLanguage: {
         sLengthMenu: "_MENU_",
-        sSearch: ""
+        sSearch: "Search: "
       },
       aLengthMenu: [[5, 10, 15, 20], [5, 10, 15, 20]],
       order: [[1, "desc"]],
@@ -142,12 +142,6 @@ $(document).on('turbolinks:load', function() {
       pageLength: 5,
       aoColumnDefs: [
         {'bSortable': false, 'aTargets': [0]}
-      ],
-      buttons: [
-        {
-          text: "<i class='feather icon-plus'></i>",
-          className: "btn btn-primary mr-sm-1 mb-1 mb-sm-0 waves-effect waves-light"
-        }
       ],
       initComplete: function (settings, json) {
         $(".dt-buttons .btn").removeClass("btn-secondary");
@@ -187,19 +181,19 @@ $(document).on('turbolinks:load', function() {
         'user[date_of_birth]': {
           required: true
         },
-        'user[address_line_1]': {
+        'user[addresses_attributes][0][address_line_1]': {
           required: true
         },
-        'user[city]': {
+        'user[addresses_attributes][0][city]': {
           required: true
         },
-        'user[state]': {
+        'user[addresses_attributes][0][state]': {
           required: true
         },
-        'user[country]': {
+        'user[addresses_attributes][0][country]': {
           required: true
         },
-        'user[zipcode]': {
+        'user[addresses_attributes][0][zipcode]': {
           required: true
         }
       },
@@ -229,19 +223,19 @@ $(document).on('turbolinks:load', function() {
         'user[date_of_birth]': {
           required: 'Please enter Date of Birth'
         },
-        'user[address_line_1]': {
+        'user[addresses_attributes][0][address_line_1]': {
           required: 'Please enter Address Line 1'
         },
-        'user[city]': {
+        'user[addresses_attributes][0][city]': {
           required: 'Please enter City'
         },
-        'user[state]': {
+        'user[addresses_attributes][0][state]': {
           required: 'Please enter State'
         },
-        'user[country]': {
+        'user[addresses_attributes][0][country]': {
           required: 'Please enter Country'
         },
-        'user[zipcode]': {
+        'user[addresses_attributes][0][zipcode]': {
           required: 'Please enter Zipcode'
         }
       },
